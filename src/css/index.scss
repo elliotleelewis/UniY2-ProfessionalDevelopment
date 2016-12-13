@@ -1,0 +1,54 @@
+@import "colors";
+@import "vars";
+@import "default";
+$applicationMargin: $spacing * 2;
+$applicationPadding: $spacing;
+$mobileMargin: $spacing;
+$mobilePadding: $spacing / 2;
+.frame {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	background: $theme-color-dark no-repeat fixed center;
+	background-size: cover;
+	background-position-y: 100%;
+}
+#reactRoot {
+	width: 100%;
+	height: calc(100% - (#{$mobileMargin} * 2));
+	margin: $mobileMargin;
+	padding: $mobilePadding;
+	border-radius: $mobilePadding;
+	overflow: hidden;
+	background-color: rgba(0, 0, 0, 0.25);
+	color: white;
+	@media screen and (min-width: $mobileBreakpoint) {
+		height: calc(100% - (#{$applicationMargin} * 2));
+		margin: $applicationMargin;
+		padding: $applicationPadding;
+		border-radius: $applicationPadding;
+	}
+	header {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		@media screen and (min-width: $mobileBreakpoint) {
+			flex-direction: row;
+		}
+		img {
+			width: 100%;
+			height: 100%;
+			max-width: 200px;
+		}
+		.titleContainer {
+			width: 100%;
+			text-align: center;
+			@media screen and (min-width: $mobileBreakpoint) {
+				padding-right: 200px;
+			}
+			h2 {
+				margin: 0;
+			}
+		}
+	}
+}
