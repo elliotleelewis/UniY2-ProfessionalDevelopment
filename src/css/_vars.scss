@@ -1,2 +1,4 @@
-$mobileBreakpoint: 768px;
+$desktopBreakpoint: 769px;
+$mobileBreakpoint: $desktopBreakpoint - 1px;
+$transitionLength: 0.25s;
 $spacing: 25px;

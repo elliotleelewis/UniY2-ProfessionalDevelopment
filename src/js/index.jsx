@@ -7,30 +7,37 @@ let Hammer = require('hammerjs');
 let React = require('react');
 let ReactDOM = require('react-dom');
 // Global Vars
-let appStates = [
-	{
-		title: "TYPE"
+let StateType = require('./stateType.jsx');
+let appStates = {
+	type: {
+		title: "TYPE",
+		object: <StateType />
 	}
-];
+};
 // React Components
 class MainPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			appState: appStates[0]
+			appState: appStates.type
 		};
 	}
 	
 	render() {
 		return (
-			<div className="mainPage">
+			<div id="mainPage">
 				<PageHeader appState={this.getAppState()} />
+				{this.getAppStateObject()}
 			</div>
 		);
 	}
 	
 	getAppState() {
 		return this.state.appState;
+	}
+	
+	getAppStateObject() {
+		return this.getAppState().object;
 	}
 }
 class PageHeader extends React.Component {
@@ -42,7 +49,9 @@ class PageHeader extends React.Component {
 		return (
 			<header>
 				<img src="media/images/brand/logo.png" alt="AutoTrader Logo" className="logo" />
-				<div className="titleContainer"><h2>{this.getAppStateTitle()}</h2></div>
+				<div className="titleContainer">
+					<h2>{this.getAppStateTitle()}</h2>
+				</div>
 			</header>
 		);
 	}

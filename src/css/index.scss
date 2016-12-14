@@ -12,18 +12,19 @@ $mobilePadding: $spacing / 2;
 	background: $theme-color-dark no-repeat fixed center;
 	background-size: cover;
 	background-position-y: 100%;
+	overflow: auto;
 }
 #reactRoot {
 	width: 100%;
-	height: calc(100% - (#{$mobileMargin} * 2));
+	min-height: calc(100% - (#{$mobileMargin} * 4));
 	margin: $mobileMargin;
 	padding: $mobilePadding;
 	border-radius: $mobilePadding;
 	overflow: hidden;
 	background-color: rgba(0, 0, 0, 0.25);
 	color: white;
-	@media screen and (min-width: $mobileBreakpoint) {
-		height: calc(100% - (#{$applicationMargin} * 2));
+	@media screen and (min-width: $desktopBreakpoint) {
+		min-height: calc(100% - (#{$applicationMargin} * 4));
 		margin: $applicationMargin;
 		padding: $applicationPadding;
 		border-radius: $applicationPadding;
@@ -32,7 +33,9 @@ $mobilePadding: $spacing / 2;
 		display: flex;
 		align-items: center;
 		flex-direction: column;
-		@media screen and (min-width: $mobileBreakpoint) {
+		user-select: none;
+		cursor: default;
+		@media screen and (min-width: $desktopBreakpoint) {
 			flex-direction: row;
 		}
 		img {
@@ -43,7 +46,7 @@ $mobilePadding: $spacing / 2;
 		.titleContainer {
 			width: 100%;
 			text-align: center;
-			@media screen and (min-width: $mobileBreakpoint) {
+			@media screen and (min-width: $desktopBreakpoint) {
 				padding-right: 200px;
 			}
 			h2 {
@@ -51,4 +54,15 @@ $mobilePadding: $spacing / 2;
 			}
 		}
 	}
+	#mainPage {
+		display: flex;
+		width: 100%;
+		height: 100%;
+		flex-direction: column;
+	}
+}
+.state {
+	width: 100%;
+	height: 100%;
+	@import "stateType";
 }
