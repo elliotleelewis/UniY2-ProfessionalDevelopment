@@ -11,7 +11,7 @@ let StateType = require('./stateType.jsx');
 let StateOptions = require('./stateOptions.jsx');
 let appStates = {
 	type: {
-		title: "TYPE",
+		title: "HEllo",
 		object: <StateType />
 	},
 	params: {
