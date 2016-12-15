@@ -8,10 +8,15 @@ let React = require('react');
 let ReactDOM = require('react-dom');
 // Global Vars
 let StateType = require('./stateType.jsx');
+let StateOptions = require('./stateOptions.jsx');
 let appStates = {
 	type: {
 		title: "TYPE",
 		object: <StateType />
+	},
+	params: {
+		title: "OPTIONS",
+		object: <StateOptions />
 	}
 };
 // React Components

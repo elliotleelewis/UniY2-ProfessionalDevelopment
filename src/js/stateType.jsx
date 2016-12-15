@@ -87,7 +87,7 @@ class StateType extends React.Component {
 					{this.eachType()}
 				</div>
 				<div className="buttonContainer">
-					<button className="btn btn-lg btn-info">Select</button>
+					<button className="btn btn-lg btn-primary">Select</button>
 				</div>
 			</div>
 		);
