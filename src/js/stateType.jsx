@@ -1,4 +1,90 @@
 let React = require('react');
+class StateType extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			selectedTypeIndex: 1,
+			types: [
+				'saloon',
+				'hatchback',
+				'suv',
+				'mpv',
+				'estate',
+				'convertible',
+				'coupe',
+				'other'
+			]
+		}
+	}
+	
+	render() {
+		return (
+			<div className="state" id="type">
+				<div className="typesContainer">
+					<div className="types">
+						{this.eachType()}
+					</div>
+					<button className="btn btn-lg btn-primary">Select</button>
+				</div>
+				<Presets />
+			</div>
+		);
+	}
+	
+	eachType() {
+		let typeState = this;
+		return this.getTypes().map(function(item, i) {
+			return (
+				<TypeOption key={i} type={item} relativeSelectedIndex={typeState.getRelativeSelectedIndex(i)} state={typeState}/>
+			);
+		});
+	}
+	
+	selectPreviousType() {
+		let index = this.getSelectedTypeIndex();
+		index--;
+		if(index < 0) {
+			index = this.getTypesCount() - 1;
+		}
+		this.setState({
+			selectedTypeIndex: index
+		});
+	}
+	
+	selectNextType() {
+		let index = this.getSelectedTypeIndex();
+		index++;
+		if(index >= this.getTypesCount()) {
+			index = 0;
+		}
+		this.setState({
+			selectedTypeIndex: index
+		});
+	}
+	
+	getRelativeSelectedIndex(i) {
+		let out = i - this.getSelectedTypeIndex();
+		if(out > (this.getTypesCount() / 2)) {
+			out -= this.getTypesCount();
+		}
+		else if(out < -(this.getTypesCount() / 2)) {
+			out += this.getTypesCount();
+		}
+		return out;
+	}
+	
+	getTypes() {
+		return this.state.types;
+	}
+	
+	getTypesCount() {
+		return this.getTypes().length;
+	}
+	
+	getSelectedTypeIndex() {
+		return this.state.selectedTypeIndex;
+	}
+}
 class TypeOption extends React.Component {
 	constructor(props) {
 		super(props);
@@ -62,89 +148,62 @@ class TypeOption extends React.Component {
 		return this.props.relativeSelectedIndex;
 	}
 }
-class StateType extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			selectedTypeIndex: 1,
-			types: [
-				'saloon',
-				'hatchback',
-				'suv',
-				'mpv',
-				'estate',
-				'convertible',
-				'coupe',
-				'other'
-			]
-		}
-	}
-	
+class Presets extends React.Component {
 	render() {
 		return (
-			<div className="state" id="type">
-				<div className="types">
-					{this.eachType()}
-				</div>
-				<div className="buttonContainer">
-					<button className="btn btn-lg btn-primary">Select</button>
+			<div className="presetsContainer">
+				<h3>Presets</h3>
+				<div className="presets">
+					{this.getPresets()}
 				</div>
 			</div>
 		);
 	}
 	
-	eachType() {
-		let typeState = this;
-		return this.getTypes().map(function(item, i) {
+	getPresets() {
+		let presets = [
+			{
+				name: "First Car",
+				icon: "first-car"
+			},
+			{
+				name: "City Car",
+				icon: "city-car"
+			},
+			{
+				name: "Family Car",
+				icon: "family-car"
+			},
+			{
+				name: "Towing",
+				icon: "towing"
+			},
+			{
+				name: "Long Distance",
+				icon: "long-distance"
+			},
+			{
+				name: "Performance",
+				icon: "performance"
+			},
+			{
+				name: "Off Road",
+				icon: "off-road"
+			}
+		];
+		return presets.map(function(item, i) {
 			return (
-				<TypeOption key={i} type={item} relativeSelectedIndex={typeState.getRelativeSelectedIndex(i)} state={typeState}/>
+				<div key={i} className="preset">
+					<div className="presetIcon">
+						<svg>
+							<title>{item.name}</title>
+							<use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref={"media/images/icons.svg#icon-" + item.icon}/>
+						</svg>
+					</div>
+					<p>{item.name}</p>
+				</div>
 			);
 		});
-	}
-	
-	selectPreviousType() {
-		let index = this.getSelectedTypeIndex();
-		index--;
-		if(index < 0) {
-			index = this.getTypesCount() - 1;
-		}
-		this.setState({
-			selectedTypeIndex: index
-		});
-	}
-	
-	selectNextType() {
-		let index = this.getSelectedTypeIndex();
-		index++;
-		if(index >= this.getTypesCount()) {
-			index = 0;
-		}
-		this.setState({
-			selectedTypeIndex: index
-		});
-	}
-	
-	getRelativeSelectedIndex(i) {
-		let out = i - this.getSelectedTypeIndex();
-		if(out > (this.getTypesCount() / 2)) {
-			out -= this.getTypesCount();
-		}
-		else if(out < -(this.getTypesCount() / 2)) {
-			out += this.getTypesCount();
-		}
-		return out;
-	}
-	
-	getTypes() {
-		return this.state.types;
-	}
-	
-	getTypesCount() {
-		return this.getTypes().length;
-	}
-	
-	getSelectedTypeIndex() {
-		return this.state.selectedTypeIndex;
 	}
 }
 module.exports = StateType;
