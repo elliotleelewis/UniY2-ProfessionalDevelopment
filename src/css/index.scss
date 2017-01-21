@@ -1,36 +1,33 @@
 @import "colors";
 @import "vars";
 @import "default";
-$applicationMargin: $spacing * 2;
-$applicationPadding: $spacing;
+$applicationSpacing: $spacing;
 $mobileMargin: $spacing;
 $mobilePadding: $spacing / 2;
 .frame {
 	display: flex;
 	width: 100%;
-	height: 100%;
-	background: $theme-color-dark no-repeat fixed center;
+	min-height: 100%;
+	background: $theme-colour no-repeat fixed center;
 	background-size: cover;
 	background-position-y: 100%;
 	overflow: auto;
 }
 #reactRoot {
 	width: 100%;
-	min-height: calc(100% - (#{$mobileMargin} * 4));
 	margin: $mobileMargin;
-	padding: $mobilePadding;
+	padding: 0;
 	border-radius: $mobilePadding;
 	overflow: hidden;
-	background-color: rgba(0, 0, 0, 0.25);
-	color: white;
+	background-color: $trans-bg;
+	color: $text-colour;
 	@media screen and (min-width: $desktopBreakpoint) {
-		min-height: calc(100% - (#{$applicationMargin} * 4));
-		margin: $applicationMargin;
-		padding: $applicationPadding;
-		border-radius: $applicationPadding;
+		margin: $applicationSpacing;
+		border-radius: $applicationSpacing;
 	}
 	header {
 		display: flex;
+		padding: $spacing $spacing ($spacing / 2);
 		align-items: center;
 		flex-direction: column;
 		user-select: none;
