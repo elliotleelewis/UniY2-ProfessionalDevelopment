@@ -165,7 +165,7 @@ class Presets extends React.Component {
 				<div className={"presetsContainer" + (this.state.hidden == false ? "" : " hidden")}>
 					<h3>Presets</h3>
 					<div className="presets">
-						{this.getPresets()}
+						{Presets.getPresets()}
 					</div>
 				</div>
 			</footer>
