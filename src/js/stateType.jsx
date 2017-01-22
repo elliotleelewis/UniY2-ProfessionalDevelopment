@@ -178,47 +178,26 @@ class Presets extends React.Component {
 		});
 	}
 	
-	getPresets() {
+	static getPresets() {
 		let presets = [
-			{
-				name: "First Car",
-				icon: "first-car"
-			},
-			{
-				name: "City Car",
-				icon: "city-car"
-			},
-			{
-				name: "Family Car",
-				icon: "family-car"
-			},
-			{
-				name: "Towing",
-				icon: "towing"
-			},
-			{
-				name: "Long Distance",
-				icon: "long-distance"
-			},
-			{
-				name: "Performance",
-				icon: "performance"
-			},
-			{
-				name: "Off Road",
-				icon: "off-road"
-			}
+			"First Car",
+			"City Car",
+			"Family Car",
+			"Towing",
+			"Long Distance",
+			"Performance",
+			"Off Road"
 		];
 		return presets.map(function(item, i) {
 			return (
 				<div key={i} className="preset">
 					<div className="presetIcon">
 						<svg>
-							<title>{item.name}</title>
-							<use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref={"media/images/icons.svg#icon-" + item.icon} />
+							<title>{item}</title>
+							<use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref={"media/images/icons.svg#icon-" + item.toLowerCase().replace(" ", "-")} />
 						</svg>
 					</div>
-					<p>{item.name}</p>
+					<p>{item}</p>
 				</div>
 			);
 		});
