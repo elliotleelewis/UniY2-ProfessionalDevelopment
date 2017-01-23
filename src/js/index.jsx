@@ -11,7 +11,7 @@ let ModuleType = require('./moduleType.jsx');
 let ModuleOptions = require('./moduleOptions.jsx');
 let appStates = {
 	type: {
-		title: "TYPE",
+		title: "BODY TYPE",
 		object: <ModuleType />
 	},
 	params: {
