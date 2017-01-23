@@ -1,5 +1,5 @@
 let React = require('react');
-class StateType extends React.Component {
+class ModuleType extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -163,7 +163,7 @@ class Presets extends React.Component {
 					<i className="material-icons">{"arrow_drop_" + (this.state.hidden == false ? "down" : "up")}</i>
 				</a>
 				<div className={"presetsContainer" + (this.state.hidden == false ? "" : " hidden")}>
-					<h3>Presets</h3>
+					<h3>Lifestyle</h3>
 					<div className="presets">
 						{Presets.getPresets()}
 					</div>
@@ -203,4 +203,4 @@ class Presets extends React.Component {
 		});
 	}
 }
-module.exports = StateType;
+module.exports = ModuleType;

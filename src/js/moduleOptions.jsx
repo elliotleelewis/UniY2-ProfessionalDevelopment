@@ -1,7 +1,7 @@
 let React = require('react');
-class StateOptions extends React.Component {
+class ModuleOptions extends React.Component {
 	constructor(props) {
 		super(props);
 	}
 }
-module.exports = StateOptions;
+module.exports = ModuleOptions;
