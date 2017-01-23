@@ -1,5 +1,5 @@
 let React = require('react');
-class StateType extends React.Component {
+class ModuleType extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -35,7 +35,7 @@ class StateType extends React.Component {
 		let typeState = this;
 		return this.getTypes().map(function(item, i) {
 			return (
-				<TypeOption key={i} type={item} relativeSelectedIndex={typeState.getRelativeSelectedIndex(i)} state={typeState}/>
+				<TypeOption key={i} type={item} relativeSelectedIndex={typeState.getRelativeSelectedIndex(i)} state={typeState} />
 			);
 		});
 	}
@@ -95,7 +95,7 @@ class TypeOption extends React.Component {
 			<div className={"type" + this.getClassName()} onClick={this.getAction()}>
 				<svg>
 					<title>{this.getType()}</title>
-					<use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref={this.getIconFilepath()}/>
+					<use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref={this.getIconFilepath()} />
 				</svg>
 				<h5>{this.getType()}</h5>
 			</div>
@@ -149,61 +149,58 @@ class TypeOption extends React.Component {
 	}
 }
 class Presets extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			hidden: false
+		};
+	}
+	
 	render() {
 		return (
-			<div className="presetsContainer">
-				<h3>Presets</h3>
-				<div className="presets">
-					{this.getPresets()}
+			<footer>
+				<a id="togglePresetsButton" href="#" title={this.state.hidden == false ? "Hide" : "Show"} onClick={this.toggleHidden.bind(this)}>
+					<i className="material-icons">{"arrow_drop_" + (this.state.hidden == false ? "down" : "up")}</i>
+				</a>
+				<div className={"presetsContainer" + (this.state.hidden == false ? "" : " hidden")}>
+					<h3>Lifestyle</h3>
+					<div className="presets">
+						{Presets.getPresets()}
+					</div>
 				</div>
-			</div>
+			</footer>
 		);
 	}
 	
-	getPresets() {
+	toggleHidden() {
+		this.setState({
+			hidden: !this.state.hidden
+		});
+	}
+	
+	static getPresets() {
 		let presets = [
-			{
-				name: "First Car",
-				icon: "first-car"
-			},
-			{
-				name: "City Car",
-				icon: "city-car"
-			},
-			{
-				name: "Family Car",
-				icon: "family-car"
-			},
-			{
-				name: "Towing",
-				icon: "towing"
-			},
-			{
-				name: "Long Distance",
-				icon: "long-distance"
-			},
-			{
-				name: "Performance",
-				icon: "performance"
-			},
-			{
-				name: "Off Road",
-				icon: "off-road"
-			}
+			"First Car",
+			"City Car",
+			"Family Car",
+			"Towing",
+			"Long Distance",
+			"Performance",
+			"Off Road"
 		];
 		return presets.map(function(item, i) {
 			return (
 				<div key={i} className="preset">
 					<div className="presetIcon">
 						<svg>
-							<title>{item.name}</title>
-							<use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref={"media/images/icons.svg#icon-" + item.icon}/>
+							<title>{item}</title>
+							<use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref={"media/images/icons.svg#icon-" + item.toLowerCase().replace(" ", "-")} />
 						</svg>
 					</div>
-					<p>{item.name}</p>
+					<p>{item}</p>
 				</div>
 			);
 		});
 	}
 }
-module.exports = StateType;
+module.exports = ModuleType;
