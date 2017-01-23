@@ -7,16 +7,16 @@ let Hammer = require('hammerjs');
 let React = require('react');
 let ReactDOM = require('react-dom');
 // Global Vars
-let StateType = require('./stateType.jsx');
-let StateOptions = require('./stateOptions.jsx');
+let ModuleType = require('./moduleType.jsx');
+let ModuleOptions = require('./moduleOptions.jsx');
 let appStates = {
 	type: {
-		title: "HEllo",
-		object: <StateType />
+		title: "TYPE",
+		object: <ModuleType />
 	},
 	params: {
 		title: "OPTIONS",
-		object: <StateOptions />
+		object: <ModuleOptions />
 	}
 };
 // React Components
