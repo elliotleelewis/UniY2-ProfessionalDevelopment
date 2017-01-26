@@ -159,9 +159,7 @@ class Presets extends React.Component {
 	render() {
 		return (
 			<footer>
-				<a id="togglePresetsButton" href="#" title={this.state.hidden == false ? "Hide" : "Show"} onClick={this.toggleHidden.bind(this)}>
-					<i className="material-icons">{"arrow_drop_" + (this.state.hidden == false ? "down" : "up")}</i>
-				</a>
+				<a id="togglePresetsButton" href="#" title={this.state.hidden == false ? "Hide" : "Show"} onClick={this.toggleHidden.bind(this)}> <i className="material-icons">{"arrow_drop_" + (this.state.hidden == false ? "down" : "up")}</i> </a>
 				<div className={"presetsContainer" + (this.state.hidden == false ? "" : " hidden")}>
 					<h3>Lifestyle</h3>
 					<div className="presets">
