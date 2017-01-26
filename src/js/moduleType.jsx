@@ -22,14 +22,25 @@ class ModuleType extends React.Component {
 		return (
 			<div className="state" id="type">
 				<div className="typesContainer">
-					<div className="types">
-						{this.eachType()}
-					</div>
+					<Hammer onSwipe={this.handleSwipe.bind(this)}>
+						<div className="types">
+							{this.eachType()}
+						</div>
+					</Hammer>
 					<button className="btn btn-lg btn-primary">Select</button>
 				</div>
 				<Presets />
 			</div>
 		);
+	}
+	
+	handleSwipe(event) {
+		if(event.direction == 2) {
+			this.selectNextType();
+		}
+		else if(event.direction == 4) {
+			this.selectPreviousType();
+		}
 	}
 	
 	eachType() {
@@ -93,27 +104,14 @@ class TypeOption extends React.Component {
 	
 	render() {
 		return (
-			<Hammer onSwipe={this.handleSwipe.bind(this)}>
-				<div className={"type" + this.getClassName()} onClick={this.getAction()}>
-					<svg>
-						<title>{this.getType()}</title>
-						<use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref={this.getIconFilepath()} />
-					</svg>
-					<h5>{this.getType()}</h5>
-				</div>
-			</Hammer>
+			<div className={"type" + this.getClassName()} onClick={this.getAction()}>
+				<svg>
+					<title>{this.getType()}</title>
+					<use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref={this.getIconFilepath()} />
+				</svg>
+				<h5>{this.getType()}</h5>
+			</div>
 		);
-	}
-	
-	handleSwipe(event) {
-		if(this.getRelativeSelectedIndex() == 0) {
-			if(event.direction == 2) {
-				this.props.state.selectNextType();
-			}
-			else if(event.direction == 4) {
-				this.props.state.selectPreviousType();
-			}
-		}
 	}
 	
 	getClassName() {
