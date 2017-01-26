@@ -1,4 +1,5 @@
 let React = require('react');
+let Hammer = require('react-hammerjs');
 class ModuleType extends React.Component {
 	constructor(props) {
 		super(props);
@@ -92,14 +93,27 @@ class TypeOption extends React.Component {
 	
 	render() {
 		return (
-			<div className={"type" + this.getClassName()} onClick={this.getAction()}>
-				<svg>
-					<title>{this.getType()}</title>
-					<use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref={this.getIconFilepath()} />
-				</svg>
-				<h5>{this.getType()}</h5>
-			</div>
+			<Hammer onSwipe={this.handleSwipe.bind(this)}>
+				<div className={"type" + this.getClassName()} onClick={this.getAction()}>
+					<svg>
+						<title>{this.getType()}</title>
+						<use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref={this.getIconFilepath()} />
+					</svg>
+					<h5>{this.getType()}</h5>
+				</div>
+			</Hammer>
 		);
+	}
+	
+	handleSwipe(event) {
+		if(this.getRelativeSelectedIndex() == 0) {
+			if(event.direction == 2) {
+				this.props.state.selectNextType();
+			}
+			else if(event.direction == 4) {
+				this.props.state.selectPreviousType();
+			}
+		}
 	}
 	
 	getClassName() {

@@ -3,7 +3,6 @@ let $ = require('jquery');
 global.jQuery = $;
 global.Tether = require('tether');
 let bootstrap = require('bootstrap');
-let Hammer = require('hammerjs');
 let React = require('react');
 let ReactDOM = require('react-dom');
 // Global Vars
