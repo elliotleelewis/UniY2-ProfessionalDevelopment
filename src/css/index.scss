@@ -1,9 +1,6 @@
 @import "colors";
 @import "vars";
 @import "default";
-$applicationSpacing: $spacing;
-$mobileMargin: $spacing;
-$mobilePadding: $spacing / 2;
 .frame {
 	display: flex;
 	width: 100%;
@@ -15,15 +12,14 @@ $mobilePadding: $spacing / 2;
 }
 #reactRoot {
 	width: 100%;
-	margin: $mobileMargin;
+	margin: 0;
 	padding: 0;
-	border-radius: $mobilePadding;
 	overflow: hidden;
 	background-color: $trans-bg;
 	color: $text-colour;
 	@media screen and (min-width: $desktopBreakpoint) {
-		margin: $applicationSpacing;
-		border-radius: $applicationSpacing;
+		margin: $spacing;
+		border-radius: $spacing;
 	}
 	header {
 		display: flex;
