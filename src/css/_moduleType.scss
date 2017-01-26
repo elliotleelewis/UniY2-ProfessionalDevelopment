@@ -111,12 +111,17 @@
 				text-align: center;
 				cursor: default;
 			}
+			.presets::-webkit-scrollbar {
+				visibility: hidden;
+			}
 			.presets {
 				display: flex;
 				width: 100%;
 				margin: auto;
 				flex: 0 0 auto;
 				flex-direction: row;
+				-ms-overflow-style: none;
+				overflow: -moz-scrollbars-none;
 				overflow: auto;
 				.preset {
 					display: flex;
