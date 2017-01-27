@@ -1,4 +1,5 @@
 'use strict';
+// Sass
 // Imports
 let $ = require('jquery');
 global.jQuery = $;
@@ -28,6 +29,12 @@ let appModules = {
 };
 // React Components
 class MainPage extends React.Component {
+	/**
+	 * Sets the default module to be loaded in to the application. By
+	 * default, its the body type module.
+	 *
+	 * @param props ReactJS props.
+	 */
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -35,6 +42,10 @@ class MainPage extends React.Component {
 		};
 	}
 	
+	/**
+	 * Renders the {@link PageHeader} element as well as the applications
+	 * module described by the {@link #getAppModule} method.
+	 */
 	render() {
 		return (
 			<div id="mainPage">
@@ -44,14 +55,23 @@ class MainPage extends React.Component {
 		);
 	}
 	
+	/**
+	 * Returns the selected module for the application.
+	 */
 	getAppModule() {
 		return this.state.appModule;
 	}
 	
+	/**
+	 * Returns the selected module's title.
+	 */
 	getAppModuleTitle() {
 		return this.getAppModule().title;
 	}
 	
+	/**
+	 * Returns the selected module's object.
+	 */
 	getAppModuleObject() {
 		return this.getAppModule().object;
 	}
