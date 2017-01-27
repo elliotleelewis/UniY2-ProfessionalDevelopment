@@ -1,5 +1,4 @@
 'use strict';
-// Sass
 // Imports
 let $ = require('jquery');
 global.jQuery = $;
