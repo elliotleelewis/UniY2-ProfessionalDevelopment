@@ -21,7 +21,7 @@ class ModuleType extends React.Component {
 	
 	render() {
 		return (
-			<div className="state" id="type">
+			<div className="module" id="type">
 				<div className="typesContainer">
 					<Hammer onSwipe={this.handleSwipe.bind(this)}>
 						<div className="types">
