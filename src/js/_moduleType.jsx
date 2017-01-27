@@ -1,3 +1,4 @@
+'use strict';
 let React = require('react');
 let Hammer = require('react-hammerjs');
 class ModuleType extends React.Component {
@@ -44,10 +45,10 @@ class ModuleType extends React.Component {
 	}
 	
 	eachType() {
-		let typeState = this;
+		let moduleType = this;
 		return this.getTypes().map(function(item, i) {
 			return (
-				<TypeOption key={i} type={item} relativeSelectedIndex={typeState.getRelativeSelectedIndex(i)} state={typeState} />
+				<TypeOption key={i} type={item} relativeSelectedIndex={moduleType.getRelativeSelectedIndex(i)} module={moduleType} />
 			);
 		});
 	}
@@ -140,10 +141,10 @@ class TypeOption extends React.Component {
 	getAction() {
 		switch(this.getRelativeSelectedIndex()) {
 			case -1:
-				return this.props.state.selectPreviousType.bind(this.props.state);
+				return this.props.module.selectPreviousType.bind(this.props.module);
 				break;
 			case 1:
-				return this.props.state.selectNextType.bind(this.props.state);
+				return this.props.module.selectNextType.bind(this.props.module);
 				break;
 		}
 	}

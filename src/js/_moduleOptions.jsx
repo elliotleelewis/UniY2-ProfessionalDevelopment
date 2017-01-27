@@ -1,3 +1,4 @@
+'use strict';
 let React = require('react');
 class ModuleOptions extends React.Component {
 	constructor(props) {
