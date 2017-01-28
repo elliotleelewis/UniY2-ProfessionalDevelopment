@@ -27,11 +27,15 @@ let appModules = {
 	}
 };
 // React Components
+/**
+ * The main page of the web app. The root ReactJS component.
+ */
 class MainPage extends React.Component {
 	/**
 	 * Sets the default module to be loaded in to the application. By
 	 * default, its the body type module.
 	 *
+	 * @constructor
 	 * @param props ReactJS props.
 	 */
 	constructor(props) {
@@ -43,19 +47,22 @@ class MainPage extends React.Component {
 	
 	/**
 	 * Renders the {@link PageHeader} element as well as the applications
-	 * module described by the {@link #getAppModule} method.
+	 * module described by the {@link MainPage#getAppModule} method.
+	 *
+	 * @returns {XML} JSX content.
 	 */
 	render() {
 		return (
 			<div id="mainPage">
-				<PageHeader title={this.getAppModuleTitle()} />
-				{this.getAppModuleObject()}
+				<PageHeader title={this.getAppModuleTitle()} /> {this.getAppModuleObject()}
 			</div>
 		);
 	}
 	
 	/**
 	 * Returns the selected module for the application.
+	 *
+	 * @returns {object} Selected module.
 	 */
 	getAppModule() {
 		return this.state.appModule;
@@ -63,6 +70,8 @@ class MainPage extends React.Component {
 	
 	/**
 	 * Returns the selected module's title.
+	 *
+	 * @returns {string} Selected module's title.
 	 */
 	getAppModuleTitle() {
 		return this.getAppModule().title;
@@ -70,16 +79,31 @@ class MainPage extends React.Component {
 	
 	/**
 	 * Returns the selected module's object.
+	 *
+	 * @returns {XML} JSX content.
 	 */
 	getAppModuleObject() {
 		return this.getAppModule().object;
 	}
 }
+/**
+ * The header component used for each page of the web app.
+ */
 class PageHeader extends React.Component {
+	/**
+	 * @constructor
+	 * @param props ReactJS props.
+	 */
 	constructor(props) {
 		super(props);
 	}
 	
+	/**
+	 * Renders the header of the application with the title returned by the
+	 * {@link PageHeader#getAppModuleTitle} method.
+	 *
+	 * @returns {XML} JSX content.
+	 */
 	render() {
 		return (
 			<header>
@@ -91,6 +115,11 @@ class PageHeader extends React.Component {
 		);
 	}
 	
+	/**
+	 * Gets the module's title.
+	 *
+	 * @returns {string} Module title.
+	 */
 	getAppModuleTitle() {
 		return this.props.title;
 	}
