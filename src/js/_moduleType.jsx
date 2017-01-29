@@ -48,9 +48,9 @@ class ModuleType extends React.Component {
 							{this.eachType()}
 						</div>
 					</Hammer>
-					<button className="btn btn-lg btn-primary">Select</button>
+					<button className="btn btn-lg btn-primary" onClick={this.selectType.bind(this)}>Select</button>
 				</div>
-				<Presets />
+				<Presets mainPage={this.props.mainPage} />
 			</div>
 		);
 	}
@@ -85,6 +85,14 @@ class ModuleType extends React.Component {
 				<TypeOption key={i} type={item} relativeSelectedIndex={moduleType.getRelativeSelectedIndex(i)} module={moduleType} />
 			);
 		});
+	}
+	
+	/**
+	 * Calls the {@link MainPage#selectType} method and passes it the focused
+	 * body type.
+	 */
+	selectType() {
+		this.props.mainPage.selectType("body_type", this.getSelectedType());
 	}
 	
 	/**
@@ -161,6 +169,15 @@ class ModuleType extends React.Component {
 	 */
 	getTypesCount() {
 		return this.getTypes().length;
+	}
+	
+	/**
+	 * Returns the selected body type.
+	 *
+	 * @returns {string} Selected body type.
+	 */
+	getSelectedType() {
+		return this.state.types[this.getSelectedTypeIndex()];
 	}
 	
 	/**
@@ -334,17 +351,19 @@ class Presets extends React.Component {
 	 * @returns {XML[]} Array of JSX elements.
 	 */
 	getPresets() {
+		let mainPage = this.props.mainPage;
 		return this.state.presets.map(function(item, i) {
+			let shortName = item.toLowerCase().replace(" ", "-");
 			return (
-				<div key={i} className="preset">
+				<a key={i} className="preset" href="#" onClick={mainPage.selectType.bind(mainPage, "lifestyle", shortName)}>
 					<div className="presetIcon">
 						<svg>
 							<title>{item}</title>
-							<use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref={"media/images/icons.svg#icon-" + item.toLowerCase().replace(" ", "-")} />
+							<use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref={"media/images/icons.svg#icon-" + shortName} />
 						</svg>
 					</div>
 					<p>{item}</p>
-				</div>
+				</a>
 			);
 		});
 	}

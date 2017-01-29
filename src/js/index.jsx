@@ -19,11 +19,11 @@ console.log(data);
 let appModules = {
 	type: {
 		title: "BODY TYPE",
-		object: <ModuleType />
+		module: ModuleType
 	},
 	options: {
 		title: "OPTIONS",
-		object: <ModuleOptions />
+		module: ModuleOptions
 	}
 };
 // React Components
@@ -41,49 +41,42 @@ class MainPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			appModule: appModules.type
+			title: appModules.type.title,
+			module: appModules.type.module,
+			settings: undefined
 		};
 	}
 	
 	/**
 	 * Renders the {@link PageHeader} element as well as the applications
-	 * module described by the {@link MainPage#getAppModule} method.
+	 * current module.
 	 *
 	 * @returns {XML} JSX content.
 	 */
 	render() {
 		return (
 			<div id="mainPage">
-				<PageHeader title={this.getAppModuleTitle()} /> {this.getAppModuleObject()}
+				<PageHeader title={this.state.title} />
+				<this.state.module mainPage={this} settings={this.state.settings} />
 			</div>
 		);
 	}
 	
 	/**
-	 * Returns the selected module for the application.
+	 * Selects type on the type page and advances web app to next page.
 	 *
-	 * @returns {object} Selected module.
+	 * @param category {string} "body_type" or "lifestyle"
+	 * @param value {string} Specific body type or lifestyle.
 	 */
-	getAppModule() {
-		return this.state.appModule;
-	}
-	
-	/**
-	 * Returns the selected module's title.
-	 *
-	 * @returns {string} Selected module's title.
-	 */
-	getAppModuleTitle() {
-		return this.getAppModule().title;
-	}
-	
-	/**
-	 * Returns the selected module's object.
-	 *
-	 * @returns {XML} JSX content.
-	 */
-	getAppModuleObject() {
-		return this.getAppModule().object;
+	selectType(category, value) {
+		this.setState({
+			title: appModules.options.title,
+			module: appModules.options.module,
+			settings: {
+				category: category,
+				value: value
+			}
+		});
 	}
 }
 /**
