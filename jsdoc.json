@@ -1,0 +1,17 @@
+{
+	"opts": {
+		"destination": "docs",
+		"readme": "README.md",
+		"template": "node_modules/docdash"
+	},
+	"source": {
+		"include": [
+			"src/js/index.jsx",
+			"src/js/_moduleType.jsx",
+			"src/js/_moduleOptions.jsx"
+		]
+	},
+	"templates": {
+		"cleverLinks": true
+	}
+}

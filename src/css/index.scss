@@ -1,9 +1,7 @@
+@import "../../node_modules/bootstrap/scss/bootstrap";
 @import "colors";
 @import "vars";
 @import "default";
-$applicationSpacing: $spacing;
-$mobileMargin: $spacing;
-$mobilePadding: $spacing / 2;
 .frame {
 	display: flex;
 	width: 100%;
@@ -15,15 +13,19 @@ $mobilePadding: $spacing / 2;
 }
 #reactRoot {
 	width: 100%;
-	margin: $mobileMargin;
+	margin: 0;
 	padding: 0;
-	border-radius: $mobilePadding;
 	overflow: hidden;
 	background-color: $trans-bg;
 	color: $text-colour;
-	@media screen and (min-width: $desktopBreakpoint) {
-		margin: $applicationSpacing;
-		border-radius: $applicationSpacing;
+	@media (min-width: $desktopBreakpoint) {
+		margin: $spacing;
+		border-radius: $spacing;
+	}
+	@media print {
+		svg {
+			fill: black !important;
+		}
 	}
 	header {
 		display: flex;
@@ -32,18 +34,18 @@ $mobilePadding: $spacing / 2;
 		flex-direction: column;
 		user-select: none;
 		cursor: default;
-		@media screen and (min-width: $desktopBreakpoint) {
+		@media (min-width: $desktopBreakpoint) {
 			flex-direction: row;
 		}
 		img {
 			width: 100%;
-			height: 100%;
 			max-width: 200px;
+			height: 100%;
 		}
 		.titleContainer {
 			width: 100%;
 			text-align: center;
-			@media screen and (min-width: $desktopBreakpoint) {
+			@media (min-width: $desktopBreakpoint) {
 				padding-right: 200px;
 			}
 			h2 {
@@ -58,8 +60,11 @@ $mobilePadding: $spacing / 2;
 		flex-direction: column;
 	}
 }
-.state {
+.module {
 	width: 100%;
 	height: 100%;
+	display: flex;
+	flex-flow: column;
 	@import "moduleType";
+	@import "moduleOptions";
 }
