@@ -18,14 +18,14 @@ class ModuleType extends React.Component {
 		this.state = {
 			selectedTypeIndex: 1,
 			types: [
-				'saloon',
-				'hatchback',
-				'suv',
-				'mpv',
-				'estate',
-				'convertible',
-				'coupe',
-				'other'
+				'Saloon',
+				'Hatchback',
+				'SUV',
+				'MPV',
+				'Estate',
+				'Convertible',
+				'Coupe',
+				'Other'
 			]
 		}
 	}
@@ -42,7 +42,7 @@ class ModuleType extends React.Component {
 	render() {
 		return (
 			<div className="module" id="type">
-				<div className="typesContainer">
+				<div className="types-container">
 					<Hammer onSwipe={this.handleSwipe.bind(this)}>
 						<div className="types">
 							{this.eachType()}
@@ -227,15 +227,15 @@ class TypeOption extends React.Component {
 	getClassName() {
 		switch(this.getRelativeSelectedIndex()) {
 			case -2:
-				return " beforePreSelected";
+				return " before-pre-selected";
 			case -1:
-				return " preSelected";
+				return " pre-selected";
 			case 0:
 				return " selected";
 			case 1:
-				return " postSelected";
+				return " post-selected";
 			case 2:
-				return " afterPostSelected";
+				return " after-post-selected";
 			default:
 				return "";
 		}
@@ -267,7 +267,7 @@ class TypeOption extends React.Component {
 	 * @returns {string} Icon filepath.
 	 */
 	getIconFilepath() {
-		return "media/images/icons.svg#icon-" + this.getType();
+		return "media/images/icons.svg#icon-" + this.getType().toLowerCase();
 	}
 	
 	/**
@@ -323,10 +323,10 @@ class Presets extends React.Component {
 	render() {
 		return (
 			<footer>
-				<a id="togglePresetsButton" href="#" title={this.state.hidden == false ? "Hide" : "Show"} onClick={this.toggleHidden.bind(this)}>
+				<button id="toggle-presets-button" title={this.state.hidden == false ? "Hide" : "Show"} onClick={this.toggleHidden.bind(this)}>
 					<i className="material-icons">{"arrow_drop_" + (this.state.hidden == false ? "down" : "up")}</i>
-				</a>
-				<div className={"presetsContainer" + (this.state.hidden == false ? "" : " hidden")}>
+				</button>
+				<div className={"presets-container" + (this.state.hidden == false ? "" : " hidden")}>
 					<h3>Lifestyle</h3>
 					<div className="presets">
 						{this.getPresets()}
@@ -356,7 +356,7 @@ class Presets extends React.Component {
 			let shortName = item.toLowerCase().replace(" ", "-");
 			return (
 				<a key={i} className="preset" href="#" onClick={mainPage.selectType.bind(mainPage, "lifestyle", shortName)}>
-					<div className="presetIcon">
+					<div className="preset-icon">
 						<svg>
 							<title>{item}</title>
 							<use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref={"media/images/icons.svg#icon-" + shortName} />

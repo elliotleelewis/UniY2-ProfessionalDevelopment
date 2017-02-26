@@ -13,11 +13,12 @@
     "start": "gulp"
   },
   "dependencies": {
-    "bootstrap": "^4.0.0-alpha.5",
+    "bootstrap": "^4.0.0-alpha.6",
     "jquery": "^3.1.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-hammerjs": "^0.5.0",
+    "react-slider": "^0.7.0",
     "tether": "^1.4.0"
   },
   "devDependencies": {
