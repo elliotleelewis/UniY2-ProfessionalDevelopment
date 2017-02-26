@@ -208,7 +208,7 @@ class TypeOption extends React.Component {
 	 */
 	render() {
 		return (
-			<div className={"type" + this.getClassName()} onClick={this.getAction()}>
+			<div className={"type" + this.getClassName()} onClick={this.getAction()} tabIndex={this.getTabIndex()}>
 				<svg>
 					<title>{this.getType()}</title>
 					<use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref={this.getIconFilepath()} />
@@ -286,6 +286,15 @@ class TypeOption extends React.Component {
 	 */
 	getRelativeSelectedIndex() {
 		return this.props.relativeSelectedIndex;
+	}
+	
+	/**
+	 * Returns the tab index of this instance of this object.
+	 *
+	 * @returns {number} Tab index.
+	 */
+	getTabIndex() {
+		return (Math.abs(this.props.relativeSelectedIndex) < 2) ? 0 : -1;
 	}
 }
 /**

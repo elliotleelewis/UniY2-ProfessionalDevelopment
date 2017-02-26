@@ -15,7 +15,7 @@ class ModuleOptions extends React.Component {
 		let filters = [];
 		if(this.getSettings().category == "body_type") {
 			switch(this.getSettings().value) {
-				case "hatchback":
+				case "Hatchback":
 					filters = [
 						{
 							type: "doors"
@@ -74,14 +74,13 @@ class ModuleOptions extends React.Component {
 		while(temp.length < index + 1) {
 			temp.push(undefined);
 		}
-		temp[key] = {
+		temp[index] = {
 			filter: this.getFilters()[index].type,
 			value: value
 		};
 		this.setState({
 			values: temp
 		});
-		console.log(this.state);
 	}
 	
 	/**
@@ -269,7 +268,6 @@ class TextSlider extends React.Component {
 	 */
 	constructor(props) {
 		super(props);
-		console.log(props);
 		this.state = {
 			value: props.default || Math.round((props.items.length - 1) / 2)
 		};
