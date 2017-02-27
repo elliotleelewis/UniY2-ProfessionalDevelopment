@@ -18,7 +18,7 @@
 	overflow: hidden;
 	background-color: $trans-bg;
 	color: $text-colour;
-	@media (min-width: $desktopBreakpoint) {
+	@media (min-width: $desktop-breakpoint) {
 		margin: $spacing;
 		border-radius: $spacing;
 	}
@@ -35,7 +35,7 @@
 		align-items: center;
 		user-select: none;
 		cursor: default;
-		@media (min-width: $desktopBreakpoint) {
+		@media (min-width: $desktop-breakpoint) {
 			flex-direction: row;
 		}
 		img {
@@ -47,7 +47,7 @@
 			width: 100%;
 			margin-top: ($spacing / 4);
 			text-align: center;
-			@media (min-width: $desktopBreakpoint) {
+			@media (min-width: $desktop-breakpoint) {
 				margin-top: 0;
 				padding-right: 200px;
 			}
@@ -70,6 +70,7 @@
 	flex-flow: column;
 	@import "moduleType";
 	@import "moduleOptions";
+	@import "moduleResults";
 }
 button {
 	cursor: pointer;
