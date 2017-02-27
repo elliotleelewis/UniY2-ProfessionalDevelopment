@@ -23,7 +23,7 @@
 			.type {
 				display: none;
 				opacity: 0;
-				transition: all $transitionLength ease-in-out;
+				transition: all $transition-length ease-in-out;
 				cursor: pointer;
 				&.before-pre-selected, &.pre-selected, &.selected, &.post-selected, &.after-post-selected {
 					position: absolute;
@@ -43,6 +43,7 @@
 				&.selected {
 					width: 40%;
 					left: 50%;
+					outline: none;
 					opacity: 1;
 					cursor: default;
 					transform: translateX(-50%);
@@ -69,8 +70,8 @@
 					text-align: center;
 					margin: 0;
 					opacity: 0;
-					transition: opacity $transitionLength ease-in-out;
-					@media (min-width: $mobileBreakpoint) {
+					transition: opacity $transition-length ease-in-out;
+					@media (min-width: $mobile-breakpoint) {
 						opacity: 1;
 					}
 				}
@@ -103,7 +104,7 @@
 			flex-direction: column;
 			overflow: hidden;
 			background-color: $trans-bg;
-			transition: all $transitionLength ease-in-out;
+			transition: all $transition-length ease-in-out;
 			&.hidden {
 				height: 0;
 				* {
@@ -111,7 +112,7 @@
 				}
 			}
 			* {
-				transition: opacity $transitionLength ease-in-out;
+				transition: opacity $transition-length ease-in-out;
 			}
 			h3 {
 				margin-bottom: 15px;
@@ -156,12 +157,12 @@
 							max-width: 100%;
 							max-height: 100%;
 							fill: $text-colour;
-							transition: all $transitionLength ease-in-out;
+							transition: all $transition-length ease-in-out;
 						}
 					}
 					p {
 						margin: 10px 0 0;
-						transition: all $transitionLength ease-in-out;
+						transition: all $transition-length ease-in-out;
 					}
 				}
 			}
