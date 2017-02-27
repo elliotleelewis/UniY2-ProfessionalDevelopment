@@ -1,29 +1,32 @@
 'use strict';
 // Imports
-let $ = require('jquery');
+const $ = require('jquery');
 global.jQuery = $;
 global.Tether = require('tether');
-let bootstrap = require('bootstrap');
-let React = require('react');
-let ReactDOM = require('react-dom');
+const bootstrap = require('bootstrap');
+const React = require('react');
+const ReactDOM = require('react-dom');
 // Global Vars
-let ModuleType = require('./_moduleType.jsx');
-let ModuleOptions = require('./_moduleOptions.jsx');
+const ModuleType = require('./_moduleType.jsx');
+const ModuleOptions = require('./_moduleOptions.jsx');
+const ModuleResults = require('./_moduleResults.jsx');
 // Data
-let data = require('../data/cars.json');
+const data = require('../data/cars.json');
 for(let i = 0; i < data.models.length; i++) {
 	data.models[i].make = data.makes[data.models[i].make];
 }
-data = data.models;
-console.log(data);
-let appModules = {
+const appModules = {
 	type: {
-		title: "BODY TYPE",
-		object: <ModuleType />
+		title: "Body Type",
+		module: ModuleType
 	},
 	options: {
-		title: "OPTIONS",
-		object: <ModuleOptions />
+		title: "Options",
+		module: ModuleOptions
+	},
+	results: {
+		title: "Results",
+		module: ModuleResults
 	}
 };
 // React Components
@@ -41,49 +44,63 @@ class MainPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			appModule: appModules.type
+			title: appModules.type.title,
+			module: appModules.type.module,
+			settings: undefined
 		};
 	}
 	
 	/**
 	 * Renders the {@link PageHeader} element as well as the applications
-	 * module described by the {@link MainPage#getAppModule} method.
+	 * current module.
 	 *
 	 * @returns {XML} JSX content.
 	 */
 	render() {
 		return (
 			<div id="mainPage">
-				<PageHeader title={this.getAppModuleTitle()} /> {this.getAppModuleObject()}
+				<PageHeader title={this.state.title} />
+				<this.state.module mainPage={this} settings={this.state.settings} />
 			</div>
 		);
 	}
 	
 	/**
-	 * Returns the selected module for the application.
+	 * Selects type on the type page and advances web app to next page.
 	 *
-	 * @returns {object} Selected module.
+	 * @param category {string} "body_type" or "lifestyle".
+	 * @param value {string} Specific body type or lifestyle.
 	 */
-	getAppModule() {
-		return this.state.appModule;
+	selectType(category, value) {
+		this.setState({
+			title: appModules.options.title,
+			module: appModules.options.module,
+			settings: {
+				category: category,
+				value: value
+			}
+		});
 	}
 	
 	/**
-	 * Returns the selected module's title.
+	 * Advances web app to the final page, in which the search results are
+	 * shown.
 	 *
-	 * @returns {string} Selected module's title.
+	 * @param category {string} "body_type" or "lifestyle".
+	 * @param value {string} Specific body type or lifestyle.
+	 * @param filters {array} Array of filters to apply to results.
 	 */
-	getAppModuleTitle() {
-		return this.getAppModule().title;
-	}
-	
-	/**
-	 * Returns the selected module's object.
-	 *
-	 * @returns {XML} JSX content.
-	 */
-	getAppModuleObject() {
-		return this.getAppModule().object;
+	search(category, value, filters) {
+		this.setState({
+			title: appModules.results.title,
+			module: appModules.results.module,
+			settings: {
+				category: category,
+				value: value,
+				filters: filters,
+				data: data
+			}
+		});
 	}
 }
 /**
