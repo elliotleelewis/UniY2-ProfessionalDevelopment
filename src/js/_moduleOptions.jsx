@@ -1,6 +1,6 @@
 'use strict';
-let React = require('react');
-let ReactSlider = require('react-slider');
+const React = require('react');
+const ReactSlider = require('react-slider');
 /**
  * The second page of the web app. Where secondary configuration takes place
  * before results are shown.
@@ -18,7 +18,10 @@ class ModuleOptions extends React.Component {
 				case "Hatchback":
 					filters = [
 						{
-							type: "doors"
+							type: "doors",
+							settings: {
+								defaultValue: "4+"
+							}
 						},
 						{
 							type: "price",
@@ -29,7 +32,10 @@ class ModuleOptions extends React.Component {
 							}
 						},
 						{
-							type: "running_costs"
+							type: "transmission",
+							settings: {
+								defaultValue: "Both"
+							}
 						}
 					];
 					break;
@@ -40,9 +46,16 @@ class ModuleOptions extends React.Component {
 				//
 			}
 		}
+		let values = [];
+		for(let i = 0; i < filters.length; i++) {
+			values.push({
+				filter: filters[i].type,
+				value: filters[i].settings.defaultValue
+			});
+		}
 		this.state = {
 			filters: filters,
-			values: []
+			values: values
 		};
 	}
 	
@@ -56,10 +69,22 @@ class ModuleOptions extends React.Component {
 			<div className="module" id="options">
 				<div className="filters">
 					{this.getFilterElements()}
-					<button className="btn btn-lg btn-primary">Search</button>
+					<button className="btn btn-lg btn-primary" onClick={this.search.bind(this)}>Search</button>
 				</div>
 			</div>
 		);
+	}
+	
+	search() {
+		let filters = this.state.values.slice(0);
+		for(let i = 0; i < filters.length; i++) {
+			if(typeof filters[i] === "undefined") {
+				filters.splice(i, 1);
+				i--;
+			}
+		}
+		let settings = this.getSettings();
+		this.props.mainPage.search(settings.category, settings.value, filters);
 	}
 	
 	/**
@@ -70,6 +95,9 @@ class ModuleOptions extends React.Component {
 	 * @param value The new value of the filter.
 	 */
 	onFilterChange(index, value) {
+		if(typeof value === "string") {
+			value = value.toLowerCase();
+		}
 		let temp = this.state.values;
 		while(temp.length < index + 1) {
 			temp.push(undefined);
@@ -95,39 +123,36 @@ class ModuleOptions extends React.Component {
 			let settings = filter.settings;
 			switch(filter.type) {
 				case "price":
-					let defaultMin = (settings.defaultValue) ? settings.defaultValue[0] : settings.min;
-					let defaultMax = (settings.defaultValue) ? settings.defaultValue[1] : settings.max;
-					let defaultValue = [defaultMin, defaultMax];
 					return (
-						<RangeSlider key={i} label="Price" prefix="£" min={settings.min} max={settings.max} value={defaultValue} onChange={moduleOptions.onFilterChange.bind(moduleOptions, i)} />
+						<RangeSlider key={i} label="Price" prefix="£" min={settings.min} max={settings.max} value={[settings.defaultValue[0], settings.defaultValue[1]]} onChange={moduleOptions.onFilterChange.bind(moduleOptions, i)} />
 					);
 				case "seats":
 					return (
-						<TextSlider key={i} label="Seats" items={["2+", "4+", "5+", "7+"]} onChange={moduleOptions.onFilterChange.bind(moduleOptions, i)} />
+						<TextSlider key={i} label="Seats" items={["2+", "4+", "5+", "7+"]} value={settings.defaultValue} onChange={moduleOptions.onFilterChange.bind(moduleOptions, i)} />
 					);
 				case "doors":
 					return (
-						<TextSlider key={i} label="Doors" items={["2+", "3+", "4+", "5+"]} onChange={moduleOptions.onFilterChange.bind(moduleOptions, i)} />
+						<TextSlider key={i} label="Doors" items={["2+", "3+", "4+", "5+"]} value={settings.defaultValue} onChange={moduleOptions.onFilterChange.bind(moduleOptions, i)} />
 					);
 				case "boot_size":
 					return (
-						<TextSlider key={i} label="Boot Size" items={["Small", "Medium", "Large"]} onChange={moduleOptions.onFilterChange.bind(moduleOptions, i)} />
+						<TextSlider key={i} label="Boot Size" items={["Small", "Medium", "Large"]} value={settings.defaultValue} onChange={moduleOptions.onFilterChange.bind(moduleOptions, i)} />
 					);
 				case "transmission":
 					return (
-						<TextSlider key={i} label="Transmission" items={["Automatic", "Manual", "Both"]} onChange={moduleOptions.onFilterChange.bind(moduleOptions, i)} />
+						<TextSelector key={i} label="Transmission" items={["Both", "Manual", "Automatic"]} value={settings.defaultValue} onChange={moduleOptions.onFilterChange.bind(moduleOptions, i)} />
 					);
 				case "fuel_consumption":
 					return (
-						<TextSlider key={i} label="Fuel Consumption" items={["Low", "Medium", "Considerable"]} onChange={moduleOptions.onFilterChange.bind(moduleOptions, i)} />
+						<TextSlider key={i} label="Fuel Consumption" items={["Low", "Medium", "Considerable"]} value={settings.defaultValue} onChange={moduleOptions.onFilterChange.bind(moduleOptions, i)} />
 					);
 				case "acceleration":
 					return (
-						<TextSlider key={i} label="Acceleration" items={["Steady", "Medium", "Fast"]} onChange={moduleOptions.onFilterChange.bind(moduleOptions, i)} />
+						<TextSlider key={i} label="Acceleration" items={["Steady", "Medium", "Fast"]} value={settings.defaultValue} onChange={moduleOptions.onFilterChange.bind(moduleOptions, i)} />
 					);
 				case "running_costs":
 					return (
-						<TextSlider key={i} label="Running Costs" items={["Low", "Medium", "Considerable"]} onChange={moduleOptions.onFilterChange.bind(moduleOptions, i)} />
+						<TextSlider key={i} label="Running Costs" items={["Low", "Medium", "Considerable"]} value={settings.defaultValue} onChange={moduleOptions.onFilterChange.bind(moduleOptions, i)} />
 					);
 			}
 		});
@@ -138,48 +163,59 @@ class ModuleOptions extends React.Component {
 	 *
 	 * @example Price Settings
 	 *
-	 * // (required)
 	 * // Minimum possible value.
 	 * // Example: 0
 	 * int min;
 	 *
-	 * // (required)
 	 * // Maximum possible value.
 	 * // Example: 100
 	 * int max;
 	 *
-	 * // (optional)
-	 * // Array of minimum and maximum default prices.
+	 * // Array of default minimum and maximum prices.
 	 * // Example: [25, 75]
 	 * int[] defaultValue;
 	 *
 	 * @example Seats Settings
 	 *
-	 * // No settings for seats.
+	 * // Default number of seats option.
+	 * // Example: "4+"
+	 * string defaultValue;
 	 *
 	 * @example Doors Settings
 	 *
-	 * // No settings for doors.
+	 * // Default number of doors option.
+	 * // Example: "5+"
+	 * string defaultValue;
 	 *
 	 * @example Boot Size Settings
 	 *
-	 * // No settings for boot size.
+	 * // Default boot size option.
+	 * // Example: "Medium"
+	 * string defaultValue;
 	 *
 	 * @example Transmission Settings
 	 *
-	 * // No settings for transmission.
+	 * // Default transmission option.
+	 * // Example: "Both"
+	 * string defaultValue;
 	 *
 	 * @example Fuel Consumption Settings
 	 *
-	 * // No settings for fuel consumption.
+	 * // Default fuel consumption option.
+	 * // Example: "Low"
+	 * string defaultValue;
 	 *
 	 * @example Acceleration Settings
 	 *
-	 * // No settings for acceleration.
+	 * // Default acceleration option.
+	 * // Example: "Fast"
+	 * string defaultValue;
 	 *
 	 * @example Running Costs Settings
 	 *
-	 * // No settings for running costs.
+	 * // Default running costs option.
+	 * // Example: "Considerable"
+	 * string defaultValue;
 	 *
 	 * @returns {Object[]} Array of filters.
 	 */
@@ -190,7 +226,7 @@ class ModuleOptions extends React.Component {
 	/**
 	 * Returns the settings array.
 	 *
-	 * @returns {Array}
+	 * @returns {Array} The settings.
 	 */
 	getSettings() {
 		return this.props.settings;
@@ -210,6 +246,22 @@ class RangeSlider extends React.Component {
 		this.state = {
 			value: props.value
 		};
+	}
+	
+	/**
+	 * Renders the range slider element.
+	 *
+	 * @returns {XML} JSX element.
+	 */
+	render() {
+		return (
+			<div className="range-slider">
+				<h4>{this.props.label}</h4>
+				<ReactSlider min={this.props.min} max={this.props.max} step={(this.props.max - this.props.min) / 100} value={this.state.value} withBars pearling minDistance={(this.props.max - this.props.min) / 10} onChange={this.onChange.bind(this)}>
+					{this.getHandleValues()}
+				</ReactSlider>
+			</div>
+		);
 	}
 	
 	/**
@@ -239,22 +291,6 @@ class RangeSlider extends React.Component {
 			);
 		});
 	}
-	
-	/**
-	 * Renders the range slider element.
-	 *
-	 * @returns {XML} JSX element.
-	 */
-	render() {
-		return (
-			<div className="range-slider">
-				<h4>{this.props.label}</h4>
-				<ReactSlider min={this.props.min} max={this.props.max} step={(this.props.max - this.props.min) / 100} value={this.state.value} withBars pearling minDistance={(this.props.max - this.props.min) / 10} onChange={this.onChange.bind(this)}>
-					{this.getHandleValues()}
-				</ReactSlider>
-			</div>
-		);
-	}
 }
 /**
  * A filter element that allows the user to select a value from an array of
@@ -269,20 +305,8 @@ class TextSlider extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			value: props.default || Math.round((props.items.length - 1) / 2)
+			value: props.items.indexOf(props.value)
 		};
-	}
-	
-	/**
-	 * Handles the change events of the text slider.
-	 *
-	 * @param value
-	 */
-	onChange(value) {
-		this.setState({
-			value: value
-		});
-		this.props.onChange(value);
 	}
 	
 	/**
@@ -299,6 +323,79 @@ class TextSlider extends React.Component {
 				</ReactSlider>
 			</div>
 		);
+	}
+	
+	/**
+	 * Handles the change events of the text slider.
+	 *
+	 * @param index Index of the element selected on the slider.
+	 */
+	onChange(index) {
+		this.setState({
+			value: index
+		});
+		this.props.onChange(this.props.items[index].toLowerCase());
+	}
+}
+/**
+ * A filter element that allows the user to select a value from an array of
+ * strings that don't have a numerical association or an order to them. For
+ * example, an array containing the strings "both", "manual", and "automatic"
+ * for a transmission filter.
+ */
+class TextSelector extends React.Component {
+	/**
+	 * @constructor
+	 * @param props ReactJS props.
+	 */
+	constructor(props) {
+		super(props);
+		this.state = {
+			value: props.items.indexOf(props.value)
+		};
+	}
+	
+	/**
+	 * Renders the text selector element.
+	 *
+	 * @returns {XML} JSX element.
+	 */
+	render() {
+		return (
+			<div className="text-selector">
+				<h4>{this.props.label}</h4>
+				<div className="items">
+					{this.getItems()}
+				</div>
+			</div>
+		);
+	}
+	
+	/**
+	 * Handles the change events of the text selector.
+	 *
+	 * @param index Index of the element selected.
+	 */
+	onChange(index) {
+		this.setState({
+			value: index
+		});
+		this.props.onChange(this.props.items[index].toLowerCase());
+	}
+	
+	/**
+	 * Returns an array of button elements. One for each item in the "items"
+	 * prop.
+	 *
+	 * @returns {XML[]} Array of JSX elements.
+	 */
+	getItems() {
+		let textSelector = this;
+		return this.props.items.map(function(item, i) {
+			return (
+				<button key={i} className={"btn btn-" + ((textSelector.state.value == i) ? "" : "outline-") + "secondary"} onClick={textSelector.onChange.bind(textSelector, i)}>{item}</button>
+			);
+		});
 	}
 }
 module.exports = ModuleOptions;

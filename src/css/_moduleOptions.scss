@@ -56,6 +56,28 @@ $slider-height: 20px;
 					}
 				}
 			}
+			&.text-selector {
+				.items {
+					display: flex;
+					margin-top: $spacing;
+					align-items: center;
+					justify-content: center;
+					@media (max-width: $mobile-breakpoint) {
+						flex-direction: column;
+					}
+					.btn {
+						&:not(:first-of-type) {
+							margin-left: $spacing / 2;
+							@media (max-width: $mobile-breakpoint) {
+								
+							}
+						}
+						&:not(:last-of-type) {
+							margin-right: $spacing / 2;
+						}
+					}
+				}
+			}
 			h4 {
 				margin-bottom: 0;
 				color: $text-colour;
@@ -98,7 +120,7 @@ $slider-height: 20px;
 				}
 			}
 		}
-		button {
+		> button {
 			margin-top: $spacing * 2;
 		}
 	}

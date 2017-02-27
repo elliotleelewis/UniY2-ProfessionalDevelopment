@@ -6,9 +6,8 @@
 	},
 	"source": {
 		"include": [
-			"src/js/index.jsx",
-			"src/js/_moduleType.jsx",
-			"src/js/_moduleOptions.jsx"
+			"src/js",
+			"tests"
 		]
 	},
 	"templates": {

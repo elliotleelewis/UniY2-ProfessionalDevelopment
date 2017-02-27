@@ -1,29 +1,32 @@
 'use strict';
 // Imports
-let $ = require('jquery');
+const $ = require('jquery');
 global.jQuery = $;
 global.Tether = require('tether');
-let bootstrap = require('bootstrap');
-let React = require('react');
-let ReactDOM = require('react-dom');
+const bootstrap = require('bootstrap');
+const React = require('react');
+const ReactDOM = require('react-dom');
 // Global Vars
-let ModuleType = require('./_moduleType.jsx');
-let ModuleOptions = require('./_moduleOptions.jsx');
+const ModuleType = require('./_moduleType.jsx');
+const ModuleOptions = require('./_moduleOptions.jsx');
+const ModuleResults = require('./_moduleResults.jsx');
 // Data
-let data = require('../data/cars.json');
+const data = require('../data/cars.json');
 for(let i = 0; i < data.models.length; i++) {
 	data.models[i].make = data.makes[data.models[i].make];
 }
-data = data.models;
-console.log(data);
-let appModules = {
+const appModules = {
 	type: {
-		title: "BODY TYPE",
+		title: "Body Type",
 		module: ModuleType
 	},
 	options: {
-		title: "OPTIONS",
+		title: "Options",
 		module: ModuleOptions
+	},
+	results: {
+		title: "Results",
+		module: ModuleResults
 	}
 };
 // React Components
@@ -65,7 +68,7 @@ class MainPage extends React.Component {
 	/**
 	 * Selects type on the type page and advances web app to next page.
 	 *
-	 * @param category {string} "body_type" or "lifestyle"
+	 * @param category {string} "body_type" or "lifestyle".
 	 * @param value {string} Specific body type or lifestyle.
 	 */
 	selectType(category, value) {
@@ -75,6 +78,27 @@ class MainPage extends React.Component {
 			settings: {
 				category: category,
 				value: value
+			}
+		});
+	}
+	
+	/**
+	 * Advances web app to the final page, in which the search results are
+	 * shown.
+	 *
+	 * @param category {string} "body_type" or "lifestyle".
+	 * @param value {string} Specific body type or lifestyle.
+	 * @param filters {array} Array of filters to apply to results.
+	 */
+	search(category, value, filters) {
+		this.setState({
+			title: appModules.results.title,
+			module: appModules.results.module,
+			settings: {
+				category: category,
+				value: value,
+				filters: filters,
+				data: data
 			}
 		});
 	}
