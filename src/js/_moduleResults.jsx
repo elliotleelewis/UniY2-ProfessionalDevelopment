@@ -11,6 +11,13 @@ class ModuleResults extends React.Component {
 	constructor(props) {
 		super(props);
 		console.log("Settings: ", this.props.settings);
+		let results = props.settings.models.slice();
+		for(let i = 0; i < results.length; i++) {
+			//TODO filter data here...
+		}
+		this.state = {
+			results: results
+		};
 	}
 	
 	/**
