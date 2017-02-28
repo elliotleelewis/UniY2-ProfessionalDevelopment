@@ -566,7 +566,7 @@
 		},
 		{
 			"make": "land_rover",
-			"model": "Range Rover Evoque",
+			"model": "Range Rover Evoque Convertible",
 			"body_type": "Convertible",
 			"min_price": "42370",
 			"max_price": "74990",
@@ -630,7 +630,7 @@
 		},
 		{
 			"make": "nissan",
-			"model": "Primera",
+			"model": "Primera Estate",
 			"body_type": "Estate",
 			"min_price": "595",
 			"max_price": "1589",
