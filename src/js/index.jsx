@@ -54,7 +54,7 @@ class MainPage extends React.Component {
 	 * Renders the {@link PageHeader} element as well as the applications
 	 * current module.
 	 *
-	 * @returns {XML} JSX content.
+	 * @returns {xml} JSX content.
 	 */
 	render() {
 		return (
@@ -66,12 +66,25 @@ class MainPage extends React.Component {
 	}
 	
 	/**
-	 * Selects type on the type page and advances web app to next page.
+	 * Sets web app's current module to the type page, the initial page of the
+	 * app.
+	 */
+	showType() {
+		this.setState({
+			title: appModules.type.title,
+			module: appModules.type.module,
+			settings: undefined
+		});
+	}
+	
+	/**
+	 * Selects type on the type page and then sets web app's current module to
+	 * options page.
 	 *
 	 * @param category {string} "body_type" or "lifestyle".
 	 * @param value {string} Specific body type or lifestyle.
 	 */
-	selectType(category, value) {
+	showOptions(category, value) {
 		this.setState({
 			title: appModules.options.title,
 			module: appModules.options.module,
@@ -83,14 +96,14 @@ class MainPage extends React.Component {
 	}
 	
 	/**
-	 * Advances web app to the final page, in which the search results are
-	 * shown.
+	 * Sets web app's current module to the results page, in which the search
+	 * results are shown.
 	 *
 	 * @param category {string} "body_type" or "lifestyle".
 	 * @param value {string} Specific body type or lifestyle.
 	 * @param filters {array} Array of filters to apply to results.
 	 */
-	search(category, value, filters) {
+	showResults(category, value, filters) {
 		this.setState({
 			title: appModules.results.title,
 			module: appModules.results.module,
@@ -119,7 +132,7 @@ class PageHeader extends React.Component {
 	 * Renders the header of the application with the title returned by the
 	 * {@link PageHeader#getAppModuleTitle} method.
 	 *
-	 * @returns {XML} JSX content.
+	 * @returns {xml} JSX content.
 	 */
 	render() {
 		return (

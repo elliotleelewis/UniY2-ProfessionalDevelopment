@@ -12,6 +12,7 @@ class ModuleOptions extends React.Component {
 	 */
 	constructor(props) {
 		super(props);
+		console.log("Options Settings: ", props.settings);
 		let filters = [];
 		if(this.getSettings().category == "body_type") {
 			switch(this.getSettings().value) {
@@ -67,15 +68,32 @@ class ModuleOptions extends React.Component {
 	render() {
 		return (
 			<div className="module" id="options">
+				<div className="container-fluid">
+					<div className="row">
+						<button className="col-md-2 col-4 btn btn-secondary" onClick={this.goBack.bind(this)}>Back</button>
+					</div>
+				</div>
 				<div className="filters">
 					{this.getFilterElements()}
-					<button className="btn btn-lg btn-primary" onClick={this.search.bind(this)}>Search</button>
+					<button className="btn btn-lg btn-primary" onClick={this.showResults.bind(this)}>Search</button>
 				</div>
 			</div>
 		);
 	}
 	
-	search() {
+	/**
+	 * Calls the {@link MainPage#showType} function. Switches the web app to
+	 * the type module.
+	 */
+	goBack() {
+		this.props.mainPage.showType();
+	}
+	
+	/**
+	 * Calls the {@link MainPage#showResults} function. Switches the web app to
+	 * the results module.
+	 */
+	showResults() {
 		let filters = this.state.values.slice(0);
 		for(let i = 0; i < filters.length; i++) {
 			if(typeof filters[i] === "undefined") {
@@ -84,7 +102,7 @@ class ModuleOptions extends React.Component {
 			}
 		}
 		let settings = this.getSettings();
-		this.props.mainPage.search(settings.category, settings.value, filters);
+		this.props.mainPage.showResults(settings.category, settings.value, filters);
 	}
 	
 	/**
