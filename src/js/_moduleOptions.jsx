@@ -21,15 +21,335 @@ class ModuleOptions extends React.Component {
 						{
 							type: "doors",
 							settings: {
-								defaultValue: "4+"
+								defaultValue: "5+"
 							}
 						},
 						{
 							type: "price",
 							settings: {
 								min: 0,
-								max: 100000,
-								defaultValue: [25000, 75000]
+								max: 55000,
+								defaultValue: [8000, 45000]
+							}
+						},
+						{
+							type: "insurance",
+							settings: {
+								
+								defaultValue: "Medium"
+							}
+						},
+						{
+							type: "annual_tax",
+							settings: {
+								
+								defaultValue: "Medium"
+							}
+						},
+						{
+							type: "transmission",
+							settings: {
+								defaultValue: "Both"
+							}
+						}
+					];
+					break;
+					
+				case "SUV":
+					filters=[
+						{
+							type: "doors",
+							settings: {
+								defaultValue: "4+"
+							}
+						},
+						{
+							type: "seats",
+							settings: {
+								
+								defaultValue: "5+"
+							}
+						},
+						{
+							type: "price",
+							settings: {
+								min: 0,
+								max: 50000,
+								defaultValue: [6000, 32000]
+							}
+						},
+						{
+							type: "boot_size",
+							settings: {
+								
+								defaultValue: "Large"
+							}
+						},
+						{
+							type: "fuel_consumption",
+							settings: {
+								
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "transmission",
+							settings: {
+								defaultValue: "Both"
+							}
+						}
+					];
+					break;
+					
+				case "MPV":
+					filters=[
+						{
+							type: "doors",
+							settings: {
+								defaultValue: "4+"
+							}
+						},
+						{
+							type: "seats",
+							settings: {
+								
+								defaultValue: "5+"
+							}
+						},
+						{
+							type: "price",
+							settings: {
+								min: 0,
+								max: 60000,
+								defaultValue: [1000, 40000]
+							}
+						},
+						{
+							type: "boot_size",
+							settings: {
+								
+								defaultValue: "Medium"
+							}
+						},
+						{
+							type: "fuel_consumption",
+							settings: {
+								
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "insurance",
+							settings: {
+								
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "annual_tax",
+							settings: {
+								
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "transmission",
+							settings: {
+								defaultValue: "Both"
+							}
+						}
+					];
+					break;
+					
+				case "Estate":
+					filters=[
+						{
+							type: "doors",
+							settings: {
+								defaultValue: "4+"
+							}
+						},
+						{
+							type: "seats",
+							settings: {
+								
+								defaultValue: "5+"
+							}
+						},
+						{
+							type: "price",
+							settings: {
+								min: 0,
+								max: 50000,
+								defaultValue: [1000, 35000]
+							}
+						},
+						{
+							type: "boot_size",
+							settings: {
+								
+								defaultValue: "Medium"
+							}
+						},
+						{
+							type: "insurance",
+							settings: {
+								
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "annual_tax",
+							settings: {
+								
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "transmission",
+							settings: {
+								defaultValue: "Both"
+							}
+						}
+					];
+					break;
+				
+				case "Convertible":
+					filters=[
+						{
+							type: "seats",
+							settings: {
+								// needs to be able to limit to max 5
+								defaultValue: "2+"
+							}
+						},
+						{
+							type: "price",
+							settings: {
+								min: 0,
+								max: 80000,
+								defaultValue: [6000, 35000]
+							}
+						},
+						{
+							type: "insurance",
+							settings: {
+								
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "annual_tax",
+							settings: {
+								
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "transmission",
+							settings: {
+								defaultValue: "Both"
+							}
+						}
+					];
+					break;
+				
+				
+				case "Coupe":
+					filters=[
+						{
+							type: "doors",
+							settings: {
+								defaultValue: "2+"
+							}
+						},
+						{
+							type: "seats",
+							settings: {
+								
+								defaultValue: "5+"
+							}
+						},
+						{
+							type: "price",
+							settings: {
+								min: 0,
+								max: 200000,
+								defaultValue: [4000, 80000]
+							}
+						},
+						{
+							type: "boot_size",
+							settings: {
+								
+								defaultValue: "Medium"
+							}
+						},
+						{
+							type: "fuel_consumption",
+							settings: {
+								
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "insurance",
+							settings: {
+								
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "annual_tax",
+							settings: {
+								
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "transmission",
+							settings: {
+								defaultValue: "Manual"
+							}
+						}
+					];
+					break;
+				case "Saloon":
+					filters=[
+						{
+							type: "price",
+							settings: {
+								min: 0,
+								max: 70000,
+								defaultValue: [1000, 50000]
+							}
+						},
+						{
+							type: "boot_size",
+							settings: {
+								
+								defaultValue: "Medium"
+							}
+						},
+						{
+							type: "fuel_consumption",
+							settings: {
+								
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "insurance",
+							settings: {
+								
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "annual_tax",
+							settings: {
+								
+								defaultValue: "Low"
 							}
 						},
 						{
@@ -44,7 +364,7 @@ class ModuleOptions extends React.Component {
 		}
 		else if(this.getSettings().category == "lifestyle") {
 			switch(this.getSettings().value) {
-				//
+				//need to filter the lifestyles in similar format as above
 			}
 		}
 		let values = [];
