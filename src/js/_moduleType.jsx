@@ -37,7 +37,7 @@ class ModuleType extends React.Component {
 	 * main screen of the application. It also calls for the rendering of
 	 * the {@link Presets} object at the bottom of the page.
 	 *
-	 * @returns {XML} JSX elements.
+	 * @returns {xml} JSX elements.
 	 */
 	render() {
 		return (
@@ -48,7 +48,7 @@ class ModuleType extends React.Component {
 							{this.eachType()}
 						</div>
 					</Hammer>
-					<button className="btn btn-lg btn-primary" onClick={this.selectType.bind(this)}>Select</button>
+					<button className="btn btn-lg btn-primary" onClick={this.showOptions.bind(this)}>Select</button>
 				</div>
 				<Presets mainPage={this.props.mainPage} />
 			</div>
@@ -76,7 +76,7 @@ class ModuleType extends React.Component {
 	 * This method creates a new {@link TypeOption} element for each value
 	 * returned from the {@link ModuleType#getTypes} method.
 	 *
-	 * @returns {XML[]} Array of JSX elements to render.
+	 * @returns {xml[]} Array of JSX elements to render.
 	 */
 	eachType() {
 		let moduleType = this;
@@ -88,11 +88,11 @@ class ModuleType extends React.Component {
 	}
 	
 	/**
-	 * Calls the {@link MainPage#selectType} method and passes it the focused
+	 * Calls the {@link MainPage#showOptions} method and passes it the focused
 	 * body type.
 	 */
-	selectType() {
-		this.props.mainPage.selectType("body_type", this.getSelectedType());
+	showOptions() {
+		this.props.mainPage.showOptions("body_type", this.getSelectedType());
 	}
 	
 	/**
@@ -156,7 +156,7 @@ class ModuleType extends React.Component {
 	/**
 	 * Returns the body types array.
 	 *
-	 * @returns {String[]}
+	 * @returns {string[]}
 	 */
 	getTypes() {
 		return this.state.types;
@@ -165,7 +165,7 @@ class ModuleType extends React.Component {
 	/**
 	 * Returns the count of the body types array.
 	 *
-	 * @returns {Number} Length of body types array.
+	 * @returns {number} Length of body types array.
 	 */
 	getTypesCount() {
 		return this.getTypes().length;
@@ -204,7 +204,7 @@ class TypeOption extends React.Component {
 	/**
 	 * Renders the body type on the body types carousel.
 	 *
-	 * @returns {XML} JSX element.
+	 * @returns {xml} JSX element.
 	 */
 	render() {
 		return (
@@ -327,7 +327,7 @@ class Presets extends React.Component {
 	/**
 	 * Renders the presets slider, including the hide button.
 	 *
-	 * @returns {XML} JSX element.
+	 * @returns {xml} JSX element.
 	 */
 	render() {
 		return (
@@ -357,14 +357,14 @@ class Presets extends React.Component {
 	/**
 	 * Returns the array of presets to render.
 	 *
-	 * @returns {XML[]} Array of JSX elements.
+	 * @returns {xml[]} Array of JSX elements.
 	 */
 	getPresets() {
 		let mainPage = this.props.mainPage;
 		return this.state.presets.map(function(item, i) {
 			let shortName = item.toLowerCase().replace(" ", "-");
 			return (
-				<a key={i} className="preset" href="#" onClick={mainPage.selectType.bind(mainPage, "lifestyle", shortName)}>
+				<a key={i} className="preset" href="#" onClick={mainPage.showOptions.bind(mainPage, "lifestyle", shortName)}>
 					<div className="preset-icon">
 						<svg>
 							<title>{item}</title>
