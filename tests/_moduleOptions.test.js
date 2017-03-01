@@ -1,5 +1,4 @@
-'use strict';
-let ModuleOptions = require('../src/js/_moduleOptions');
+const ModuleOptions = require('../src/js/_moduleOptions');
 test("placeholder", () => {
 	expect(true).toBe(true);
 });
