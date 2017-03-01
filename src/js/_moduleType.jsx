@@ -11,22 +11,14 @@ class ModuleType extends React.Component {
 	 * types shown on the web app.
 	 *
 	 * @constructor
-	 * @param props ReactJS props.
+	 * @param props {Object} ReactJS props.
 	 */
 	constructor(props) {
 		super(props);
+		console.log("Type Settings: ", props.settings);
 		this.state = {
-			selectedTypeIndex: 1,
-			types: [
-				'Saloon',
-				'Hatchback',
-				'SUV',
-				'MPV',
-				'Estate',
-				'Convertible',
-				'Coupe',
-				'Other'
-			]
+			selectedTypeIndex: this.getSettings().selectedTypeIndex,
+			types: this.getSettings().types
 		}
 	}
 	
@@ -37,7 +29,7 @@ class ModuleType extends React.Component {
 	 * main screen of the application. It also calls for the rendering of
 	 * the {@link Presets} object at the bottom of the page.
 	 *
-	 * @returns {xml} JSX elements.
+	 * @returns {XML} JSX elements.
 	 */
 	render() {
 		return (
@@ -61,7 +53,7 @@ class ModuleType extends React.Component {
 	 * if the direction is right, it calls the {@link
 		* ModuleType#selectPreviousType} method.
 	 *
-	 * @param event {object} Swipe event.
+	 * @param event {Object} Swipe event.
 	 */
 	handleSwipe(event) {
 		if(event.direction == 2) {
@@ -76,7 +68,7 @@ class ModuleType extends React.Component {
 	 * This method creates a new {@link TypeOption} element for each value
 	 * returned from the {@link ModuleType#getTypes} method.
 	 *
-	 * @returns {xml[]} Array of JSX elements to render.
+	 * @returns {XML[]} Array of JSX elements to render.
 	 */
 	eachType() {
 		let moduleType = this;
@@ -139,8 +131,8 @@ class ModuleType extends React.Component {
 	 * getTypesCount() = 8
 	 * getRelativeSelectedIndex(1)
 	 *
-	 * @param i {number} Index to check relative index of.
-	 * @returns {number} Relative index.
+	 * @param i {Number} Index to check relative index of.
+	 * @returns {Number} Relative index.
 	 */
 	getRelativeSelectedIndex(i) {
 		let out = i - this.getSelectedTypeIndex();
@@ -156,7 +148,7 @@ class ModuleType extends React.Component {
 	/**
 	 * Returns the body types array.
 	 *
-	 * @returns {string[]}
+	 * @returns {String[]}
 	 */
 	getTypes() {
 		return this.state.types;
@@ -165,7 +157,7 @@ class ModuleType extends React.Component {
 	/**
 	 * Returns the count of the body types array.
 	 *
-	 * @returns {number} Length of body types array.
+	 * @returns {Number} Length of body types array.
 	 */
 	getTypesCount() {
 		return this.getTypes().length;
@@ -174,7 +166,7 @@ class ModuleType extends React.Component {
 	/**
 	 * Returns the selected body type.
 	 *
-	 * @returns {string} Selected body type.
+	 * @returns {String} Selected body type.
 	 */
 	getSelectedType() {
 		return this.state.types[this.getSelectedTypeIndex()];
@@ -183,10 +175,19 @@ class ModuleType extends React.Component {
 	/**
 	 * Returns the selected body type's index.
 	 *
-	 * @returns {number} Selected body type index.
+	 * @returns {Number} Selected body type index.
 	 */
 	getSelectedTypeIndex() {
 		return this.state.selectedTypeIndex;
+	}
+	
+	/**
+	 * Returns the settings object prop.
+	 *
+	 * @returns {Object} Settings object.
+	 */
+	getSettings() {
+		return this.props.settings;
 	}
 }
 /**
@@ -195,7 +196,7 @@ class ModuleType extends React.Component {
 class TypeOption extends React.Component {
 	/**
 	 * @constructor
-	 * @param props ReactJS props.
+	 * @param props {Object} ReactJS props.
 	 */
 	constructor(props) {
 		super(props);
@@ -204,7 +205,7 @@ class TypeOption extends React.Component {
 	/**
 	 * Renders the body type on the body types carousel.
 	 *
-	 * @returns {xml} JSX element.
+	 * @returns {XML} JSX element.
 	 */
 	render() {
 		return (
@@ -222,7 +223,7 @@ class TypeOption extends React.Component {
 	 * Returns the class name for the body type based on the result of the
 	 * {@link TypeOption#getRelativeSelectedIndex} function.
 	 *
-	 * @returns {string}
+	 * @returns {String}
 	 */
 	getClassName() {
 		switch(this.getRelativeSelectedIndex()) {
@@ -248,7 +249,7 @@ class TypeOption extends React.Component {
 	 * type to the right of the selected type is clicked then the {@link
 		* ModuleType#selectNextType} function is called.
 	 *
-	 * @returns {function} Function to bind.
+	 * @returns {Function} Function to bind.
 	 */
 	getAction() {
 		switch(this.getRelativeSelectedIndex()) {
@@ -264,7 +265,7 @@ class TypeOption extends React.Component {
 	/**
 	 * Returns the icon filepath for that specific body type.
 	 *
-	 * @returns {string} Icon filepath.
+	 * @returns {String} Icon filepath.
 	 */
 	getIconFilepath() {
 		return "media/images/icons.svg#icon-" + this.getType().toLowerCase();
@@ -273,7 +274,7 @@ class TypeOption extends React.Component {
 	/**
 	 * Returns the specific body type of this instance of this object.
 	 *
-	 * @returns {string} Body type.
+	 * @returns {String} Body type.
 	 */
 	getType() {
 		return this.props.type;
@@ -282,7 +283,7 @@ class TypeOption extends React.Component {
 	/**
 	 * Returns the relative selected index of this instance of this object.
 	 *
-	 * @returns {number} Relative selected index.
+	 * @returns {Number} Relative selected index.
 	 */
 	getRelativeSelectedIndex() {
 		return this.props.relativeSelectedIndex;
@@ -291,10 +292,10 @@ class TypeOption extends React.Component {
 	/**
 	 * Returns the tab index of this instance of this object.
 	 *
-	 * @returns {number} Tab index.
+	 * @returns {Number} Tab index.
 	 */
 	getTabIndex() {
-		return (Math.abs(this.props.relativeSelectedIndex) < 2) ? 0 : -1;
+		return (Math.abs(this.props.relativeSelectedIndex) == 1) ? 0 : -1;
 	}
 }
 /**
@@ -306,7 +307,7 @@ class Presets extends React.Component {
 	 * presets to be displayed.
 	 *
 	 * @constructor
-	 * @param props ReactJS props.
+	 * @param props {Object} ReactJS props.
 	 */
 	constructor(props) {
 		super(props);
@@ -327,7 +328,7 @@ class Presets extends React.Component {
 	/**
 	 * Renders the presets slider, including the hide button.
 	 *
-	 * @returns {xml} JSX element.
+	 * @returns {XML} JSX element.
 	 */
 	render() {
 		return (
@@ -357,14 +358,14 @@ class Presets extends React.Component {
 	/**
 	 * Returns the array of presets to render.
 	 *
-	 * @returns {xml[]} Array of JSX elements.
+	 * @returns {XML[]} Array of JSX elements.
 	 */
 	getPresets() {
 		let mainPage = this.props.mainPage;
 		return this.state.presets.map(function(item, i) {
 			let shortName = item.toLowerCase().replace(" ", "-");
 			return (
-				<a key={i} className="preset" href="#" onClick={mainPage.showOptions.bind(mainPage, "lifestyle", shortName)}>
+				<button key={i} className="preset" onClick={mainPage.showOptions.bind(mainPage, "lifestyle", shortName)}>
 					<div className="preset-icon">
 						<svg>
 							<title>{item}</title>
@@ -372,7 +373,7 @@ class Presets extends React.Component {
 						</svg>
 					</div>
 					<p>{item}</p>
-				</a>
+				</button>
 			);
 		});
 	}

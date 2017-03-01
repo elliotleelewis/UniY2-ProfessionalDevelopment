@@ -1,4 +1,4 @@
-$result-height: 200px;
+$result-height: 300px;
 &#results {
 	padding: ($spacing / 2) $spacing $spacing;
 	.container-fluid {
@@ -23,14 +23,14 @@ $result-height: 200px;
 				}
 			}
 			&.featured-result {
-				.result {
-					margin: 0 0 ($spacing / 2);
-					cursor: default;
-					&:hover {
-						transform: none;
-					}
-					.result-image {
-						height: $result-height;
+				height: $result-height - ($spacing * 2);
+				margin: 0 0 ($spacing / 2);
+				background: $trans-bg;
+				border-radius: $spacing / 2;
+				.featured-result-image-container {
+					padding: 0 19px 0 0;
+					.featured-result-image {
+						height: 100%;
 						border-radius: $spacing / 2;
 						background: opacify($trans-bg, 0.25) no-repeat center;
 						background-size: cover;
@@ -38,7 +38,8 @@ $result-height: 200px;
 				}
 				.featured-result-info {
 					display: flex;
-					margin: 0 0 ($spacing / 2);
+					margin: 0;
+					padding: $spacing $spacing $spacing 10px;
 					flex-direction: column;
 					h3 {
 						margin-bottom: $spacing / 2;
@@ -85,6 +86,7 @@ $result-height: 200px;
 				}
 			}
 			.result {
+				height: $result-height;
 				margin: ($spacing / 2) 0;
 				cursor: pointer;
 				transition: all $transition-length ease-in-out;
@@ -92,7 +94,10 @@ $result-height: 200px;
 					transform: scale(1.05);
 				}
 				&.active {
-					//TODO add style to show that model is selected.
+					.result-container {
+						border: white 2px solid;
+						border-image-outset: 2px;
+					}
 				}
 				@media (max-width: $mobile-breakpoint) {
 					&:first-child {
@@ -103,10 +108,11 @@ $result-height: 200px;
 					}
 				}
 				.result-container {
+					height: 100%;
 					border-radius: $spacing / 2;
 					overflow: hidden;
 					.result-image {
-						height: $result-height * 3 / 4;
+						height: calc(100% - #{$result-height / 4});
 						background: opacify($trans-bg, 0.25) no-repeat center;
 						background-size: cover;
 					}
