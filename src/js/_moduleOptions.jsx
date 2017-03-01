@@ -8,7 +8,7 @@ const ReactSlider = require('react-slider');
 class ModuleOptions extends React.Component {
 	/**
 	 * @constructor
-	 * @param props ReactJS props.
+	 * @param props {Object} ReactJS props.
 	 */
 	constructor(props) {
 		super(props);
@@ -406,7 +406,8 @@ class ModuleOptions extends React.Component {
 	 * the type module.
 	 */
 	goBack() {
-		this.props.mainPage.showType();
+		let settings = this.getSettings();
+		this.props.mainPage.showType((settings.category == "body_type") ? settings.value : undefined);
 	}
 	
 	/**
@@ -429,8 +430,8 @@ class ModuleOptions extends React.Component {
 	 * Handles the changes in values of the filters and updates the store of
 	 * them dynamically.
 	 *
-	 * @param index The index of the filter whose value has changed.
-	 * @param value The new value of the filter.
+	 * @param index {Number} The index of the filter whose value has changed.
+	 * @param value {String} The new value of the filter.
 	 */
 	onFilterChange(index, value) {
 		if(typeof value === "string") {
@@ -577,7 +578,7 @@ class ModuleOptions extends React.Component {
 class RangeSlider extends React.Component {
 	/**
 	 * @constructor
-	 * @param props ReactJS props.
+	 * @param props {Object} ReactJS props.
 	 */
 	constructor(props) {
 		super(props);
@@ -595,7 +596,7 @@ class RangeSlider extends React.Component {
 		return (
 			<div className="range-slider">
 				<h4>{this.props.label}</h4>
-				<ReactSlider min={this.props.min} max={this.props.max} step={(this.props.max - this.props.min) / 100} value={this.state.value} withBars pearling minDistance={(this.props.max - this.props.min) / 10} onChange={this.onChange.bind(this)}>
+				<ReactSlider min={this.props.min} max={this.props.max} step={1000} value={this.state.value} withBars pearling minDistance={(this.props.max - this.props.min) / 10} onChange={this.onChange.bind(this)}>
 					{this.getHandleValues()}
 				</ReactSlider>
 			</div>
@@ -605,7 +606,7 @@ class RangeSlider extends React.Component {
 	/**
 	 * Handles the change events of the range slider.
 	 *
-	 * @param value
+	 * @param value {Number[]}
 	 */
 	onChange(value) {
 		this.setState({
@@ -638,7 +639,7 @@ class RangeSlider extends React.Component {
 class TextSlider extends React.Component {
 	/**
 	 * @constructor
-	 * @param props ReactJS props.
+	 * @param props {Object} ReactJS props.
 	 */
 	constructor(props) {
 		super(props);
@@ -666,7 +667,7 @@ class TextSlider extends React.Component {
 	/**
 	 * Handles the change events of the text slider.
 	 *
-	 * @param index Index of the element selected on the slider.
+	 * @param index {Number} Index of the element selected on the slider.
 	 */
 	onChange(index) {
 		this.setState({
@@ -684,7 +685,7 @@ class TextSlider extends React.Component {
 class TextSelector extends React.Component {
 	/**
 	 * @constructor
-	 * @param props ReactJS props.
+	 * @param props {Object} ReactJS props.
 	 */
 	constructor(props) {
 		super(props);
@@ -712,7 +713,7 @@ class TextSelector extends React.Component {
 	/**
 	 * Handles the change events of the text selector.
 	 *
-	 * @param index Index of the element selected.
+	 * @param index {Number} Index of the element selected.
 	 */
 	onChange(index) {
 		this.setState({

@@ -5,12 +5,37 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<title>Discovery Prototype</title>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet" href="build/css/index.css" />
+	<link rel="stylesheet" href="build/index.css" />
+	<style>
+		noscript {
+			position: fixed;
+			display: flex;
+			width: 100%;
+			min-width: 320px;
+			height: 100%;
+			top: 0;
+			left: 0;
+			padding: 50px;
+			flex-direction: column;
+			justify-content: center;
+			background-color: black;
+			color: red;
+			text-align: center;
+			font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+		}
+		noscript > *:first-child {
+			font-weight: bold;
+		}
+	</style>
 </head>
 <body>
 	<div class="frame" style="background-image: url(media/images/bg.jpg);">
-		<div id="reactRoot"></div>
+		<div id="react-root"></div>
 	</div>
-	<script async src="build/js/app.js"></script>
+	<noscript>
+		<h1>Error</h1>
+		<h3>JavaScript is required to view this site</h3>
+	</noscript>
+	<script async src="build/index.js"></script>
 </body>
 </html>

@@ -17,18 +17,34 @@ for(let i = 0; i < data.models.length; i++) {
 }
 const appModules = {
 	type: {
-		title: "Body Type",
-		module: ModuleType
+		title: 'Body Type',
+		module: ModuleType,
+		hash: 'type',
+		settings: {
+			types: [
+				'Saloon',
+				'Hatchback',
+				'SUV',
+				'MPV',
+				'Estate',
+				'Convertible',
+				'Coupe'
+			],
+			defaultTypeIndex: 1
+		}
 	},
 	options: {
-		title: "Options",
-		module: ModuleOptions
+		title: 'Options',
+		module: ModuleOptions,
+		hash: 'options'
 	},
 	results: {
-		title: "Results",
-		module: ModuleResults
+		title: 'Results',
+		module: ModuleResults,
+		hash: 'results'
 	}
 };
+console.log("Modules: ", appModules);
 // React Components
 /**
  * The main page of the web app. The root ReactJS component.
@@ -43,10 +59,17 @@ class MainPage extends React.Component {
 	 */
 	constructor(props) {
 		super(props);
+		window.location.lasthash = [];
+		window.onhashchange = function() {
+			//TODO add hash navigation...
+		}
 		this.state = {
 			title: appModules.type.title,
 			module: appModules.type.module,
-			settings: undefined
+			settings: {
+				selectedTypeIndex: appModules.type.settings.defaultTypeIndex,
+				types: appModules.type.settings.types
+			}
 		};
 	}
 	
@@ -54,11 +77,11 @@ class MainPage extends React.Component {
 	 * Renders the {@link PageHeader} element as well as the applications
 	 * current module.
 	 *
-	 * @returns {xml} JSX content.
+	 * @returns {XML} JSX content.
 	 */
 	render() {
 		return (
-			<div id="mainPage">
+			<div id="main-page">
 				<PageHeader title={this.state.title} />
 				<this.state.module mainPage={this} settings={this.state.settings} />
 			</div>
@@ -69,11 +92,15 @@ class MainPage extends React.Component {
 	 * Sets web app's current module to the type page, the initial page of the
 	 * app.
 	 */
-	showType() {
+	showType(bodyType) {
+		this.updateHistory(appModules.type.hash);
 		this.setState({
 			title: appModules.type.title,
 			module: appModules.type.module,
-			settings: undefined
+			settings: {
+				selectedTypeIndex: (bodyType) ? appModules.type.settings.types.indexOf(bodyType) : appModules.type.settings.defaultTypeIndex,
+				types: appModules.type.settings.types
+			}
 		});
 	}
 	
@@ -81,10 +108,11 @@ class MainPage extends React.Component {
 	 * Selects type on the type page and then sets web app's current module to
 	 * options page.
 	 *
-	 * @param category {string} "body_type" or "lifestyle".
-	 * @param value {string} Specific body type or lifestyle.
+	 * @param category {String} "body_type" or "lifestyle".
+	 * @param value {String} Specific body type or lifestyle.
 	 */
 	showOptions(category, value) {
+		this.updateHistory(appModules.options.hash);
 		this.setState({
 			title: appModules.options.title,
 			module: appModules.options.module,
@@ -99,11 +127,12 @@ class MainPage extends React.Component {
 	 * Sets web app's current module to the results page, in which the search
 	 * results are shown.
 	 *
-	 * @param category {string} "body_type" or "lifestyle".
-	 * @param value {string} Specific body type or lifestyle.
-	 * @param filters {array} Array of filters to apply to results.
+	 * @param category {String} "body_type" or "lifestyle".
+	 * @param value {String} Specific body type or lifestyle.
+	 * @param filters {Array} Array of filters to apply to results.
 	 */
 	showResults(category, value, filters) {
+		this.updateHistory(appModules.results.hash);
 		this.setState({
 			title: appModules.results.title,
 			module: appModules.results.module,
@@ -115,6 +144,16 @@ class MainPage extends React.Component {
 			}
 		});
 	}
+	
+	/**
+	 * Updates the browser's history when navigating around the web app.
+	 *
+	 * @param hash {String} The hash of the new page/module of the web app.
+	 */
+	updateHistory(hash) {
+		window.location.lasthash.push(window.location.hash);
+		window.location.hash = hash;
+	}
 }
 /**
  * The header component used for each page of the web app.
@@ -122,7 +161,7 @@ class MainPage extends React.Component {
 class PageHeader extends React.Component {
 	/**
 	 * @constructor
-	 * @param props ReactJS props.
+	 * @param props {Object} ReactJS props.
 	 */
 	constructor(props) {
 		super(props);
@@ -132,7 +171,7 @@ class PageHeader extends React.Component {
 	 * Renders the header of the application with the title returned by the
 	 * {@link PageHeader#getAppModuleTitle} method.
 	 *
-	 * @returns {xml} JSX content.
+	 * @returns {XML} JSX content.
 	 */
 	render() {
 		return (
@@ -148,10 +187,10 @@ class PageHeader extends React.Component {
 	/**
 	 * Gets the module's title.
 	 *
-	 * @returns {string} Module title.
+	 * @returns {String} Module title.
 	 */
 	getAppModuleTitle() {
 		return this.props.title;
 	}
 }
-ReactDOM.render(<MainPage />, $('#reactRoot')[0]);
+ReactDOM.render(<MainPage />, $('#react-root')[0]);

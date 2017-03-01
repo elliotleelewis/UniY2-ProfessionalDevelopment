@@ -742,7 +742,7 @@
 		},
 		{
 			"make": "renault",
-			"model": "Laguna",
+			"model": "Laguna Estate",
 			"body_type": "Estate",
 			"min_price": "750",
 			"max_price": "8950",
@@ -806,7 +806,7 @@
 		},
 		{
 			"make": "renault",
-			"model": "Laguna",
+			"model": "Laguna Coupe",
 			"body_type": "Coupe",
 			"min_price": "3495",
 			"max_price": "7995",

@@ -28,6 +28,8 @@
 				&.before-pre-selected, &.pre-selected, &.selected, &.post-selected, &.after-post-selected {
 					position: absolute;
 					display: flex;
+					top: 0;
+					bottom: 0;
 					width: 15%;
 					justify-content: center;
 					flex-direction: column;
@@ -59,9 +61,21 @@
 				&.after-post-selected {
 					left: 150%;
 				}
+				&:not(.selected) {
+					&:hover, &:focus {
+						color: $text-hover;
+						svg {
+							fill: $text-hover;
+						}
+					}
+					&:active {
+						outline: none;
+					}
+				}
 				svg {
 					width: 100%;
 					fill: $text-colour;
+					transition: fill $transition-length ease-in-out;
 				}
 				h5 {
 					width: 100%;
@@ -135,10 +149,12 @@
 					display: flex;
 					min-width: 120px;
 					margin: auto;
+					border: none;
 					flex-direction: column;
 					align-items: center;
 					justify-content: center;
 					text-align: center;
+					background: none;
 					color: white;
 					text-decoration: none;
 					cursor: pointer;
