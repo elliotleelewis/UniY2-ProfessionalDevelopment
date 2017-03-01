@@ -11,12 +11,12 @@ gulp.task('js', function() {
 	return browserify('src/js/index.jsx')
 		.transform("babelify", {presets: ['es2015', 'react']})
 		.bundle()
-		.pipe(fs.createWriteStream(dir + '/js/app.js'));
+		.pipe(fs.createWriteStream(dir + '/index.js'));
 });
 gulp.task('sass', function() {
 	return gulp.src('src/css/*.scss')
 		.pipe(sass())
-		.pipe(gulp.dest(dir + '/css'));
+		.pipe(gulp.dest(dir));
 });
 gulp.task('watch', ['default'], function() {
 	gulp.watch(['src/data/*.json', 'src/js/*.jsx'], ['js']);
