@@ -1,9 +1,10 @@
 language: node_js
 before_script:
-    - npm install
+  - npm install
 script:
-    - gulp
-    - npm test
+  - gulp
+  - npm test
 notifications:
+  email: false
   slack:
     secure: RaQx7EecjQsJTd+t2ElUseEGcWqzBYvl074d2sR0Yl+xJ0aVUQFNHDo6NbWrS4aP8nyHKxQHE9REHbbFGJQQL6BJi9C8uv/1kevQ66/WMOb5Mv9Y0jMEo9vkp8IDoz/9C0m6eY/Ia5tOXinTge+AMA7KGawHmBSui8t5nmeKY9Bn5ueopWAC+vmFwKZbMV94P59J8ogHZvFaYp5cVIks6/Nras4iSPPlHVfJxwO0bGxdUgZPCRG//bd/9BdDSD6qaa3SJLg2HR+QHi9Qf2FqR/JhgmenYFiHsM+N3x0ae2u3Idj7iOW/Tbd+kx1Fnd0zktUHelweNG60u9Gx9R77h5ZLISB/4ZSTXik8UwK1O5oPSnEBPog32OOtAL/1pjlg0kDbsji/qjoj8iPIYoG5kyYNqFtxQODLNOLhgYXmIGJKDkcHNt11kReSOGCCNFc+g4aLL4T3nXDNo2McY7IafoEfgrCUJN860BzGwVN+eRJkWHPlyX0Jd8ix5makzOKmYhlyF7dk1v4bWkpwZe7ueQgN6QpIKp6jM9caHEU4JH7d9wVPAVth/mzH33JEKepeCwH0Z+2uTtgrpdj0hORjF8NT9RSxllzr6Cnj6zrDkH0pVE+NqJUa0x1egCs2jZEIkLJAufrl1p83HGNVqDxUTPAGg1Sd+iSbC03d1+CiyCc=
