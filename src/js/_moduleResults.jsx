@@ -23,7 +23,7 @@ class ModuleResults extends React.Component {
 		//TODO finish off filtering models...
 		for(let i = 0; i < results.length; i++) {
 			let result = results[i];
-			if(settings.category == "body_type" && settings.value != result.body_type) {
+			if(settings.category === "body_type" && settings.value !== result.body_type) {
 				results.splice(i, 1);
 				i--;
 			}
@@ -106,7 +106,7 @@ class ModuleResults extends React.Component {
 	 * @param index {Number} Index of the result clicked on.
 	 */
 	onClick(index) {
-		if(this.state.selectedIndex == index)
+		if(this.state.selectedIndex === index)
 			this.setState({
 				selectedIndex: undefined
 			});
@@ -190,7 +190,7 @@ class ModuleResults extends React.Component {
 			let row = [];
 			for(let j = 0; j < Math.min(3, this.getResults().length - i); j++) {
 				row.push(
-					<Result key={i + j} active={i + j == this.getSelectedIndex()} model={this.getResults()[i + j]} onClick={moduleResults.onClick.bind(this, i + j)} />
+					<Result key={i + j} active={i + j === this.getSelectedIndex()} model={this.getResults()[i + j]} onClick={moduleResults.onClick.bind(this, i + j)} />
 				);
 			}
 			if(this.getSelectedIndex() < i + 3 && !shownSelected) {
@@ -235,6 +235,18 @@ class ModuleResults extends React.Component {
 		return this.state.selectedIndex;
 	}
 }
+ModuleResults.propTypes = {
+	mainPage: React.PropTypes.object.isRequired,
+	settings: React.PropTypes.shape({
+		category: React.PropTypes.string.isRequired,
+		value: React.PropTypes.string.isRequired,
+		filters: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+		data: React.PropTypes.shape({
+			makes: React.PropTypes.object.isRequired,
+			models: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+		}).isRequired
+	}).isRequired
+};
 /**
  * Search result element for {@link ModuleResults}.
  */
@@ -295,4 +307,9 @@ class Result extends React.Component {
 		return this.props.model;
 	}
 }
+Result.propTypes = {
+	active: React.PropTypes.bool.isRequired,
+	model: React.PropTypes.object.isRequired,
+	onClick: React.PropTypes.func.isRequired
+};
 module.exports = ModuleResults;
