@@ -1,6 +1,6 @@
 'use strict';
-const React = require('react');
-const Hammer = require('react-hammerjs');
+const React = require('react'),
+	Hammer = require('react-hammerjs');
 /**
  * First page of the web app. Contains the body types slider and the presets
  * slider.

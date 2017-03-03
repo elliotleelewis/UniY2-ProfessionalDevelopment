@@ -1,9 +1,6 @@
 'use strict';
-const $ = require('jquery');
-global.jQuery = $;
-global.Tether = require('tether');
-const bootstrap = require('bootstrap');
-const React = require('react');
+const bootstrap = require('bootstrap'),
+	React = require('react');
 /**
  * The final page of the web app. Where final car results are shown.
  */

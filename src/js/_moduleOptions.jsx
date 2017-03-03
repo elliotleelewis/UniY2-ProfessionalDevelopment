@@ -1,6 +1,6 @@
 'use strict';
-const React = require('react');
-const ReactSlider = require('react-slider');
+const React = require('react'),
+	ReactSlider = require('react-slider');
 /**
  * The second page of the web app. Where secondary configuration takes place
  * before results are shown.

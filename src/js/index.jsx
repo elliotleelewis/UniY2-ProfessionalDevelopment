@@ -1,15 +1,14 @@
 'use strict';
 // Imports
-const $ = require('jquery');
+global.$ = require('jquery');
 global.jQuery = $;
 global.Tether = require('tether');
-const bootstrap = require('bootstrap');
-const React = require('react');
-const ReactDOM = require('react-dom');
-// Global Vars
-const ModuleType = require('./_moduleType.jsx');
-const ModuleOptions = require('./_moduleOptions.jsx');
-const ModuleResults = require('./_moduleResults.jsx');
+const bootstrap = require('bootstrap'),
+	React = require('react'),
+	ReactDOM = require('react-dom'),
+	ModuleType = require('./_moduleType.jsx'),
+	ModuleOptions = require('./_moduleOptions.jsx'),
+	ModuleResults = require('./_moduleResults.jsx');
 // Data
 const data = require('../data/cars.json');
 for(let i = 0; i < data.models.length; i++) {
