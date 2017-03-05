@@ -13,7 +13,7 @@ class ModuleResults extends React.Component {
 	 * of the module to run smoothly.
 	 *
 	 * @constructor
-	 * @param props ReactJS props.
+	 * @param props {Object} ReactJS props.
 	 */
 	constructor(props) {
 		super(props);
@@ -38,7 +38,7 @@ class ModuleResults extends React.Component {
 	/**
 	 * Renders the results module.
 	 *
-	 * @returns {xml} JSX element.
+	 * @returns {XML} JSX element.
 	 */
 	render() {
 		let temp = this.getResults().slice();
@@ -46,6 +46,8 @@ class ModuleResults extends React.Component {
 		let bestResult = temp[0];
 		let bestResultMake = "media/images/makes/" + bestResult.make.name + ".png";
 		bestResultMake = bestResultMake.replace(/\s+/g, '_').toLowerCase();
+		let bestResultModel = "media/images/models/" + bestResult.make.name + "/" + bestResult.model + ".jpg";
+		bestResultModel = bestResultModel.replace(/\s+/g, '_').toLowerCase();
 		return (
 			<div className="module" id="results">
 				<div className="container-fluid">
@@ -59,8 +61,10 @@ class ModuleResults extends React.Component {
 						</select>
 					</div>
 					<div className="row hidden-sm-down featured-result">
-						<Result model={bestResult} featured />
-						<div className="col-md-8 col-12 featured-result-info">
+						<div className="col-4 featured-result-image-container">
+							<div className="featured-result-image" style={{backgroundImage: "url(" + bestResultModel + ")"}} />
+						</div>
+						<div className="col-8 featured-result-info">
 							<h3>Best Result</h3>
 							<div className="result-info">
 								<div className="result-make" style={{backgroundImage: "url(" + bestResultMake + ")"}} title={bestResult.make.name} data-toggle="tooltip" />
@@ -99,7 +103,7 @@ class ModuleResults extends React.Component {
 	 * Handles the click events of the results. It adjusts/resets the selected
 	 * index state accordingly.
 	 *
-	 * @param index Index of the result clicked on.
+	 * @param index {Number} Index of the result clicked on.
 	 */
 	onClick(index) {
 		if(this.state.selectedIndex == index)
@@ -116,7 +120,7 @@ class ModuleResults extends React.Component {
 	 * Handles the change event of the dropdown menu for sorting the result set.
 	 * Chooses the correct sort function and then applies it to the results.
 	 *
-	 * @param event Select change event.
+	 * @param event {Object} Select change event.
 	 */
 	sort(event) {
 		let sortFunction = this.sortRelevancy;
@@ -139,9 +143,9 @@ class ModuleResults extends React.Component {
 	 * Relevancy sort function. Sorts results based on their relevance to the
 	 * filters applied.
 	 *
-	 * @param resultA Result to sort.
-	 * @param resultB Result to sort.
-	 * @returns {number} Sort result.
+	 * @param resultA {Object} Result to sort.
+	 * @param resultB {Object} Result to sort.
+	 * @returns {Number} Sort result.
 	 */
 	sortRelevancy(resultA, resultB) {
 		//TODO finish relevancy sort...
@@ -152,9 +156,9 @@ class ModuleResults extends React.Component {
 	 * Price low to high sort function. Sorts results into ascending price
 	 * order.
 	 *
-	 * @param resultA Result to sort.
-	 * @param resultB Result to sort.
-	 * @returns {number} Sort result.
+	 * @param resultA {Object} Result to sort.
+	 * @param resultB {Object} Result to sort.
+	 * @returns {Number} Sort result.
 	 */
 	sortPriceLowHigh(resultA, resultB) {
 		return resultA.typical_price - resultB.typical_price;
@@ -164,9 +168,9 @@ class ModuleResults extends React.Component {
 	 * Price high to low sort function. Sorts results into descending price
 	 * order.
 	 *
-	 * @param resultA Result to sort.
-	 * @param resultB Result to sort.
-	 * @returns {number} Sort result.
+	 * @param resultA {Object} Result to sort.
+	 * @param resultB {Object} Result to sort.
+	 * @returns {Number} Sort result.
 	 */
 	sortPriceHighLow(resultA, resultB) {
 		return resultB.typical_price - resultA.typical_price;
@@ -176,7 +180,7 @@ class ModuleResults extends React.Component {
 	 * Generates the result elements to be rendered onto the page. Also adds in
 	 * the select dialog into the correct position.
 	 *
-	 * @returns {xml[]} Array of JSX elements.
+	 * @returns {XML[]} Array of JSX elements.
 	 */
 	getResultElements() {
 		let moduleResults = this;
@@ -205,7 +209,7 @@ class ModuleResults extends React.Component {
 				shownSelected = !shownSelected;
 			}
 			resultElements.push(
-				<div key={i / 3} className="row result-container">
+				<div key={i / 3} className="row">
 					{row}
 				</div>
 			);
@@ -216,7 +220,7 @@ class ModuleResults extends React.Component {
 	/**
 	 * Returns the results state.
 	 *
-	 * @returns {object[]} The results state.
+	 * @returns {Object[]} The results state.
 	 */
 	getResults() {
 		return this.state.results;
@@ -225,7 +229,7 @@ class ModuleResults extends React.Component {
 	/**
 	 * Returns the selected index state.
 	 *
-	 * @returns {object[]} The selected index state.
+	 * @returns {Object[]} The selected index state.
 	 */
 	getSelectedIndex() {
 		return this.state.selectedIndex;
@@ -237,7 +241,7 @@ class ModuleResults extends React.Component {
 class Result extends React.Component {
 	/**
 	 * @constructor
-	 * @param props ReactJS props.
+	 * @param props {Object} ReactJS props.
 	 */
 	constructor(props) {
 		super(props);
@@ -246,20 +250,11 @@ class Result extends React.Component {
 	/**
 	 * Renders the result element.
 	 *
-	 * @returns {xml} JSX element.
+	 * @returns {XML} JSX element.
 	 */
 	render() {
-		if(this.props.featured) {
-			return (
-				<div className="col-md-4 col-12 result">
-					<div className="result-container">
-						<div className="result-image" style={{backgroundImage: "url(" + this.getModelImage() + ")"}} />
-					</div>
-				</div>
-			);
-		}
 		return (
-			<div className={"col-md-4 col-12 result" + (this.props.active ? " active" : "")} onClick={this.props.onClick}>
+			<div className={"col-md-4 col-12 result" + (this.props.active ? " active" : "")} title={this.getModel().make.name + " " + this.getModel().model} onClick={this.props.onClick}>
 				<div className="result-container">
 					<div className="result-image" style={{backgroundImage: "url(" + this.getModelImage() + ")"}} />
 					<div className="result-info">
@@ -274,7 +269,7 @@ class Result extends React.Component {
 	/**
 	 * Gets the image URL for the result's model.
 	 *
-	 * @returns {string} Image URL.
+	 * @returns {String} Image URL.
 	 */
 	getModelImage() {
 		let url = "media/images/models/" + this.getModel().make.name + "/" + this.getModel().model + ".jpg";
@@ -284,7 +279,7 @@ class Result extends React.Component {
 	/**
 	 * Gets the image URL for the result's make's logo.
 	 *
-	 * @returns {string} Image URL.
+	 * @returns {String} Image URL.
 	 */
 	getMakeImage() {
 		let url = "media/images/makes/" + this.getModel().make.name + ".png";
@@ -294,7 +289,7 @@ class Result extends React.Component {
 	/**
 	 * Gets the result's model.
 	 *
-	 * @returns {string} Result's model.
+	 * @returns {String} Result's model.
 	 */
 	getModel() {
 		return this.props.model;
