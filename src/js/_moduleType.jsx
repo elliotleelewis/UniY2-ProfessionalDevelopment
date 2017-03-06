@@ -1,6 +1,6 @@
 'use strict';
-let React = require('react');
-let Hammer = require('react-hammerjs');
+const React = require('react');
+const Hammer = require('react-hammerjs');
 /**
  * First page of the web app. Contains the body types slider and the presets
  * slider.
@@ -11,22 +11,14 @@ class ModuleType extends React.Component {
 	 * types shown on the web app.
 	 *
 	 * @constructor
-	 * @param props ReactJS props.
+	 * @param props {Object} ReactJS props.
 	 */
 	constructor(props) {
 		super(props);
+		console.log("Type Settings: ", props.settings);
 		this.state = {
-			selectedTypeIndex: 1,
-			types: [
-				'saloon',
-				'hatchback',
-				'suv',
-				'mpv',
-				'estate',
-				'convertible',
-				'coupe',
-				'other'
-			]
+			selectedTypeIndex: this.getSettings().selectedTypeIndex,
+			types: this.getSettings().types
 		}
 	}
 	
@@ -42,15 +34,15 @@ class ModuleType extends React.Component {
 	render() {
 		return (
 			<div className="module" id="type">
-				<div className="typesContainer">
+				<div className="types-container">
 					<Hammer onSwipe={this.handleSwipe.bind(this)}>
 						<div className="types">
 							{this.eachType()}
 						</div>
 					</Hammer>
-					<button className="btn btn-lg btn-primary">Select</button>
+					<button className="btn btn-lg btn-primary" onClick={this.showOptions.bind(this)}>Select</button>
 				</div>
-				<Presets />
+				<Presets mainPage={this.props.mainPage} />
 			</div>
 		);
 	}
@@ -61,7 +53,7 @@ class ModuleType extends React.Component {
 	 * if the direction is right, it calls the {@link
 		* ModuleType#selectPreviousType} method.
 	 *
-	 * @param event {object} Swipe event.
+	 * @param event {Object} Swipe event.
 	 */
 	handleSwipe(event) {
 		if(event.direction == 2) {
@@ -85,6 +77,14 @@ class ModuleType extends React.Component {
 				<TypeOption key={i} type={item} relativeSelectedIndex={moduleType.getRelativeSelectedIndex(i)} module={moduleType} />
 			);
 		});
+	}
+	
+	/**
+	 * Calls the {@link MainPage#showOptions} method and passes it the focused
+	 * body type.
+	 */
+	showOptions() {
+		this.props.mainPage.showOptions("body_type", this.getSelectedType());
 	}
 	
 	/**
@@ -131,8 +131,8 @@ class ModuleType extends React.Component {
 	 * getTypesCount() = 8
 	 * getRelativeSelectedIndex(1)
 	 *
-	 * @param i {number} Index to check relative index of.
-	 * @returns {number} Relative index.
+	 * @param i {Number} Index to check relative index of.
+	 * @returns {Number} Relative index.
 	 */
 	getRelativeSelectedIndex(i) {
 		let out = i - this.getSelectedTypeIndex();
@@ -164,12 +164,30 @@ class ModuleType extends React.Component {
 	}
 	
 	/**
+	 * Returns the selected body type.
+	 *
+	 * @returns {String} Selected body type.
+	 */
+	getSelectedType() {
+		return this.state.types[this.getSelectedTypeIndex()];
+	}
+	
+	/**
 	 * Returns the selected body type's index.
 	 *
-	 * @returns {number} Selected body type index.
+	 * @returns {Number} Selected body type index.
 	 */
 	getSelectedTypeIndex() {
 		return this.state.selectedTypeIndex;
+	}
+	
+	/**
+	 * Returns the settings object prop.
+	 *
+	 * @returns {Object} Settings object.
+	 */
+	getSettings() {
+		return this.props.settings;
 	}
 }
 /**
@@ -178,7 +196,7 @@ class ModuleType extends React.Component {
 class TypeOption extends React.Component {
 	/**
 	 * @constructor
-	 * @param props ReactJS props.
+	 * @param props {Object} ReactJS props.
 	 */
 	constructor(props) {
 		super(props);
@@ -191,7 +209,7 @@ class TypeOption extends React.Component {
 	 */
 	render() {
 		return (
-			<div className={"type" + this.getClassName()} onClick={this.getAction()}>
+			<div className={"type" + this.getClassName()} onClick={this.getAction()} tabIndex={this.getTabIndex()}>
 				<svg>
 					<title>{this.getType()}</title>
 					<use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref={this.getIconFilepath()} />
@@ -205,20 +223,20 @@ class TypeOption extends React.Component {
 	 * Returns the class name for the body type based on the result of the
 	 * {@link TypeOption#getRelativeSelectedIndex} function.
 	 *
-	 * @returns {string}
+	 * @returns {String}
 	 */
 	getClassName() {
 		switch(this.getRelativeSelectedIndex()) {
 			case -2:
-				return " beforePreSelected";
+				return " before-pre-selected";
 			case -1:
-				return " preSelected";
+				return " pre-selected";
 			case 0:
 				return " selected";
 			case 1:
-				return " postSelected";
+				return " post-selected";
 			case 2:
-				return " afterPostSelected";
+				return " after-post-selected";
 			default:
 				return "";
 		}
@@ -231,7 +249,7 @@ class TypeOption extends React.Component {
 	 * type to the right of the selected type is clicked then the {@link
 		* ModuleType#selectNextType} function is called.
 	 *
-	 * @returns {function} Function to bind.
+	 * @returns {Function} Function to bind.
 	 */
 	getAction() {
 		switch(this.getRelativeSelectedIndex()) {
@@ -247,16 +265,16 @@ class TypeOption extends React.Component {
 	/**
 	 * Returns the icon filepath for that specific body type.
 	 *
-	 * @returns {string} Icon filepath.
+	 * @returns {String} Icon filepath.
 	 */
 	getIconFilepath() {
-		return "media/images/icons.svg#icon-" + this.getType();
+		return "media/images/icons.svg#icon-" + this.getType().toLowerCase();
 	}
 	
 	/**
 	 * Returns the specific body type of this instance of this object.
 	 *
-	 * @returns {string} Body type.
+	 * @returns {String} Body type.
 	 */
 	getType() {
 		return this.props.type;
@@ -265,10 +283,19 @@ class TypeOption extends React.Component {
 	/**
 	 * Returns the relative selected index of this instance of this object.
 	 *
-	 * @returns {number} Relative selected index.
+	 * @returns {Number} Relative selected index.
 	 */
 	getRelativeSelectedIndex() {
 		return this.props.relativeSelectedIndex;
+	}
+	
+	/**
+	 * Returns the tab index of this instance of this object.
+	 *
+	 * @returns {Number} Tab index.
+	 */
+	getTabIndex() {
+		return (Math.abs(this.props.relativeSelectedIndex) == 1) ? 0 : -1;
 	}
 }
 /**
@@ -280,7 +307,7 @@ class Presets extends React.Component {
 	 * presets to be displayed.
 	 *
 	 * @constructor
-	 * @param props ReactJS props.
+	 * @param props {Object} ReactJS props.
 	 */
 	constructor(props) {
 		super(props);
@@ -306,10 +333,10 @@ class Presets extends React.Component {
 	render() {
 		return (
 			<footer>
-				<a id="togglePresetsButton" href="#" title={this.state.hidden == false ? "Hide" : "Show"} onClick={this.toggleHidden.bind(this)}>
+				<button id="toggle-presets-button" title={this.state.hidden == false ? "Hide" : "Show"} onClick={this.toggleHidden.bind(this)}>
 					<i className="material-icons">{"arrow_drop_" + (this.state.hidden == false ? "down" : "up")}</i>
-				</a>
-				<div className={"presetsContainer" + (this.state.hidden == false ? "" : " hidden")}>
+				</button>
+				<div className={"presets-container" + (this.state.hidden == false ? "" : " hidden")}>
 					<h3>Lifestyle</h3>
 					<div className="presets">
 						{this.getPresets()}
@@ -334,17 +361,19 @@ class Presets extends React.Component {
 	 * @returns {XML[]} Array of JSX elements.
 	 */
 	getPresets() {
+		let mainPage = this.props.mainPage;
 		return this.state.presets.map(function(item, i) {
+			let shortName = item.toLowerCase().replace(" ", "-");
 			return (
-				<div key={i} className="preset">
-					<div className="presetIcon">
+				<button key={i} className="preset" onClick={mainPage.showOptions.bind(mainPage, "lifestyle", shortName)}>
+					<div className="preset-icon">
 						<svg>
 							<title>{item}</title>
-							<use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref={"media/images/icons.svg#icon-" + item.toLowerCase().replace(" ", "-")} />
+							<use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref={"media/images/icons.svg#icon-" + shortName} />
 						</svg>
 					</div>
 					<p>{item}</p>
-				</div>
+				</button>
 			);
 		});
 	}

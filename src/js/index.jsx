@@ -1,31 +1,50 @@
 'use strict';
 // Imports
-let $ = require('jquery');
+const $ = require('jquery');
 global.jQuery = $;
 global.Tether = require('tether');
-let bootstrap = require('bootstrap');
-let React = require('react');
-let ReactDOM = require('react-dom');
+const bootstrap = require('bootstrap');
+const React = require('react');
+const ReactDOM = require('react-dom');
 // Global Vars
-let ModuleType = require('./_moduleType.jsx');
-let ModuleOptions = require('./_moduleOptions.jsx');
+const ModuleType = require('./_moduleType.jsx');
+const ModuleOptions = require('./_moduleOptions.jsx');
+const ModuleResults = require('./_moduleResults.jsx');
 // Data
-let data = require('../data/cars.json');
+const data = require('../data/cars.json');
 for(let i = 0; i < data.models.length; i++) {
 	data.models[i].make = data.makes[data.models[i].make];
 }
-data = data.models;
-console.log(data);
-let appModules = {
+const appModules = {
 	type: {
-		title: "BODY TYPE",
-		object: <ModuleType />
+		title: 'Body Type',
+		module: ModuleType,
+		hash: 'type',
+		settings: {
+			types: [
+				'Saloon',
+				'Hatchback',
+				'SUV',
+				'MPV',
+				'Estate',
+				'Convertible',
+				'Coupe'
+			],
+			defaultTypeIndex: 1
+		}
 	},
 	options: {
-		title: "OPTIONS",
-		object: <ModuleOptions />
+		title: 'Options',
+		module: ModuleOptions,
+		hash: 'options'
+	},
+	results: {
+		title: 'Results',
+		module: ModuleResults,
+		hash: 'results'
 	}
 };
+console.log("Modules: ", appModules);
 // React Components
 /**
  * The main page of the web app. The root ReactJS component.
@@ -40,50 +59,100 @@ class MainPage extends React.Component {
 	 */
 	constructor(props) {
 		super(props);
+		window.location.lasthash = [];
+		window.onhashchange = function() {
+			//TODO add hash navigation...
+		}
 		this.state = {
-			appModule: appModules.type
+			title: appModules.type.title,
+			module: appModules.type.module,
+			settings: {
+				selectedTypeIndex: appModules.type.settings.defaultTypeIndex,
+				types: appModules.type.settings.types
+			}
 		};
 	}
 	
 	/**
 	 * Renders the {@link PageHeader} element as well as the applications
-	 * module described by the {@link MainPage#getAppModule} method.
+	 * current module.
 	 *
 	 * @returns {XML} JSX content.
 	 */
 	render() {
 		return (
-			<div id="mainPage">
-				<PageHeader title={this.getAppModuleTitle()} /> {this.getAppModuleObject()}
+			<div id="main-page">
+				<PageHeader title={this.state.title} />
+				<this.state.module mainPage={this} settings={this.state.settings} />
 			</div>
 		);
 	}
 	
 	/**
-	 * Returns the selected module for the application.
-	 *
-	 * @returns {object} Selected module.
+	 * Sets web app's current module to the type page, the initial page of the
+	 * app.
 	 */
-	getAppModule() {
-		return this.state.appModule;
+	showType(bodyType) {
+		this.updateHistory(appModules.type.hash);
+		this.setState({
+			title: appModules.type.title,
+			module: appModules.type.module,
+			settings: {
+				selectedTypeIndex: (bodyType) ? appModules.type.settings.types.indexOf(bodyType) : appModules.type.settings.defaultTypeIndex,
+				types: appModules.type.settings.types
+			}
+		});
 	}
 	
 	/**
-	 * Returns the selected module's title.
+	 * Selects type on the type page and then sets web app's current module to
+	 * options page.
 	 *
-	 * @returns {string} Selected module's title.
+	 * @param category {String} "body_type" or "lifestyle".
+	 * @param value {String} Specific body type or lifestyle.
 	 */
-	getAppModuleTitle() {
-		return this.getAppModule().title;
+	showOptions(category, value) {
+		this.updateHistory(appModules.options.hash);
+		this.setState({
+			title: appModules.options.title,
+			module: appModules.options.module,
+			settings: {
+				category: category,
+				value: value
+			}
+		});
 	}
 	
 	/**
-	 * Returns the selected module's object.
+	 * Sets web app's current module to the results page, in which the search
+	 * results are shown.
 	 *
-	 * @returns {XML} JSX content.
+	 * @param category {String} "body_type" or "lifestyle".
+	 * @param value {String} Specific body type or lifestyle.
+	 * @param filters {Array} Array of filters to apply to results.
 	 */
-	getAppModuleObject() {
-		return this.getAppModule().object;
+	showResults(category, value, filters) {
+		this.updateHistory(appModules.results.hash);
+		this.setState({
+			title: appModules.results.title,
+			module: appModules.results.module,
+			settings: {
+				category: category,
+				value: value,
+				filters: filters,
+				data: data
+			}
+		});
+	}
+	
+	/**
+	 * Updates the browser's history when navigating around the web app.
+	 *
+	 * @param hash {String} The hash of the new page/module of the web app.
+	 */
+	updateHistory(hash) {
+		window.location.lasthash.push(window.location.hash);
+		window.location.hash = hash;
 	}
 }
 /**
@@ -92,7 +161,7 @@ class MainPage extends React.Component {
 class PageHeader extends React.Component {
 	/**
 	 * @constructor
-	 * @param props ReactJS props.
+	 * @param props {Object} ReactJS props.
 	 */
 	constructor(props) {
 		super(props);
@@ -118,10 +187,10 @@ class PageHeader extends React.Component {
 	/**
 	 * Gets the module's title.
 	 *
-	 * @returns {string} Module title.
+	 * @returns {String} Module title.
 	 */
 	getAppModuleTitle() {
 		return this.props.title;
 	}
 }
-ReactDOM.render(<MainPage />, $('#reactRoot')[0]);
+ReactDOM.render(<MainPage />, $('#react-root')[0]);
