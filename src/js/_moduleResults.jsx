@@ -18,11 +18,25 @@ class ModuleResults extends React.Component {
 		let settings = props.settings;
 		let results = settings.data.models.slice();
 		//TODO finish off filtering models...
-		for(let i = 0; i < results.length; i++) {
+		main: for(let i = 0; i < results.length; i++) {
 			let result = results[i];
 			if(settings.category === "body_type" && settings.value !== result.body_type) {
 				results.splice(i, 1);
 				i--;
+				continue;
+			}
+			for(let j = 0; j < settings.filters.length; j++) {
+				let filter = settings.filters[j];
+				switch(filter.filter) {
+					case "doors":
+						let value = filter.value.charAt(0);
+						if(Number(result.doors) < Number(value)) {
+							results.splice(i, 1);
+							i--;
+							continue main;
+						}
+						break;
+				}
 			}
 		}
 		results.sort(this.sortRelevancy);

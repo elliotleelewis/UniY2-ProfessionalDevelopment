@@ -33,13 +33,7 @@ class ModuleOptions extends React.Component {
 							}
 						},
 						{
-							type: "insurance",
-							settings: {
-								defaultValue: "Medium"
-							}
-						},
-						{
-							type: "annual_tax",
+							type: "running_costs",
 							settings: {
 								defaultValue: "Medium"
 							}
@@ -129,13 +123,7 @@ class ModuleOptions extends React.Component {
 							}
 						},
 						{
-							type: "insurance",
-							settings: {
-								defaultValue: "Low"
-							}
-						},
-						{
-							type: "annual_tax",
+							type: "running_costs",
 							settings: {
 								defaultValue: "Low"
 							}
@@ -177,13 +165,7 @@ class ModuleOptions extends React.Component {
 							}
 						},
 						{
-							type: "insurance",
-							settings: {
-								defaultValue: "Low"
-							}
-						},
-						{
-							type: "annual_tax",
+							type: "running_costs",
 							settings: {
 								defaultValue: "Low"
 							}
@@ -214,13 +196,7 @@ class ModuleOptions extends React.Component {
 							}
 						},
 						{
-							type: "insurance",
-							settings: {
-								defaultValue: "Low"
-							}
-						},
-						{
-							type: "annual_tax",
+							type: "running_costs",
 							settings: {
 								defaultValue: "Low"
 							}
@@ -268,13 +244,7 @@ class ModuleOptions extends React.Component {
 							}
 						},
 						{
-							type: "insurance",
-							settings: {
-								defaultValue: "Low"
-							}
-						},
-						{
-							type: "annual_tax",
+							type: "running_costs",
 							settings: {
 								defaultValue: "Low"
 							}
@@ -310,13 +280,7 @@ class ModuleOptions extends React.Component {
 							}
 						},
 						{
-							type: "insurance",
-							settings: {
-								defaultValue: "Low"
-							}
-						},
-						{
-							type: "annual_tax",
+							type: "running_costs",
 							settings: {
 								defaultValue: "Low"
 							}
