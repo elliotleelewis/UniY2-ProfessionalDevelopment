@@ -365,6 +365,259 @@ class ModuleOptions extends React.Component {
 		else if(this.getSettings().category == "lifestyle") {
 			switch(this.getSettings().value) {
 				//need to filter the lifestyles in similar format as above
+				case "first-car":
+					filters=[
+						{
+							type: "price",
+							settings: {
+								min: 0,
+								max: 30000,
+								defaultValue: [1000, 30000]
+							}
+						},
+						{
+							type: "fuel_consumption",
+							settings: {
+								
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "running_cost",
+							settings: {
+								
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "transmission",
+							settings: {
+								defaultValue: "Automatic"
+							}
+						
+					
+						}
+					];
+				break;
+				
+				case "city-car":
+					filters=[
+						{
+							type: "price",
+							settings: {
+								min: 0,
+								max: 90000,
+								defaultValue: [1000, 30000]
+							}
+						},
+						{
+							type: "fuel_consumption",
+							settings: {
+								
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "running_cost",
+							settings: {
+								
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "transmission",
+							settings: {
+								defaultValue: "Automatic"
+							}
+							
+							
+						}
+					];
+					break;
+				case "family-car":
+					filters=[
+						{
+							type: "price",
+							settings: {
+								min: 0,
+								max: 30000,
+								defaultValue: [1000, 30000]
+							}
+						},
+						{
+							type: "fuel_consumption",
+							settings: {
+								
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "seats",
+							settings: {
+								
+								defaultValue: "5+"
+							}
+						},
+						{
+							type: "boot_size",
+							settings: {
+								
+								defaultValue: "Medium"
+							}
+						},
+						{
+							type: "transmission",
+							settings: {
+								defaultValue: "Automatic"
+							}
+							
+							
+						}
+					];
+					break;
+				case "towing":
+					filters=[
+						{
+							type: "price",
+							settings: {
+								min: 0,
+								max: 30000,
+								defaultValue: [1000, 30000]
+							}
+						},
+						{
+							type: "fuel_consumption",
+							settings: {
+								
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "boot_size",
+							settings: {
+								
+								defaultValue: "Medium"
+							}
+						},
+						{
+							type: "running_cost",
+							settings: {
+								
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "transmission",
+							settings: {
+								defaultValue: "Automatic"
+							}
+							
+							
+						}
+					];
+					break;
+				case "long-distance":
+					filters=[
+						{
+							type: "price",
+							settings: {
+								min: 0,
+								max: 30000,
+								defaultValue: [1000, 30000]
+							}
+						},
+						{
+							type: "seats",
+							settings: {
+								
+								defaultValue: "5+"
+							}
+						},
+						{
+							type: "fuel_consumption",
+							settings: {
+								
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "boot_size",
+							settings: {
+								
+								defaultValue: "Medium"
+							}
+						},
+						{
+							type: "transmission",
+							settings: {
+								defaultValue: "Automatic"
+							}
+							
+							
+						}
+					];
+					break;
+				case "performance":
+					filters=[
+						{
+							type: "price",
+							settings: {
+								min: 0,
+								max: 30000,
+								defaultValue: [1000, 30000]
+							}
+						},
+						{
+							type: "running_cost",
+							settings: {
+								
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "transmission",
+							settings: {
+								defaultValue: "Automatic"
+							}
+							
+							
+						}
+					];
+					break;
+				case "off-road":
+					filters=[
+						{
+							type: "price",
+							settings: {
+								min: 0,
+								max: 30000,
+								defaultValue: [1000, 30000]
+							}
+						},
+						{
+							type: "boot_size",
+							settings: {
+								
+								defaultValue: "Medium"
+							}
+						},
+						{
+							type: "running_cost",
+							settings: {
+								
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "transmission",
+							settings: {
+								defaultValue: "Automatic"
+							}
+							
+							
+						}
+					];
+					break;
 			}
 		}
 		let values = [];
