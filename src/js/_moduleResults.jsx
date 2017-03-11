@@ -1,6 +1,8 @@
 'use strict';
+// Imports
 const bootstrap = require('bootstrap'),
 	React = require('react');
+// React Components
 /**
  * The final page of the web app. Where final car results are shown.
  */
@@ -107,7 +109,11 @@ class ModuleResults extends React.Component {
 	 */
 	goBack() {
 		let settings = this.props.settings;
-		this.props.mainPage.showOptions(settings.category, settings.value);
+		let params = {
+			category: settings.category,
+			value: settings.value
+		}
+		this.props.mainPage.updatePage(this.props.mainPage.getAppModules().options.hash, params);
 	}
 	
 	/**

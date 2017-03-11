@@ -1,6 +1,8 @@
 'use strict';
+// Imports
 const React = require('react'),
 	Hammer = require('react-hammerjs');
+// React Components
 /**
  * First page of the web app. Contains the body types slider and the presets
  * slider.
@@ -80,11 +82,15 @@ class ModuleType extends React.Component {
 	}
 	
 	/**
-	 * Calls the {@link MainPage#showOptions} method and passes it the focused
-	 * body type.
+	 * Calls the {@link MainPage#updatePage} method and passes it the options
+	 * hash and the params needed.
 	 */
 	showOptions() {
-		this.props.mainPage.showOptions("body_type", this.getSelectedType());
+		let params = {
+			category: "body_type",
+			value: this.getSelectedType()
+		};
+		this.props.mainPage.updatePage(this.props.mainPage.getAppModules().options.hash, params);
 	}
 	
 	/**
@@ -374,11 +380,17 @@ class Presets extends React.Component {
 	 * @returns {XML[]} Array of JSX elements.
 	 */
 	getPresets() {
-		let mainPage = this.props.mainPage;
+		let presets = this;
+		let mainPage = presets.props.mainPage;
+		let hash = mainPage.getAppModules().options.hash;
 		return this.state.presets.map(function(item, i) {
 			let shortName = item.toLowerCase().replace(" ", "-");
+			let params = {
+				category: "lifestyle",
+				value: shortName
+			};
 			return (
-				<button key={i} className="preset" onClick={mainPage.showOptions.bind(mainPage, "lifestyle", shortName)}>
+				<button key={i} className="preset" onClick={mainPage.updatePage.bind(mainPage, hash, params)}>
 					<div className="preset-icon">
 						<svg>
 							<title>{item}</title>

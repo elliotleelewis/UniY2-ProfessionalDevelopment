@@ -9,7 +9,7 @@ if (!fs.existsSync(dir)){
 }
 gulp.task('js', function() {
 	return browserify('src/js/index.jsx')
-		.transform("babelify")
+		.transform("babelify", {presets: ['es2017', 'react']})
 		.bundle()
 		.pipe(fs.createWriteStream(dir + '/index.js'));
 });
