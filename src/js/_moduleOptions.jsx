@@ -1,6 +1,8 @@
 'use strict';
+// Imports
 const React = require('react'),
 	ReactSlider = require('react-slider');
+// React Components
 /**
  * The second page of the web app. Where secondary configuration takes place
  * before results are shown.
@@ -562,7 +564,10 @@ class ModuleOptions extends React.Component {
 	 */
 	goBack() {
 		let settings = this.getSettings();
-		this.props.mainPage.showType((settings.category === "body_type") ? settings.value : undefined);
+		let params = {
+			bodyType: (settings.category === "body_type") ? settings.value : undefined
+		};
+		this.props.mainPage.updatePage(this.props.mainPage.getAppModules().type.hash, params);
 	}
 	
 	/**
@@ -578,7 +583,12 @@ class ModuleOptions extends React.Component {
 			}
 		}
 		let settings = this.getSettings();
-		this.props.mainPage.showResults(settings.category, settings.value, filters);
+		let params = {
+			category: settings.category,
+			value: settings.value,
+			filters: filters
+		};
+		this.props.mainPage.updatePage(this.props.mainPage.getAppModules().results.hash, params);
 	}
 	
 	/**
