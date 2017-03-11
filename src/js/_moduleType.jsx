@@ -329,9 +329,8 @@ class Presets extends React.Component {
 	 */
 	constructor(props) {
 		super(props);
-		let defaultHidden = ($(window).height() < 600);
 		this.state = {
-			hidden: defaultHidden,
+			hidden: $(window).height() < 600,
 			presets: [
 				"First Car",
 				"City Car",
@@ -380,9 +379,7 @@ class Presets extends React.Component {
 	 * @returns {XML[]} Array of JSX elements.
 	 */
 	getPresets() {
-		let presets = this;
-		let mainPage = presets.props.mainPage;
-		let hash = mainPage.getAppModules().options.hash;
+		let mainPage = this.props.mainPage;
 		return this.state.presets.map(function(item, i) {
 			let shortName = item.toLowerCase().replace(" ", "-");
 			let params = {
@@ -390,7 +387,7 @@ class Presets extends React.Component {
 				value: shortName
 			};
 			return (
-				<button key={i} className="preset" onClick={mainPage.updatePage.bind(mainPage, hash, params)}>
+				<button key={i} className="preset" onClick={mainPage.updatePage.bind(mainPage, mainPage.getAppModules().options.hash, params)}>
 					<div className="preset-icon">
 						<svg>
 							<title>{item}</title>
