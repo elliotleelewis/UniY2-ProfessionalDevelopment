@@ -323,8 +323,9 @@ class Presets extends React.Component {
 	 */
 	constructor(props) {
 		super(props);
+		let defaultHidden = ($(window).height() < 600);
 		this.state = {
-			hidden: false,
+			hidden: defaultHidden,
 			presets: [
 				"First Car",
 				"City Car",
