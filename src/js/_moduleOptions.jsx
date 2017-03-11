@@ -35,7 +35,6 @@ class ModuleOptions extends React.Component {
 						{
 							type: "running_costs",
 							settings: {
-								
 								defaultValue: "Low"
 							}
 						},
@@ -126,7 +125,6 @@ class ModuleOptions extends React.Component {
 						{
 							type: "running_costs",
 							settings: {
-								
 								defaultValue: "Low"
 							}
 						},
@@ -169,7 +167,6 @@ class ModuleOptions extends React.Component {
 						{
 							type: "running_costs",
 							settings: {
-								
 								defaultValue: "Low"
 							}
 						},
@@ -201,7 +198,6 @@ class ModuleOptions extends React.Component {
 						{
 							type: "running_costs",
 							settings: {
-								
 								defaultValue: "Low"
 							}
 						},
@@ -250,7 +246,6 @@ class ModuleOptions extends React.Component {
 						{
 							type: "running_costs",
 							settings: {
-								
 								defaultValue: "Low"
 							}
 						},
@@ -287,7 +282,6 @@ class ModuleOptions extends React.Component {
 						{
 							type: "running_costs",
 							settings: {
-								
 								defaultValue: "Low"
 							}
 						},
@@ -305,7 +299,7 @@ class ModuleOptions extends React.Component {
 			switch(this.getSettings().value) {
 				//need to filter the lifestyles in similar format as above
 				case "first-car":
-					filters=[
+					filters = [
 						{
 							type: "price",
 							settings: {
@@ -317,14 +311,12 @@ class ModuleOptions extends React.Component {
 						{
 							type: "fuel_consumption",
 							settings: {
-								
 								defaultValue: "Low"
 							}
 						},
 						{
 							type: "running_costs",
 							settings: {
-								
 								defaultValue: "Low"
 							}
 						},
@@ -333,14 +325,11 @@ class ModuleOptions extends React.Component {
 							settings: {
 								defaultValue: "Automatic"
 							}
-						
-					
 						}
 					];
-				break;
-				
+					break;
 				case "city-car":
-					filters=[
+					filters = [
 						{
 							type: "price",
 							settings: {
@@ -352,14 +341,12 @@ class ModuleOptions extends React.Component {
 						{
 							type: "fuel_consumption",
 							settings: {
-								
 								defaultValue: "Low"
 							}
 						},
 						{
 							type: "running_costs",
 							settings: {
-								
 								defaultValue: "Low"
 							}
 						},
@@ -368,13 +355,11 @@ class ModuleOptions extends React.Component {
 							settings: {
 								defaultValue: "Automatic"
 							}
-							
-							
 						}
 					];
 					break;
 				case "family-car":
-					filters=[
+					filters = [
 						{
 							type: "price",
 							settings: {
@@ -386,21 +371,18 @@ class ModuleOptions extends React.Component {
 						{
 							type: "fuel_consumption",
 							settings: {
-								
 								defaultValue: "Low"
 							}
 						},
 						{
 							type: "seats",
 							settings: {
-								
 								defaultValue: "5+"
 							}
 						},
 						{
 							type: "boot_size",
 							settings: {
-								
 								defaultValue: "Medium"
 							}
 						},
@@ -409,13 +391,11 @@ class ModuleOptions extends React.Component {
 							settings: {
 								defaultValue: "Automatic"
 							}
-							
-							
 						}
 					];
 					break;
 				case "towing":
-					filters=[
+					filters = [
 						{
 							type: "price",
 							settings: {
@@ -427,21 +407,18 @@ class ModuleOptions extends React.Component {
 						{
 							type: "fuel_consumption",
 							settings: {
-								
 								defaultValue: "Low"
 							}
 						},
 						{
 							type: "boot_size",
 							settings: {
-								
 								defaultValue: "Medium"
 							}
 						},
 						{
 							type: "running_costs",
 							settings: {
-								
 								defaultValue: "Low"
 							}
 						},
@@ -450,13 +427,11 @@ class ModuleOptions extends React.Component {
 							settings: {
 								defaultValue: "Automatic"
 							}
-							
-							
 						}
 					];
 					break;
 				case "long-distance":
-					filters=[
+					filters = [
 						{
 							type: "price",
 							settings: {
@@ -468,21 +443,18 @@ class ModuleOptions extends React.Component {
 						{
 							type: "seats",
 							settings: {
-								
 								defaultValue: "5+"
 							}
 						},
 						{
 							type: "fuel_consumption",
 							settings: {
-								
 								defaultValue: "Low"
 							}
 						},
 						{
 							type: "boot_size",
 							settings: {
-								
 								defaultValue: "Medium"
 							}
 						},
@@ -491,13 +463,11 @@ class ModuleOptions extends React.Component {
 							settings: {
 								defaultValue: "Automatic"
 							}
-							
-							
 						}
 					];
 					break;
 				case "performance":
-					filters=[
+					filters = [
 						{
 							type: "price",
 							settings: {
@@ -509,7 +479,6 @@ class ModuleOptions extends React.Component {
 						{
 							type: "running_costs",
 							settings: {
-								
 								defaultValue: "Low"
 							}
 						},
@@ -518,13 +487,11 @@ class ModuleOptions extends React.Component {
 							settings: {
 								defaultValue: "Automatic"
 							}
-							
-							
 						}
 					];
 					break;
 				case "off-road":
-					filters=[
+					filters = [
 						{
 							type: "price",
 							settings: {
@@ -536,14 +503,12 @@ class ModuleOptions extends React.Component {
 						{
 							type: "boot_size",
 							settings: {
-								
 								defaultValue: "Medium"
 							}
 						},
 						{
 							type: "running_costs",
 							settings: {
-								
 								defaultValue: "Low"
 							}
 						},
@@ -552,8 +517,6 @@ class ModuleOptions extends React.Component {
 							settings: {
 								defaultValue: "Automatic"
 							}
-							
-							
 						}
 					];
 					break;
