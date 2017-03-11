@@ -112,7 +112,7 @@ class ModuleResults extends React.Component {
 		let params = {
 			category: settings.category,
 			value: settings.value
-		}
+		};
 		this.props.mainPage.updatePage(this.props.mainPage.getAppModules().options.hash, params);
 	}
 	
@@ -215,7 +215,7 @@ class ModuleResults extends React.Component {
 					<div key={this.getResults().length} className="col-12 selected-result" data-arrow-offset={this.getSelectedIndex() - i}>
 						<div className="col-12 selected-result-indicator">
 							<div className="col-4 triangle-container">
-								<div className="triangle"></div>
+								<div className="triangle"/>
 							</div>
 						</div>
 						<div className="col-12 selected-result-info">

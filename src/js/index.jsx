@@ -136,8 +136,10 @@ class MainPage extends React.Component {
 	 */
 	getData() {
 		let temp = this.props.data;
-		for(let i = 0; i < temp.models.length; i++) {
-			temp.models[i].make = temp.makes[temp.models[i].make];
+		if(typeof temp.models[0].make !== "object") {
+			for(let i = 0; i < temp.models.length; i++) {
+				temp.models[i].make = temp.makes[temp.models[i].make];
+			}
 		}
 		return temp;
 	}
