@@ -1,6 +1,6 @@
 'use strict';
-const React = require('react');
-const Hammer = require('react-hammerjs');
+const React = require('react'),
+	Hammer = require('react-hammerjs');
 /**
  * First page of the web app. Contains the body types slider and the presets
  * slider.
@@ -56,10 +56,10 @@ class ModuleType extends React.Component {
 	 * @param event {Object} Swipe event.
 	 */
 	handleSwipe(event) {
-		if(event.direction == 2) {
+		if(event.direction === 2) {
 			this.selectNextType();
 		}
-		else if(event.direction == 4) {
+		else if(event.direction === 4) {
 			this.selectPreviousType();
 		}
 	}
@@ -190,6 +190,13 @@ class ModuleType extends React.Component {
 		return this.props.settings;
 	}
 }
+ModuleType.propTypes = {
+	mainPage: React.PropTypes.object.isRequired,
+	settings: React.PropTypes.shape({
+		types: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
+		selectedTypeIndex: React.PropTypes.number.isRequired
+	}).isRequired
+};
 /**
  * Individual body type option for type slider.
  */
@@ -295,9 +302,14 @@ class TypeOption extends React.Component {
 	 * @returns {Number} Tab index.
 	 */
 	getTabIndex() {
-		return (Math.abs(this.props.relativeSelectedIndex) == 1) ? 0 : -1;
+		return (Math.abs(this.props.relativeSelectedIndex) === 1) ? 0 : -1;
 	}
 }
+TypeOption.propTypes = {
+	type: React.PropTypes.string.isRequired,
+	relativeSelectedIndex: React.PropTypes.number.isRequired,
+	module: React.PropTypes.instanceOf(ModuleType).isRequired
+};
 /**
  * Presets slider for bottom of {@link ModuleType}.
  */
@@ -311,8 +323,9 @@ class Presets extends React.Component {
 	 */
 	constructor(props) {
 		super(props);
+		let defaultHidden = ($(window).height() < 600);
 		this.state = {
-			hidden: false,
+			hidden: defaultHidden,
 			presets: [
 				"First Car",
 				"City Car",
@@ -333,10 +346,10 @@ class Presets extends React.Component {
 	render() {
 		return (
 			<footer>
-				<button id="toggle-presets-button" title={this.state.hidden == false ? "Hide" : "Show"} onClick={this.toggleHidden.bind(this)}>
-					<i className="material-icons">{"arrow_drop_" + (this.state.hidden == false ? "down" : "up")}</i>
+				<button id="toggle-presets-button" title={this.state.hidden === false ? "Hide" : "Show"} onClick={this.toggleHidden.bind(this)}>
+					<i className="material-icons">{"arrow_drop_" + (this.state.hidden === false ? "down" : "up")}</i>
 				</button>
-				<div className={"presets-container" + (this.state.hidden == false ? "" : " hidden")}>
+				<div className={"presets-container" + (this.state.hidden === false ? "" : " hidden")}>
 					<h3>Lifestyle</h3>
 					<div className="presets">
 						{this.getPresets()}
@@ -378,4 +391,7 @@ class Presets extends React.Component {
 		});
 	}
 }
+Presets.propTypes = {
+	mainPage: React.PropTypes.object.isRequired
+};
 module.exports = ModuleType;

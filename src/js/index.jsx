@@ -1,15 +1,14 @@
 'use strict';
 // Imports
-const $ = require('jquery');
+global.$ = require('jquery');
 global.jQuery = $;
 global.Tether = require('tether');
-const bootstrap = require('bootstrap');
-const React = require('react');
-const ReactDOM = require('react-dom');
-// Global Vars
-const ModuleType = require('./_moduleType.jsx');
-const ModuleOptions = require('./_moduleOptions.jsx');
-const ModuleResults = require('./_moduleResults.jsx');
+const bootstrap = require('bootstrap'),
+	React = require('react'),
+	ReactDOM = require('react-dom'),
+	ModuleType = require('./_moduleType.jsx'),
+	ModuleOptions = require('./_moduleOptions.jsx'),
+	ModuleResults = require('./_moduleResults.jsx');
 // Data
 const data = require('../data/cars.json');
 for(let i = 0; i < data.models.length; i++) {
@@ -30,7 +29,7 @@ const appModules = {
 				'Convertible',
 				'Coupe'
 			],
-			defaultTypeIndex: 1
+			selectedTypeIndex: 1
 		}
 	},
 	options: {
@@ -62,27 +61,31 @@ class MainPage extends React.Component {
 		window.location.lasthash = [];
 		window.onhashchange = function() {
 			//TODO add hash navigation...
-		}
+		};
 		this.state = {
 			title: appModules.type.title,
 			module: appModules.type.module,
 			settings: {
-				selectedTypeIndex: appModules.type.settings.defaultTypeIndex,
+				selectedTypeIndex: appModules.type.settings.selectedTypeIndex,
 				types: appModules.type.settings.types
 			}
 		};
 	}
 	
 	/**
-	 * Renders the {@link PageHeader} element as well as the applications
-	 * current module.
+	 * Renders the header as well as the applications current module.
 	 *
 	 * @returns {XML} JSX content.
 	 */
 	render() {
 		return (
 			<div id="main-page">
-				<PageHeader title={this.state.title} />
+				<header>
+					<img src="media/images/brand/logo.png" alt="AutoTrader Logo" className="logo" />
+					<div className="titleContainer">
+						<h2>{this.state.title}</h2>
+					</div>
+				</header>
 				<this.state.module mainPage={this} settings={this.state.settings} />
 			</div>
 		);
@@ -98,7 +101,7 @@ class MainPage extends React.Component {
 			title: appModules.type.title,
 			module: appModules.type.module,
 			settings: {
-				selectedTypeIndex: (bodyType) ? appModules.type.settings.types.indexOf(bodyType) : appModules.type.settings.defaultTypeIndex,
+				selectedTypeIndex: (bodyType) ? appModules.type.settings.types.indexOf(bodyType) : appModules.type.settings.selectedTypeIndex,
 				types: appModules.type.settings.types
 			}
 		});
@@ -153,44 +156,6 @@ class MainPage extends React.Component {
 	updateHistory(hash) {
 		window.location.lasthash.push(window.location.hash);
 		window.location.hash = hash;
-	}
-}
-/**
- * The header component used for each page of the web app.
- */
-class PageHeader extends React.Component {
-	/**
-	 * @constructor
-	 * @param props {Object} ReactJS props.
-	 */
-	constructor(props) {
-		super(props);
-	}
-	
-	/**
-	 * Renders the header of the application with the title returned by the
-	 * {@link PageHeader#getAppModuleTitle} method.
-	 *
-	 * @returns {XML} JSX content.
-	 */
-	render() {
-		return (
-			<header>
-				<img src="media/images/brand/logo.png" alt="AutoTrader Logo" className="logo" />
-				<div className="titleContainer">
-					<h2>{this.getAppModuleTitle()}</h2>
-				</div>
-			</header>
-		);
-	}
-	
-	/**
-	 * Gets the module's title.
-	 *
-	 * @returns {String} Module title.
-	 */
-	getAppModuleTitle() {
-		return this.props.title;
 	}
 }
 ReactDOM.render(<MainPage />, $('#react-root')[0]);
