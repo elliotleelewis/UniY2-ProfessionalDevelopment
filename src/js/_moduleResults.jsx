@@ -57,9 +57,9 @@ class ModuleResults extends React.Component {
 		let temp = this.getResults().slice();
 		temp.sort(this.sortRelevancy);
 		let bestResult = temp[0];
-		let bestResultMake = "media/images/makes/" + bestResult.make.name + ".png";
+		let bestResultMake = "media/makes/" + bestResult.make.name + ".png";
 		bestResultMake = bestResultMake.replace(/\s+/g, '_').toLowerCase();
-		let bestResultModel = "media/images/models/" + bestResult.make.name + "/" + bestResult.model + ".jpg";
+		let bestResultModel = "media/models/" + bestResult.make.name + "/" + bestResult.model + ".jpg";
 		bestResultModel = bestResultModel.replace(/\s+/g, '_').toLowerCase();
 		return (
 			<div className="module" id="results">
@@ -301,7 +301,7 @@ class Result extends React.Component {
 	 * @returns {String} Image URL.
 	 */
 	getModelImage() {
-		let url = "media/images/models/" + this.getModel().make.name + "/" + this.getModel().model + ".jpg";
+		let url = "media/models/" + this.getModel().make.name + "/" + this.getModel().model + ".jpg";
 		return url.replace(/\s+/g, '_').toLowerCase();
 	}
 	
@@ -311,7 +311,7 @@ class Result extends React.Component {
 	 * @returns {String} Image URL.
 	 */
 	getMakeImage() {
-		let url = "media/images/makes/" + this.getModel().make.name + ".png";
+		let url = "media/makes/" + this.getModel().make.name + ".png";
 		return url.replace(/\s+/g, '_').toLowerCase();
 	}
 	

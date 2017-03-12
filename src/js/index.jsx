@@ -40,7 +40,7 @@ class MainPage extends React.Component {
 		return (
 			<div id="main-page">
 				<header>
-					<img src="media/images/brand/logo.png" alt="AutoTrader Logo" className="logo" />
+					<img src="media/brand/logo.png" alt="AutoTrader Logo" className="logo" />
 					<div className="titleContainer">
 						<h2>{this.state.title}</h2>
 					</div>
