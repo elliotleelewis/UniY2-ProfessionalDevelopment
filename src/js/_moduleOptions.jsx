@@ -1,6 +1,8 @@
 'use strict';
-const React = require('react');
-const ReactSlider = require('react-slider');
+// Imports
+const React = require('react'),
+	ReactSlider = require('react-slider');
+// React Components
 /**
  * The second page of the web app. Where secondary configuration takes place
  * before results are shown.
@@ -14,7 +16,7 @@ class ModuleOptions extends React.Component {
 		super(props);
 		console.log("Options Settings: ", props.settings);
 		let filters = [];
-		if(this.getSettings().category == "body_type") {
+		if(this.getSettings().category === "body_type") {
 			switch(this.getSettings().value) {
 				case "Hatchback":
 					filters = [
@@ -33,17 +35,9 @@ class ModuleOptions extends React.Component {
 							}
 						},
 						{
-							type: "insurance",
+							type: "running_costs",
 							settings: {
-								
-								defaultValue: "Medium"
-							}
-						},
-						{
-							type: "annual_tax",
-							settings: {
-								
-								defaultValue: "Medium"
+								defaultValue: "Low"
 							}
 						},
 						{
@@ -54,9 +48,8 @@ class ModuleOptions extends React.Component {
 						}
 					];
 					break;
-					
 				case "SUV":
-					filters=[
+					filters = [
 						{
 							type: "doors",
 							settings: {
@@ -66,7 +59,6 @@ class ModuleOptions extends React.Component {
 						{
 							type: "seats",
 							settings: {
-								
 								defaultValue: "5+"
 							}
 						},
@@ -81,14 +73,12 @@ class ModuleOptions extends React.Component {
 						{
 							type: "boot_size",
 							settings: {
-								
 								defaultValue: "Large"
 							}
 						},
 						{
-							type: "fuel_consumption",
+							type: "running_costs",
 							settings: {
-								
 								defaultValue: "Low"
 							}
 						},
@@ -100,9 +90,8 @@ class ModuleOptions extends React.Component {
 						}
 					];
 					break;
-					
 				case "MPV":
-					filters=[
+					filters = [
 						{
 							type: "doors",
 							settings: {
@@ -112,7 +101,6 @@ class ModuleOptions extends React.Component {
 						{
 							type: "seats",
 							settings: {
-								
 								defaultValue: "5+"
 							}
 						},
@@ -127,28 +115,18 @@ class ModuleOptions extends React.Component {
 						{
 							type: "boot_size",
 							settings: {
-								
 								defaultValue: "Medium"
 							}
 						},
 						{
 							type: "fuel_consumption",
 							settings: {
-								
 								defaultValue: "Low"
 							}
 						},
 						{
-							type: "insurance",
+							type: "running_costs",
 							settings: {
-								
-								defaultValue: "Low"
-							}
-						},
-						{
-							type: "annual_tax",
-							settings: {
-								
 								defaultValue: "Low"
 							}
 						},
@@ -160,9 +138,8 @@ class ModuleOptions extends React.Component {
 						}
 					];
 					break;
-					
 				case "Estate":
-					filters=[
+					filters = [
 						{
 							type: "doors",
 							settings: {
@@ -172,7 +149,6 @@ class ModuleOptions extends React.Component {
 						{
 							type: "seats",
 							settings: {
-								
 								defaultValue: "5+"
 							}
 						},
@@ -187,21 +163,12 @@ class ModuleOptions extends React.Component {
 						{
 							type: "boot_size",
 							settings: {
-								
 								defaultValue: "Medium"
 							}
 						},
 						{
-							type: "insurance",
+							type: "running_costs",
 							settings: {
-								
-								defaultValue: "Low"
-							}
-						},
-						{
-							type: "annual_tax",
-							settings: {
-								
 								defaultValue: "Low"
 							}
 						},
@@ -213,9 +180,8 @@ class ModuleOptions extends React.Component {
 						}
 					];
 					break;
-				
 				case "Convertible":
-					filters=[
+					filters = [
 						{
 							type: "seats",
 							settings: {
@@ -232,16 +198,8 @@ class ModuleOptions extends React.Component {
 							}
 						},
 						{
-							type: "insurance",
+							type: "running_costs",
 							settings: {
-								
-								defaultValue: "Low"
-							}
-						},
-						{
-							type: "annual_tax",
-							settings: {
-								
 								defaultValue: "Low"
 							}
 						},
@@ -253,10 +211,8 @@ class ModuleOptions extends React.Component {
 						}
 					];
 					break;
-				
-				
 				case "Coupe":
-					filters=[
+					filters = [
 						{
 							type: "doors",
 							settings: {
@@ -266,7 +222,6 @@ class ModuleOptions extends React.Component {
 						{
 							type: "seats",
 							settings: {
-								
 								defaultValue: "5+"
 							}
 						},
@@ -281,28 +236,18 @@ class ModuleOptions extends React.Component {
 						{
 							type: "boot_size",
 							settings: {
-								
 								defaultValue: "Medium"
 							}
 						},
 						{
 							type: "fuel_consumption",
 							settings: {
-								
 								defaultValue: "Low"
 							}
 						},
 						{
-							type: "insurance",
+							type: "running_costs",
 							settings: {
-								
-								defaultValue: "Low"
-							}
-						},
-						{
-							type: "annual_tax",
-							settings: {
-								
 								defaultValue: "Low"
 							}
 						},
@@ -315,7 +260,7 @@ class ModuleOptions extends React.Component {
 					];
 					break;
 				case "Saloon":
-					filters=[
+					filters = [
 						{
 							type: "price",
 							settings: {
@@ -327,28 +272,18 @@ class ModuleOptions extends React.Component {
 						{
 							type: "boot_size",
 							settings: {
-								
 								defaultValue: "Medium"
 							}
 						},
 						{
 							type: "fuel_consumption",
 							settings: {
-								
 								defaultValue: "Low"
 							}
 						},
 						{
-							type: "insurance",
+							type: "running_costs",
 							settings: {
-								
-								defaultValue: "Low"
-							}
-						},
-						{
-							type: "annual_tax",
-							settings: {
-								
 								defaultValue: "Low"
 							}
 						},
@@ -362,9 +297,231 @@ class ModuleOptions extends React.Component {
 					break;
 			}
 		}
-		else if(this.getSettings().category == "lifestyle") {
+		else if(this.getSettings().category === "lifestyle") {
 			switch(this.getSettings().value) {
 				//need to filter the lifestyles in similar format as above
+				case "first-car":
+					filters = [
+						{
+							type: "price",
+							settings: {
+								min: 0,
+								max: 30000,
+								defaultValue: [1000, 30000]
+							}
+						},
+						{
+							type: "fuel_consumption",
+							settings: {
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "running_costs",
+							settings: {
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "transmission",
+							settings: {
+								defaultValue: "Automatic"
+							}
+						}
+					];
+					break;
+				case "city-car":
+					filters = [
+						{
+							type: "price",
+							settings: {
+								min: 0,
+								max: 90000,
+								defaultValue: [1000, 30000]
+							}
+						},
+						{
+							type: "fuel_consumption",
+							settings: {
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "running_costs",
+							settings: {
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "transmission",
+							settings: {
+								defaultValue: "Automatic"
+							}
+						}
+					];
+					break;
+				case "family-car":
+					filters = [
+						{
+							type: "price",
+							settings: {
+								min: 0,
+								max: 30000,
+								defaultValue: [1000, 30000]
+							}
+						},
+						{
+							type: "fuel_consumption",
+							settings: {
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "seats",
+							settings: {
+								defaultValue: "5+"
+							}
+						},
+						{
+							type: "boot_size",
+							settings: {
+								defaultValue: "Medium"
+							}
+						},
+						{
+							type: "transmission",
+							settings: {
+								defaultValue: "Automatic"
+							}
+						}
+					];
+					break;
+				case "towing":
+					filters = [
+						{
+							type: "price",
+							settings: {
+								min: 0,
+								max: 30000,
+								defaultValue: [1000, 30000]
+							}
+						},
+						{
+							type: "fuel_consumption",
+							settings: {
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "boot_size",
+							settings: {
+								defaultValue: "Medium"
+							}
+						},
+						{
+							type: "running_costs",
+							settings: {
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "transmission",
+							settings: {
+								defaultValue: "Automatic"
+							}
+						}
+					];
+					break;
+				case "long-distance":
+					filters = [
+						{
+							type: "price",
+							settings: {
+								min: 0,
+								max: 30000,
+								defaultValue: [1000, 30000]
+							}
+						},
+						{
+							type: "seats",
+							settings: {
+								defaultValue: "5+"
+							}
+						},
+						{
+							type: "fuel_consumption",
+							settings: {
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "boot_size",
+							settings: {
+								defaultValue: "Medium"
+							}
+						},
+						{
+							type: "transmission",
+							settings: {
+								defaultValue: "Automatic"
+							}
+						}
+					];
+					break;
+				case "performance":
+					filters = [
+						{
+							type: "price",
+							settings: {
+								min: 0,
+								max: 30000,
+								defaultValue: [1000, 30000]
+							}
+						},
+						{
+							type: "running_costs",
+							settings: {
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "transmission",
+							settings: {
+								defaultValue: "Automatic"
+							}
+						}
+					];
+					break;
+				case "off-road":
+					filters = [
+						{
+							type: "price",
+							settings: {
+								min: 0,
+								max: 30000,
+								defaultValue: [1000, 30000]
+							}
+						},
+						{
+							type: "boot_size",
+							settings: {
+								defaultValue: "Medium"
+							}
+						},
+						{
+							type: "running_costs",
+							settings: {
+								defaultValue: "Low"
+							}
+						},
+						{
+							type: "transmission",
+							settings: {
+								defaultValue: "Automatic"
+							}
+						}
+					];
+					break;
 			}
 		}
 		let values = [];
@@ -407,7 +564,10 @@ class ModuleOptions extends React.Component {
 	 */
 	goBack() {
 		let settings = this.getSettings();
-		this.props.mainPage.showType((settings.category == "body_type") ? settings.value : undefined);
+		let params = {
+			bodyType: (settings.category === "body_type") ? settings.value : undefined
+		};
+		this.props.mainPage.updatePage(this.props.mainPage.getAppModules().type.hash, params);
 	}
 	
 	/**
@@ -423,7 +583,12 @@ class ModuleOptions extends React.Component {
 			}
 		}
 		let settings = this.getSettings();
-		this.props.mainPage.showResults(settings.category, settings.value, filters);
+		let params = {
+			category: settings.category,
+			value: settings.value,
+			filters: filters
+		};
+		this.props.mainPage.updatePage(this.props.mainPage.getAppModules().results.hash, params);
 	}
 	
 	/**
@@ -571,6 +736,13 @@ class ModuleOptions extends React.Component {
 		return this.props.settings;
 	}
 }
+ModuleOptions.propTypes = {
+	mainPage: React.PropTypes.object.isRequired,
+	settings: React.PropTypes.shape({
+		category: React.PropTypes.string.isRequired,
+		value: React.PropTypes.string.isRequired
+	}).isRequired
+};
 /**
  * A filter element that allows the user to select a numerical range of values.
  * For example, a price range.
@@ -631,6 +803,15 @@ class RangeSlider extends React.Component {
 		});
 	}
 }
+RangeSlider.propTypes = {
+	label: React.PropTypes.string.isRequired,
+	prefix: React.PropTypes.string,
+	affix: React.PropTypes.string,
+	min: React.PropTypes.number.isRequired,
+	max: React.PropTypes.number.isRequired,
+	value: React.PropTypes.arrayOf(React.PropTypes.number).isRequired,
+	onChange: React.PropTypes.func.isRequired
+};
 /**
  * A filter element that allows the user to select a value from an array of
  * strings. For example, an array containing the strings "low", "medium", and
@@ -676,6 +857,12 @@ class TextSlider extends React.Component {
 		this.props.onChange(this.props.items[index].toLowerCase());
 	}
 }
+TextSlider.propTypes = {
+	label: React.PropTypes.string.isRequired,
+	items: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
+	value: React.PropTypes.string.isRequired,
+	onChange: React.PropTypes.func.isRequired
+};
 /**
  * A filter element that allows the user to select a value from an array of
  * strings that don't have a numerical association or an order to them. For
@@ -732,9 +919,15 @@ class TextSelector extends React.Component {
 		let textSelector = this;
 		return this.props.items.map(function(item, i) {
 			return (
-				<button key={i} className={"btn btn-" + ((textSelector.state.value == i) ? "" : "outline-") + "secondary"} onClick={textSelector.onChange.bind(textSelector, i)}>{item}</button>
+				<button key={i} className={"btn btn-" + ((textSelector.state.value === i) ? "" : "outline-") + "secondary"} onClick={textSelector.onChange.bind(textSelector, i)}>{item}</button>
 			);
 		});
 	}
 }
+TextSelector.propTypes = {
+	label: React.PropTypes.string.isRequired,
+	items: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
+	value: React.PropTypes.string.isRequired,
+	onChange: React.PropTypes.func.isRequired
+};
 module.exports = ModuleOptions;

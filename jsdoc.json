@@ -6,8 +6,7 @@
 	},
 	"source": {
 		"include": [
-			"src/js",
-			"tests"
+			"src/js"
 		]
 	},
 	"templates": {
