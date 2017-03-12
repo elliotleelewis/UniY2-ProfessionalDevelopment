@@ -38,6 +38,16 @@ class ModuleResults extends React.Component {
 							continue main;
 						}
 						break;
+					case "price":
+						let min = filter.value[0];
+						let max = filter.value[1];
+						if(result.max_price < min || result.min_price > max) {
+							console.log(result.model);
+							results.splice(i, 1);
+							i--;
+							continue main;
+						}
+						break;
 				}
 			}
 		}
