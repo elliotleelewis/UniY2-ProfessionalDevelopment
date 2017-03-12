@@ -281,7 +281,7 @@ class TypeOption extends React.Component {
 	 * @returns {String} Icon filepath.
 	 */
 	getIconFilepath() {
-		return "media/images/icons.svg#icon-" + this.getType().toLowerCase();
+		return "media/icons.svg#icon-" + this.getType().toLowerCase();
 	}
 	
 	/**
@@ -391,7 +391,7 @@ class Presets extends React.Component {
 					<div className="preset-icon">
 						<svg>
 							<title>{item}</title>
-							<use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref={"media/images/icons.svg#icon-" + shortName} />
+							<use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref={"media/icons.svg#icon-" + shortName} />
 						</svg>
 					</div>
 					<p>{item}</p>

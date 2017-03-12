@@ -40,7 +40,7 @@ class MainPage extends React.Component {
 		return (
 			<div id="main-page">
 				<header>
-					<img src="media/images/brand/logo.png" alt="AutoTrader Logo" className="logo" />
+					<img src="media/brand/logo.png" alt="AutoTrader Logo" className="logo" />
 					<div className="titleContainer">
 						<h2>{this.state.title}</h2>
 					</div>
@@ -136,8 +136,10 @@ class MainPage extends React.Component {
 	 */
 	getData() {
 		let temp = this.props.data;
-		for(let i = 0; i < temp.models.length; i++) {
-			temp.models[i].make = temp.makes[temp.models[i].make];
+		if(typeof temp.models[0].make !== "object") {
+			for(let i = 0; i < temp.models.length; i++) {
+				temp.models[i].make = temp.makes[temp.models[i].make];
+			}
 		}
 		return temp;
 	}

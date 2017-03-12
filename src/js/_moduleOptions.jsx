@@ -426,7 +426,7 @@ class ModuleOptions extends React.Component {
 	}
 	
 	/**
-	 * Calls the {@link MainPage#showType} function. Switches the web app to
+	 * Calls the {@link MainPage#updatePage} function. Switches the web app to
 	 * the type module.
 	 */
 	goBack() {
