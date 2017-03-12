@@ -67,9 +67,9 @@ class ModuleResults extends React.Component {
 		let temp = this.getResults().slice();
 		temp.sort(this.sortRelevancy);
 		let bestResult = temp[0];
-		let bestResultMake = "media/images/makes/" + bestResult.make.name + ".png";
+		let bestResultMake = "media/makes/" + bestResult.make.name + ".png";
 		bestResultMake = bestResultMake.replace(/\s+/g, '_').toLowerCase();
-		let bestResultModel = "media/images/models/" + bestResult.make.name + "/" + bestResult.model + ".jpg";
+		let bestResultModel = "media/models/" + bestResult.make.name + "/" + bestResult.model + ".jpg";
 		bestResultModel = bestResultModel.replace(/\s+/g, '_').toLowerCase();
 		return (
 			<div className="module" id="results">
@@ -122,7 +122,7 @@ class ModuleResults extends React.Component {
 		let params = {
 			category: settings.category,
 			value: settings.value
-		}
+		};
 		this.props.mainPage.updatePage(this.props.mainPage.getAppModules().options.hash, params);
 	}
 	
@@ -225,7 +225,7 @@ class ModuleResults extends React.Component {
 					<div key={this.getResults().length} className="col-12 selected-result" data-arrow-offset={this.getSelectedIndex() - i}>
 						<div className="col-12 selected-result-indicator">
 							<div className="col-4 triangle-container">
-								<div className="triangle"></div>
+								<div className="triangle"/>
 							</div>
 						</div>
 						<div className="col-12 selected-result-info">
@@ -311,7 +311,7 @@ class Result extends React.Component {
 	 * @returns {String} Image URL.
 	 */
 	getModelImage() {
-		let url = "media/images/models/" + this.getModel().make.name + "/" + this.getModel().model + ".jpg";
+		let url = "media/models/" + this.getModel().make.name + "/" + this.getModel().model + ".jpg";
 		return url.replace(/\s+/g, '_').toLowerCase();
 	}
 	
@@ -321,7 +321,7 @@ class Result extends React.Component {
 	 * @returns {String} Image URL.
 	 */
 	getMakeImage() {
-		let url = "media/images/makes/" + this.getModel().make.name + ".png";
+		let url = "media/makes/" + this.getModel().make.name + ".png";
 		return url.replace(/\s+/g, '_').toLowerCase();
 	}
 	

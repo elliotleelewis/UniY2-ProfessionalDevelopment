@@ -31,55 +31,32 @@ class ModuleOptions extends React.Component {
 							settings: {
 								min: 0,
 								max: 55000,
-								defaultValue: [8000, 45000]
+								defaultValue: [0, 45000]
 							}
 						},
 						{
 							type: "running_costs",
 							settings: {
 								defaultValue: "Low"
-							}
-						},
-						{
-							type: "transmission",
-							settings: {
-								defaultValue: "Both"
 							}
 						}
 					];
 					break;
 				case "SUV":
 					filters = [
-						{
-							type: "doors",
-							settings: {
-								defaultValue: "4+"
-							}
-						},
-						{
-							type: "seats",
-							settings: {
-								defaultValue: "5+"
-							}
-						},
+						
 						{
 							type: "price",
 							settings: {
 								min: 0,
 								max: 50000,
-								defaultValue: [6000, 32000]
+								defaultValue: [0, 32000]
 							}
 						},
 						{
 							type: "boot_size",
 							settings: {
 								defaultValue: "Large"
-							}
-						},
-						{
-							type: "running_costs",
-							settings: {
-								defaultValue: "Low"
 							}
 						},
 						{
@@ -92,12 +69,7 @@ class ModuleOptions extends React.Component {
 					break;
 				case "MPV":
 					filters = [
-						{
-							type: "doors",
-							settings: {
-								defaultValue: "4+"
-							}
-						},
+						
 						{
 							type: "seats",
 							settings: {
@@ -109,7 +81,7 @@ class ModuleOptions extends React.Component {
 							settings: {
 								min: 0,
 								max: 60000,
-								defaultValue: [1000, 40000]
+								defaultValue: [0, 40000]
 							}
 						},
 						{
@@ -124,28 +96,11 @@ class ModuleOptions extends React.Component {
 								defaultValue: "Low"
 							}
 						},
-						{
-							type: "running_costs",
-							settings: {
-								defaultValue: "Low"
-							}
-						},
-						{
-							type: "transmission",
-							settings: {
-								defaultValue: "Both"
-							}
-						}
 					];
 					break;
 				case "Estate":
 					filters = [
-						{
-							type: "doors",
-							settings: {
-								defaultValue: "4+"
-							}
-						},
+						
 						{
 							type: "seats",
 							settings: {
@@ -157,13 +112,7 @@ class ModuleOptions extends React.Component {
 							settings: {
 								min: 0,
 								max: 50000,
-								defaultValue: [1000, 35000]
-							}
-						},
-						{
-							type: "boot_size",
-							settings: {
-								defaultValue: "Medium"
+								defaultValue: [0, 35000]
 							}
 						},
 						{
@@ -172,12 +121,7 @@ class ModuleOptions extends React.Component {
 								defaultValue: "Low"
 							}
 						},
-						{
-							type: "transmission",
-							settings: {
-								defaultValue: "Both"
-							}
-						}
+						
 					];
 					break;
 				case "Convertible":
@@ -194,7 +138,7 @@ class ModuleOptions extends React.Component {
 							settings: {
 								min: 0,
 								max: 80000,
-								defaultValue: [6000, 35000]
+								defaultValue: [0, 35000]
 							}
 						},
 						{
@@ -214,12 +158,6 @@ class ModuleOptions extends React.Component {
 				case "Coupe":
 					filters = [
 						{
-							type: "doors",
-							settings: {
-								defaultValue: "2+"
-							}
-						},
-						{
 							type: "seats",
 							settings: {
 								defaultValue: "5+"
@@ -230,19 +168,7 @@ class ModuleOptions extends React.Component {
 							settings: {
 								min: 0,
 								max: 200000,
-								defaultValue: [4000, 80000]
-							}
-						},
-						{
-							type: "boot_size",
-							settings: {
-								defaultValue: "Medium"
-							}
-						},
-						{
-							type: "fuel_consumption",
-							settings: {
-								defaultValue: "Low"
+								defaultValue: [0, 80000]
 							}
 						},
 						{
@@ -251,12 +177,7 @@ class ModuleOptions extends React.Component {
 								defaultValue: "Low"
 							}
 						},
-						{
-							type: "transmission",
-							settings: {
-								defaultValue: "Manual"
-							}
-						}
+						
 					];
 					break;
 				case "Saloon":
@@ -266,13 +187,7 @@ class ModuleOptions extends React.Component {
 							settings: {
 								min: 0,
 								max: 70000,
-								defaultValue: [1000, 50000]
-							}
-						},
-						{
-							type: "boot_size",
-							settings: {
-								defaultValue: "Medium"
+								defaultValue: [0, 50000]
 							}
 						},
 						{
@@ -287,12 +202,7 @@ class ModuleOptions extends React.Component {
 								defaultValue: "Low"
 							}
 						},
-						{
-							type: "transmission",
-							settings: {
-								defaultValue: "Both"
-							}
-						}
+						
 					];
 					break;
 			}
@@ -306,14 +216,8 @@ class ModuleOptions extends React.Component {
 							type: "price",
 							settings: {
 								min: 0,
-								max: 30000,
-								defaultValue: [1000, 30000]
-							}
-						},
-						{
-							type: "fuel_consumption",
-							settings: {
-								defaultValue: "Low"
+								max: 50000,
+								defaultValue: [0, 25000]
 							}
 						},
 						{
@@ -351,12 +255,6 @@ class ModuleOptions extends React.Component {
 							settings: {
 								defaultValue: "Low"
 							}
-						},
-						{
-							type: "transmission",
-							settings: {
-								defaultValue: "Automatic"
-							}
 						}
 					];
 					break;
@@ -367,11 +265,11 @@ class ModuleOptions extends React.Component {
 							settings: {
 								min: 0,
 								max: 30000,
-								defaultValue: [1000, 30000]
+								defaultValue: [0, 30000]
 							}
 						},
 						{
-							type: "fuel_consumption",
+							type: "running_costs",
 							settings: {
 								defaultValue: "Low"
 							}
@@ -381,19 +279,9 @@ class ModuleOptions extends React.Component {
 							settings: {
 								defaultValue: "5+"
 							}
-						},
-						{
-							type: "boot_size",
-							settings: {
-								defaultValue: "Medium"
-							}
-						},
-						{
-							type: "transmission",
-							settings: {
-								defaultValue: "Automatic"
-							}
 						}
+					
+						
 					];
 					break;
 				case "towing":
@@ -403,7 +291,7 @@ class ModuleOptions extends React.Component {
 							settings: {
 								min: 0,
 								max: 30000,
-								defaultValue: [1000, 30000]
+								defaultValue: [0, 30000]
 							}
 						},
 						{
@@ -423,13 +311,8 @@ class ModuleOptions extends React.Component {
 							settings: {
 								defaultValue: "Low"
 							}
-						},
-						{
-							type: "transmission",
-							settings: {
-								defaultValue: "Automatic"
-							}
 						}
+						
 					];
 					break;
 				case "long-distance":
@@ -439,15 +322,10 @@ class ModuleOptions extends React.Component {
 							settings: {
 								min: 0,
 								max: 30000,
-								defaultValue: [1000, 30000]
+								defaultValue: [0, 30000]
 							}
 						},
-						{
-							type: "seats",
-							settings: {
-								defaultValue: "5+"
-							}
-						},
+						
 						{
 							type: "fuel_consumption",
 							settings: {
@@ -459,13 +337,8 @@ class ModuleOptions extends React.Component {
 							settings: {
 								defaultValue: "Medium"
 							}
-						},
-						{
-							type: "transmission",
-							settings: {
-								defaultValue: "Automatic"
-							}
 						}
+						
 					];
 					break;
 				case "performance":
@@ -475,7 +348,7 @@ class ModuleOptions extends React.Component {
 							settings: {
 								min: 0,
 								max: 30000,
-								defaultValue: [1000, 30000]
+								defaultValue: [0, 30000]
 							}
 						},
 						{
@@ -499,19 +372,13 @@ class ModuleOptions extends React.Component {
 							settings: {
 								min: 0,
 								max: 30000,
-								defaultValue: [1000, 30000]
+								defaultValue: [0, 30000]
 							}
 						},
 						{
 							type: "boot_size",
 							settings: {
 								defaultValue: "Medium"
-							}
-						},
-						{
-							type: "running_costs",
-							settings: {
-								defaultValue: "Low"
 							}
 						},
 						{
@@ -559,7 +426,7 @@ class ModuleOptions extends React.Component {
 	}
 	
 	/**
-	 * Calls the {@link MainPage#showType} function. Switches the web app to
+	 * Calls the {@link MainPage#updatePage} function. Switches the web app to
 	 * the type module.
 	 */
 	goBack() {
