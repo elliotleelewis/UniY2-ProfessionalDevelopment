@@ -1,50 +1,14 @@
 'use strict';
 // Imports
-const $ = require('jquery');
+global.$ = require('jquery');
 global.jQuery = $;
 global.Tether = require('tether');
-const bootstrap = require('bootstrap');
-const React = require('react');
-const ReactDOM = require('react-dom');
-// Global Vars
-const ModuleType = require('./_moduleType.jsx');
-const ModuleOptions = require('./_moduleOptions.jsx');
-const ModuleResults = require('./_moduleResults.jsx');
-// Data
-const data = require('../data/cars.json');
-for(let i = 0; i < data.models.length; i++) {
-	data.models[i].make = data.makes[data.models[i].make];
-}
-const appModules = {
-	type: {
-		title: 'Body Type',
-		module: ModuleType,
-		hash: 'type',
-		settings: {
-			types: [
-				'Saloon',
-				'Hatchback',
-				'SUV',
-				'MPV',
-				'Estate',
-				'Convertible',
-				'Coupe'
-			],
-			defaultTypeIndex: 1
-		}
-	},
-	options: {
-		title: 'Options',
-		module: ModuleOptions,
-		hash: 'options'
-	},
-	results: {
-		title: 'Results',
-		module: ModuleResults,
-		hash: 'results'
-	}
-};
-console.log("Modules: ", appModules);
+const bootstrap = require('bootstrap'),
+	React = require('react'),
+	ReactDOM = require('react-dom'),
+	ModuleType = require('./_moduleType.jsx'),
+	ModuleOptions = require('./_moduleOptions.jsx'),
+	ModuleResults = require('./_moduleResults.jsx');
 // React Components
 /**
  * The main page of the web app. The root ReactJS component.
@@ -60,137 +24,157 @@ class MainPage extends React.Component {
 	constructor(props) {
 		super(props);
 		window.location.lasthash = [];
+		let mainPage = this;
 		window.onhashchange = function() {
-			//TODO add hash navigation...
-		}
-		this.state = {
-			title: appModules.type.title,
-			module: appModules.type.module,
-			settings: {
-				selectedTypeIndex: appModules.type.settings.defaultTypeIndex,
-				types: appModules.type.settings.types
-			}
+			mainPage.setState(mainPage.getPage());
 		};
+		this.state = this.getPage();
 	}
 	
 	/**
-	 * Renders the {@link PageHeader} element as well as the applications
-	 * current module.
+	 * Renders the header as well as the applications current module.
 	 *
 	 * @returns {XML} JSX content.
 	 */
 	render() {
 		return (
 			<div id="main-page">
-				<PageHeader title={this.state.title} />
+				<header>
+					<img src="media/images/brand/logo.png" alt="AutoTrader Logo" className="logo" />
+					<div className="titleContainer">
+						<h2>{this.state.title}</h2>
+					</div>
+				</header>
 				<this.state.module mainPage={this} settings={this.state.settings} />
 			</div>
 		);
 	}
 	
 	/**
-	 * Sets web app's current module to the type page, the initial page of the
-	 * app.
-	 */
-	showType(bodyType) {
-		this.updateHistory(appModules.type.hash);
-		this.setState({
-			title: appModules.type.title,
-			module: appModules.type.module,
-			settings: {
-				selectedTypeIndex: (bodyType) ? appModules.type.settings.types.indexOf(bodyType) : appModules.type.settings.defaultTypeIndex,
-				types: appModules.type.settings.types
-			}
-		});
-	}
-	
-	/**
-	 * Selects type on the type page and then sets web app's current module to
-	 * options page.
-	 *
-	 * @param category {String} "body_type" or "lifestyle".
-	 * @param value {String} Specific body type or lifestyle.
-	 */
-	showOptions(category, value) {
-		this.updateHistory(appModules.options.hash);
-		this.setState({
-			title: appModules.options.title,
-			module: appModules.options.module,
-			settings: {
-				category: category,
-				value: value
-			}
-		});
-	}
-	
-	/**
-	 * Sets web app's current module to the results page, in which the search
-	 * results are shown.
-	 *
-	 * @param category {String} "body_type" or "lifestyle".
-	 * @param value {String} Specific body type or lifestyle.
-	 * @param filters {Array} Array of filters to apply to results.
-	 */
-	showResults(category, value, filters) {
-		this.updateHistory(appModules.results.hash);
-		this.setState({
-			title: appModules.results.title,
-			module: appModules.results.module,
-			settings: {
-				category: category,
-				value: value,
-				filters: filters,
-				data: data
-			}
-		});
-	}
-	
-	/**
 	 * Updates the browser's history when navigating around the web app.
 	 *
 	 * @param hash {String} The hash of the new page/module of the web app.
+	 * @param params {Object} The parameters of the new page/module of the web
+	 *     app.
 	 */
-	updateHistory(hash) {
+	updatePage(hash, params) {
+		let paramString = "p=" + hash;
+		for(let param in params) {
+			if(params.hasOwnProperty(param) && typeof params[param] !== "undefined") {
+				if(typeof params[param] === "object")
+					paramString += "&" + param + "=" + JSON.stringify(params[param]);
+				else
+					paramString += "&" + param + "=" + params[param];
+			}
+		}
 		window.location.lasthash.push(window.location.hash);
-		window.location.hash = hash;
-	}
-}
-/**
- * The header component used for each page of the web app.
- */
-class PageHeader extends React.Component {
-	/**
-	 * @constructor
-	 * @param props {Object} ReactJS props.
-	 */
-	constructor(props) {
-		super(props);
+		window.location.hash = paramString;
 	}
 	
 	/**
-	 * Renders the header of the application with the title returned by the
-	 * {@link PageHeader#getAppModuleTitle} method.
-	 *
-	 * @returns {XML} JSX content.
+	 * Gets called when the hash of the URL changes in the browser. This
+	 * function works out what page to load and then returns the correct page
+	 * with appropriate params already applied taken in via the URL attributes.
 	 */
-	render() {
-		return (
-			<header>
-				<img src="media/images/brand/logo.png" alt="AutoTrader Logo" className="logo" />
-				<div className="titleContainer">
-					<h2>{this.getAppModuleTitle()}</h2>
-				</div>
-			</header>
-		);
+	getPage() {
+		let appModules = this.getAppModules();
+		let temp = window.location.hash.substr(1).split("&");
+		let params = {};
+		for(let i = 0; i < temp.length; i++) {
+			let param = temp[i].split("=");
+			params[param[0]] = param[1];
+		}
+		switch(params.p) {
+			case "options":
+				return {
+					title: appModules.options.title,
+					hash: appModules.options.hash,
+					module: appModules.options.module,
+					settings: {
+						category: params.category,
+						value: params.value
+					}
+				};
+			case "results":
+				return {
+					title: appModules.results.title,
+					hash: appModules.results.hash,
+					module: appModules.results.module,
+					settings: {
+						category: params.category,
+						value: params.value,
+						filters: JSON.parse(params.filters),
+						data: this.getData()
+					}
+				};
+			default:
+				return {
+					title: appModules.type.title,
+					hash: appModules.type.hash,
+					module: appModules.type.module,
+					settings: {
+						selectedTypeIndex: (params.bodyType) ? appModules.type.settings.types.indexOf(params.bodyType) : appModules.type.settings.selectedTypeIndex,
+						types: appModules.type.settings.types
+					}
+				};
+		}
 	}
 	
 	/**
-	 * Gets the module's title.
+	 * Returns the AppModules object.
 	 *
-	 * @returns {String} Module title.
+	 * @returns {Object} AppModules object.
 	 */
-	getAppModuleTitle() {
-		return this.props.title;
+	getAppModules() {
+		return this.props.appModules;
+	}
+	
+	/**
+	 * Returns the Data object.
+	 *
+	 * @returns {Object} Data object.
+	 */
+	getData() {
+		let temp = this.props.data;
+		for(let i = 0; i < temp.models.length; i++) {
+			temp.models[i].make = temp.makes[temp.models[i].make];
+		}
+		return temp;
 	}
 }
-ReactDOM.render(<MainPage />, $('#react-root')[0]);
+MainPage.propTypes = {
+	appModules: React.PropTypes.object.isRequired,
+	data: React.PropTypes.shape({
+		makes: React.PropTypes.object.isRequired,
+		models: React.PropTypes.array.isRequired
+	}).isRequired
+};
+ReactDOM.render(<MainPage appModules={{
+	type: {
+		title: 'Body Type',
+		module: ModuleType,
+		hash: 'type',
+		settings: {
+			types: [
+				'Saloon',
+				'Hatchback',
+				'SUV',
+				'MPV',
+				'Estate',
+				'Convertible',
+				'Coupe'
+			],
+			selectedTypeIndex: 1
+		}
+	},
+	options: {
+		title: 'Options',
+		module: ModuleOptions,
+		hash: 'options'
+	},
+	results: {
+		title: 'Results',
+		module: ModuleResults,
+		hash: 'results'
+	}
+}} data={require('../data/cars.json')} />, $('#react-root')[0]);

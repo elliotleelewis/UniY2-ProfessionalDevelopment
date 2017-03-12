@@ -9,7 +9,6 @@
     "url": "https://github.com/elliotleelewis/MMUTech-Autotrader.git"
   },
   "scripts": {
-    "test": "jest",
     "docs": "jsdoc -c jsdoc.json",
     "start": "gulp"
   },
@@ -23,16 +22,13 @@
     "tether": "^1.4.0"
   },
   "devDependencies": {
-    "babel-jest": "^19.0.0",
-    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-es2017": "^6.22.0",
     "babel-preset-react": "^6.23.0",
     "babelify": "^7.3.0",
     "browserify": "^14.1.0",
     "docdash": "^0.4.0",
     "gulp": "^3.9.1",
     "gulp-sass": "^3.1.0",
-    "jest-cli": "^19.0.2",
-    "jsdoc": "^3.4.3",
-    "react-test-renderer": "^15.4.2"
+    "jsdoc": "^3.4.3"
   }
 }
