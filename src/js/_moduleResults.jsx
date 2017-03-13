@@ -83,10 +83,10 @@ class ModuleResults extends React.Component {
 				
 			}
 		}
-		results.sort(this.sortRelevancy);
 		this.state = {
-			results: results,
-			selectedIndex: undefined
+			results: this.sort(results, "relevancy"),
+			selectedIndex: undefined,
+			sort: "relevancy"
 		};
 	}
 	
@@ -96,42 +96,33 @@ class ModuleResults extends React.Component {
 	 * @returns {XML} JSX element.
 	 */
 	render() {
-		let temp = this.getResults().slice();
-		temp.sort(this.sortRelevancy);
-		let bestResult = temp[0];
-		let bestResultMake = "media/makes/" + bestResult.make.name + ".png";
-		bestResultMake = bestResultMake.replace(/\s+/g, '_').toLowerCase();
-		let bestResultModel = "media/models/" + bestResult.make.name + "/" + bestResult.model + ".jpg";
-		bestResultModel = bestResultModel.replace(/\s+/g, '_').toLowerCase();
+		if(this.state.results.length === 0) {
+			return (
+				<div className="module" id="results">
+					<div className="container-fluid">
+						<div className="row form-group">
+							<button className="col-md-2 col-4 btn btn-secondary" onClick={this.goBack.bind(this)}>Back</button>
+						</div>
+						<div className="row">
+							No results found!
+						</div>
+					</div>
+				</div>
+			);
+		}
 		return (
 			<div className="module" id="results">
 				<div className="container-fluid">
 					<div className="row form-group">
 						<button className="col-md-2 col-4 btn btn-secondary" onClick={this.goBack.bind(this)}>Back</button>
 						<label className="offset-md-6 col-md-2 col-4">Sort By:</label>
-						<select className="col-md-2 col-8 form-control" onChange={this.sort.bind(this)}>
+						<select className="col-md-2 col-8 form-control" onChange={this.changeSort.bind(this)}>
 							<option value="relevancy">Relevancy</option>
 							<option value="priceLow">Price Low to High</option>
 							<option value="priceHigh">Price High to Low</option>
 						</select>
 					</div>
-					<div className="row hidden-sm-down featured-result">
-						<div className="col-4 featured-result-image-container">
-							<div className="featured-result-image" style={{backgroundImage: "url(" + bestResultModel + ")"}} />
-						</div>
-						<div className="col-8 featured-result-info">
-							<h3>Best Result</h3>
-							<div className="result-info">
-								<div className="result-make" style={{backgroundImage: "url(" + bestResultMake + ")"}} title={bestResult.make.name} data-toggle="tooltip" />
-								<h4 title={bestResult.model}>{bestResult.model}</h4>
-							</div>
-							<div className="featured-result-tags">
-								{/*TODO add pros/cons here... */}
-								<div className="badge badge-pill badge-success">+ Fuel Consumption</div>
-								<div className="badge badge-pill badge-success">+ Acceleration</div>
-							</div>
-						</div>
-					</div>
+					{this.getBestResultElement()}
 					{this.getResultElements()}
 				</div>
 			</div>
@@ -177,62 +168,154 @@ class ModuleResults extends React.Component {
 	
 	/**
 	 * Handles the change event of the dropdown menu for sorting the result set.
-	 * Chooses the correct sort function and then applies it to the results.
 	 *
 	 * @param event {Object} Select change event.
 	 */
-	sort(event) {
-		let sortFunction = this.sortRelevancy;
-		switch(event.target.value) {
-			case "priceLow":
-				sortFunction = this.sortPriceLowHigh;
-				break;
-			case "priceHigh":
-				sortFunction = this.sortPriceHighLow;
-				break;
-		}
-		let temp = this.getResults().slice();
-		temp.sort(sortFunction);
+	changeSort(event) {
 		this.setState({
-			results: temp
+			sort: event.target.value
 		});
 	}
 	
 	/**
-	 * Relevancy sort function. Sorts results based on their relevance to the
-	 * filters applied.
+	 * Chooses the correct sort function for the models and then applies it to
+	 * the results.
 	 *
-	 * @param resultA {Object} Result to sort.
-	 * @param resultB {Object} Result to sort.
-	 * @returns {Number} Sort result.
+	 * @param results {Array} Results to sort.
+	 * @param sortAlgorithm {String} Optional sorting algorithm to override
+	 *     state.
 	 */
-	sortRelevancy(resultA, resultB) {
-		//TODO finish relevancy sort...
-		return resultA.model.localeCompare(resultB.model);
+	sort(results, sortAlgorithm) {
+		let sortFunction = function(resultA, resultB) {
+			//TODO finish relevancy sort...
+			return resultA.model.localeCompare(resultB.model);
+		};
+		switch(sortAlgorithm || this.state.sort) {
+			case "priceLow":
+				sortFunction = function(resultA, resultB) {
+					return resultA.typical_price - resultB.typical_price;
+				};
+				break;
+			case "priceHigh":
+				sortFunction = function(resultA, resultB) {
+					return resultB.typical_price - resultA.typical_price;
+				};
+				break;
+		}
+		return results.sort(sortFunction);
 	}
 	
 	/**
-	 * Price low to high sort function. Sorts results into ascending price
-	 * order.
+	 * TODO
 	 *
-	 * @param resultA {Object} Result to sort.
-	 * @param resultB {Object} Result to sort.
-	 * @returns {Number} Sort result.
+	 * @returns {XML[]} JSX elements array.
 	 */
-	sortPriceLowHigh(resultA, resultB) {
-		return resultA.typical_price - resultB.typical_price;
+	getBestAttributes() {
+		let attributes = [];
+		let result = this.getBestResult();
+		if(result.seats === "5") {
+			attributes.push(
+				<div key={0} className="badge badge-pill badge-success">+ Seats</div>
+			);
+		}
+		else if(result.seats === "2") {
+			attributes.push(
+				<div key={0} className="badge badge-pill badge-danger">- Seats</div>
+			);
+		}
+		if(result.doors === "5") {
+			attributes.push(
+				<div key={1} className="badge badge-pill badge-success">+ Doors</div>
+			);
+		}
+		else if(result.doors === "2") {
+			attributes.push(
+				<div key={1} className="badge badge-pill badge-danger">- Doors</div>
+			);
+		}
+		if(result.boot_size.toLowerCase() === "large") {
+			attributes.push(
+				<div key={2} className="badge badge-pill badge-success">+ Boot Size</div>
+			);
+		}
+		else if(result.boot_size.toLowerCase() === "small") {
+			attributes.push(
+				<div key={2} className="badge badge-pill badge-danger">- Boot Size</div>
+			);
+		}
+		if(result.fuel_consumption.toLowerCase() === "low") {
+			attributes.push(
+				<div key={3} className="badge badge-pill badge-success">+ Fuel Consumption</div>
+			);
+		}
+		else if(result.fuel_consumption.toLowerCase() === "considerable") {
+			attributes.push(
+				<div key={3} className="badge badge-pill badge-danger">- Fuel Consumption</div>
+			);
+		}
+		let runningCostValues = ["free", "low", "medium", "considerable"];
+		let runningCosts = (runningCostValues.indexOf(result.annual_tax.toLowerCase()) + runningCostValues.indexOf(result.insurance.toLowerCase())) / 2;
+		if(runningCosts <= 1.5) {
+			attributes.push(
+				<div key={4} className="badge badge-pill badge-success">+ Running Costs</div>
+			);
+		}
+		else if(runningCosts >= 2.5) {
+			attributes.push(
+				<div key={4} className="badge badge-pill badge-danger">- Running Costs</div>
+			);
+		}
+		if(result.acceleration.toLowerCase() === "fast") {
+			attributes.push(
+				<div key={5} className="badge badge-pill badge-success">+ Speed</div>
+			);
+		}
+		else if(result.acceleration.toLowerCase() === "steady") {
+			attributes.push(
+				<div key={5} className="badge badge-pill badge-danger">- Speed</div>
+			);
+		}
+		attributes.sort(function(attributeA, attributeB) {
+			if(attributeA.props.children.charAt(0) == "-" && attributeB.props.children.charAt(0) == "+")
+				return 1;
+			else if(attributeA.props.children.charAt(0) == "+" && attributeB.props.children.charAt(0) == "-")
+				return -1;
+			else
+				return attributeA.props.children.localeCompare(attributeB.props.children);
+		});
+		return attributes;
 	}
 	
 	/**
-	 * Price high to low sort function. Sorts results into descending price
-	 * order.
+	 * TODO
 	 *
-	 * @param resultA {Object} Result to sort.
-	 * @param resultB {Object} Result to sort.
-	 * @returns {Number} Sort result.
+	 * @returns {XML} JSX Element.
 	 */
-	sortPriceHighLow(resultA, resultB) {
-		return resultB.typical_price - resultA.typical_price;
+	getBestResultElement() {
+		if(this.state.sort === "relevancy") {
+			let bestResult = this.getBestResult();
+			let bestResultMake = "media/makes/" + bestResult.make.name + ".png";
+			bestResultMake = bestResultMake.replace(/\s+/g, '_').toLowerCase();
+			let bestResultModel = "media/models/" + bestResult.make.name + "/" + bestResult.model + ".jpg";
+			bestResultModel = bestResultModel.replace(/\s+/g, '_').toLowerCase();
+			return (
+				<div className="row hidden-sm-down featured-result">
+					<div className="col-4 featured-result-image-container">
+						<div className="featured-result-image" style={{backgroundImage: "url(" + bestResultModel + ")"}} />
+					</div>
+					<div className="col-8 featured-result-info">
+						<h3>Best Result</h3>
+						<div className="result-info">
+							<div className="result-make" style={{backgroundImage: "url(" + bestResultMake + ")"}} title={bestResult.make.name} data-toggle="tooltip" />
+							<h4 title={bestResult.model}>{bestResult.model}</h4>
+						</div>
+						<div className="featured-result-tags">
+							{this.getBestAttributes()}
+						</div>
+					</div>
+				</div>
+			);
+		}
 	}
 	
 	/**
@@ -257,7 +340,7 @@ class ModuleResults extends React.Component {
 					<div key={this.getResults().length} className="col-12 selected-result" data-arrow-offset={this.getSelectedIndex() - i}>
 						<div className="col-12 selected-result-indicator">
 							<div className="col-4 triangle-container">
-								<div className="triangle"/>
+								<div className="triangle" />
 							</div>
 						</div>
 						<div className="col-12 selected-result-info">
@@ -277,12 +360,21 @@ class ModuleResults extends React.Component {
 	}
 	
 	/**
+	 * TODO
+	 *
+	 * @returns {Object} The best result object.
+	 */
+	getBestResult() {
+		return this.getResults()[0];
+	}
+	
+	/**
 	 * Returns the results state.
 	 *
 	 * @returns {Object[]} The results state.
 	 */
 	getResults() {
-		return this.state.results;
+		return this.sort(this.state.results);
 	}
 	
 	/**

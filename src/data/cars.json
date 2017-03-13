@@ -15,6 +15,11 @@
 			"headquarters": "Saint-Ouen, France",
 			"area_served": "Worldwide"
 		},
+		"ferrari": {
+			"name": "Ferrari",
+			"headquarters": "Maranello, Italy",
+			"area_served": "Worldwide"
+		},
 		"fiat": {
 			"name": "Fiat",
 			"headquarters": "Turin, Italy",
@@ -444,6 +449,22 @@
 			"acceleration": "Steady",
 			"insurance": "Low",
 			"annual_tax": "Low"
+		},
+		{
+			"make": "ferrari",
+			"model": "458 Italia Spider",
+			"body_type": "Convertible",
+			"min_price": "110000",
+			"max_price": "350000",
+			"typical_price": "160000",
+			"seats": "2",
+			"doors": "2",
+			"boot_size": "Small",
+			"transmission": "Both",
+			"fuel_consumption": "Considerable",
+			"acceleration": "Fast",
+			"insurance": "Considerable",
+			"annual_tax": "Considerable"
 		},
 		{
 			"make": "fiat",
