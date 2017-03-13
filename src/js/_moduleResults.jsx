@@ -29,9 +29,11 @@ class ModuleResults extends React.Component {
 			}
 			for(let j = 0; j < settings.filters.length; j++) {
 				let filter = settings.filters[j];
+				let values, filterNumber;
 				switch(filter.filter) {
 					case "doors":
 						let value = filter.value.charAt(0);
+						console.log("test: ", [result.doors, result.model]);
 						if(Number(result.doors) < Number(value)) {
 							results.splice(i, 1);
 							i--;
@@ -42,13 +44,43 @@ class ModuleResults extends React.Component {
 						let min = filter.value[0];
 						let max = filter.value[1];
 						if(result.max_price < min || result.min_price > max) {
-							console.log(result.model);
+							results.splice(i, 1);
+							i--;
+							continue main;
+						}
+						break;
+					case "running_costs":
+						values = ["free", "low", "medium", "considerable"];
+						filterNumber = values.indexOf(filter.value.toLowerCase());
+						let resultAnnualTax = values.indexOf(result.annual_tax.toLowerCase());
+						let resultInsurance = values.indexOf(result.insurance.toLowerCase());
+						if(resultAnnualTax > filterNumber || resultInsurance > filterNumber) {
+							console.log("Values: ", [resultAnnualTax, resultInsurance]);
+							results.splice(i, 1);
+							i--;
+							continue main;
+						}
+						break;
+					case "boot_size":
+						values = ["small", "medium", "large"];
+						filterNumber = values.indexOf(filter.value.toLowerCase());
+						let resultBootSize = values.indexOf(result.boot_size.toLowerCase());
+						if(resultBootSize > filterNumber) {
+							results.splice(i, 1);
+							i--;
+							continue main;
+						}
+						break;
+					case "transmission":
+						//TODO implement the and
+						if(filter.value.toLowerCase() != result.transmission.toLowerCase() ) {
 							results.splice(i, 1);
 							i--;
 							continue main;
 						}
 						break;
 				}
+				
 			}
 		}
 		results.sort(this.sortRelevancy);
