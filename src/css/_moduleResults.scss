@@ -130,12 +130,16 @@ $result-height: 300px;
 							background-size: contain;
 						}
 						h5 {
-							width: calc(100% - #{($result-height / 4) - ($spacing / 4)});
+							width: 100%;
 							margin-left: $spacing / 2;
 							margin-bottom: 0;
 							overflow: hidden;
 							white-space: nowrap;
 							text-overflow: ellipsis;
+						}
+						h6 {
+							margin: 0;
+							white-space: nowrap;
 						}
 					}
 				}

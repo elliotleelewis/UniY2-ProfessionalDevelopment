@@ -19,7 +19,6 @@ class ModuleResults extends React.Component {
 		console.log("Results Settings: ", props.settings);
 		let settings = props.settings;
 		let results = settings.data.models.slice();
-		//TODO finish off filtering models...
 		main: for(let i = 0; i < results.length; i++) {
 			let result = results[i];
 			if(settings.category === "body_type" && settings.value !== result.body_type) {
@@ -34,7 +33,6 @@ class ModuleResults extends React.Component {
 					case "doors":
 						let value = filter.value.charAt(0);
 						if(Number(result.doors) < Number(value)) {
-							//console.log("removed: ", [result.doors, result.model]);
 							results.splice(i, 1);
 							i--;
 							continue main;
@@ -55,7 +53,6 @@ class ModuleResults extends React.Component {
 						let resultAnnualTax = values.indexOf(result.annual_tax.toLowerCase());
 						let resultInsurance = values.indexOf(result.insurance.toLowerCase());
 						if(resultAnnualTax > filterNumber || resultInsurance > filterNumber) {
-							//console.log("Values: ", [resultAnnualTax, resultInsurance]);
 							results.splice(i, 1);
 							i--;
 							continue main;
@@ -66,15 +63,13 @@ class ModuleResults extends React.Component {
 						filterNumber = values.indexOf(filter.value.toLowerCase());
 						let resultBootSize = values.indexOf(result.boot_size.toLowerCase());
 						if(resultBootSize > filterNumber) {
-							// console.log("removed: ", [result.boot_size, result.model]);
 							results.splice(i, 1);
 							i--;
 							continue main;
 						}
 						break;
 					case "transmission":
-						if(filter.value.toLowerCase() != result.transmission.toLowerCase() && filter.value.toLowerCase() != "both") {
-							//console.log("removed:", [result.model, result.transmission])
+						if( filter.value.toLowerCase() !== "both" && filter.value.toLowerCase() !== result.transmission.toLowerCase()) {
 							results.splice(i, 1);
 							i--;
 							continue main;
@@ -83,7 +78,6 @@ class ModuleResults extends React.Component {
 					case "seats":
 						let filterSeats = filter.value.charAt(0);
 						if(Number(result.seats) < Number(filterSeats)){
-							//console.log("removed: ", [result.model, result.seats]);
 							results.splice(i, 1);
 							i--;
 							continue main;
@@ -95,7 +89,6 @@ class ModuleResults extends React.Component {
 						filterNumber = values.indexOf(filter.value.toLowerCase());
 						let resultFuelConsumption = filterValues.indexOf(result.fuel_consumption.toLowerCase());
 						if(resultFuelConsumption > filterNumber){
-							//console.log("removed: ", [result.model, result.fuel_consumption]);
 							results.splice(i, 1);
 							i--;
 							continue main;
@@ -106,7 +99,6 @@ class ModuleResults extends React.Component {
 						filterNumber = values.indexOf(filter.value.toLowerCase());
 						let resultAcceleration = values.indexOf(result.acceleration.toLowerCase());
 						if(resultAcceleration > filterNumber){
-							//console.log("removed: ", [result.model, result.acceleration]);
 							results.splice(i, 1);
 							i--;
 							continue main;
@@ -456,6 +448,7 @@ class Result extends React.Component {
 					<div className="result-info">
 						<div className="result-make" style={{backgroundImage: "url(" + this.getMakeImage() + ")"}} title={this.getModel().make.name} data-toggle="tooltip" />
 						<h5 title={this.getModel().model}>{this.getModel().model}</h5>
+						<h6 title="Price">Typically £{this.getModelPrice()}</h6>
 					</div>
 				</div>
 			</div>
@@ -480,6 +473,15 @@ class Result extends React.Component {
 	getMakeImage() {
 		let url = "media/makes/" + this.getModel().make.name + ".png";
 		return url.replace(/\s+/g, '_').toLowerCase();
+	}
+	
+	/**
+	 * Gets the typical price for the result's model.
+	 *
+	 * @returns {String} Typical model price.
+	 */
+	getModelPrice() {
+		return this.getModel().typical_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
 	
 	/**

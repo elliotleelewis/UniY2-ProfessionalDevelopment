@@ -31,7 +31,7 @@ class ModuleOptions extends React.Component {
 							settings: {
 								min: 0,
 								max: 55000,
-								defaultValue: [0, 45000]
+								defaultValue: [0, 30000]
 							}
 						},
 						{
@@ -93,7 +93,7 @@ class ModuleOptions extends React.Component {
 						{
 							type: "fuel_consumption",
 							settings: {
-								defaultValue: "Low"
+								defaultValue: "Medium"
 							}
 						},
 					];
@@ -118,7 +118,7 @@ class ModuleOptions extends React.Component {
 						{
 							type: "running_costs",
 							settings: {
-								defaultValue: "Low"
+								defaultValue: "Medium"
 							}
 						},
 						
@@ -129,7 +129,6 @@ class ModuleOptions extends React.Component {
 						{
 							type: "seats",
 							settings: {
-								// needs to be able to limit to max 5
 								defaultValue: "2+"
 							}
 						},
@@ -137,14 +136,14 @@ class ModuleOptions extends React.Component {
 							type: "price",
 							settings: {
 								min: 0,
-								max: 80000,
+								max: 150000,
 								defaultValue: [0, 35000]
 							}
 						},
 						{
 							type: "running_costs",
 							settings: {
-								defaultValue: "Low"
+								defaultValue: "Considerable"
 							}
 						},
 						{
@@ -160,7 +159,7 @@ class ModuleOptions extends React.Component {
 						{
 							type: "seats",
 							settings: {
-								defaultValue: "5+"
+								defaultValue: "2+"
 							}
 						},
 						{
@@ -174,7 +173,7 @@ class ModuleOptions extends React.Component {
 						{
 							type: "running_costs",
 							settings: {
-								defaultValue: "Low"
+								defaultValue: "Considerable"
 							}
 						},
 						
@@ -193,13 +192,13 @@ class ModuleOptions extends React.Component {
 						{
 							type: "fuel_consumption",
 							settings: {
-								defaultValue: "Low"
+								defaultValue: "Medium"
 							}
 						},
 						{
 							type: "running_costs",
 							settings: {
-								defaultValue: "Low"
+								defaultValue: "Medium"
 							}
 						},
 						
@@ -209,7 +208,6 @@ class ModuleOptions extends React.Component {
 		}
 		else if(this.getSettings().category === "lifestyle") {
 			switch(this.getSettings().value) {
-				//need to filter the lifestyles in similar format as above
 				case "first-car":
 					filters = [
 						{
