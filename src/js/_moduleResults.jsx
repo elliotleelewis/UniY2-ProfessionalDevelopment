@@ -19,7 +19,6 @@ class ModuleResults extends React.Component {
 		console.log("Results Settings: ", props.settings);
 		let settings = props.settings;
 		let results = settings.data.models.slice();
-		//TODO finish off filtering models...
 		main: for(let i = 0; i < results.length; i++) {
 			let result = results[i];
 			if(settings.category === "body_type" && settings.value !== result.body_type) {
@@ -33,7 +32,6 @@ class ModuleResults extends React.Component {
 				switch(filter.filter) {
 					case "doors":
 						let value = filter.value.charAt(0);
-						console.log("test: ", [result.doors, result.model]);
 						if(Number(result.doors) < Number(value)) {
 							results.splice(i, 1);
 							i--;
@@ -55,7 +53,6 @@ class ModuleResults extends React.Component {
 						let resultAnnualTax = values.indexOf(result.annual_tax.toLowerCase());
 						let resultInsurance = values.indexOf(result.insurance.toLowerCase());
 						if(resultAnnualTax > filterNumber || resultInsurance > filterNumber) {
-							console.log("Values: ", [resultAnnualTax, resultInsurance]);
 							results.splice(i, 1);
 							i--;
 							continue main;
@@ -72,8 +69,7 @@ class ModuleResults extends React.Component {
 						}
 						break;
 					case "transmission":
-						//TODO implement the and
-						if(filter.value.toLowerCase() != result.transmission.toLowerCase() ) {
+						if(filter.value.toLowerCase() !== "both" && filter.value.toLowerCase() !== result.transmission.toLowerCase() ) {
 							results.splice(i, 1);
 							i--;
 							continue main;
@@ -423,6 +419,7 @@ class Result extends React.Component {
 					<div className="result-info">
 						<div className="result-make" style={{backgroundImage: "url(" + this.getMakeImage() + ")"}} title={this.getModel().make.name} data-toggle="tooltip" />
 						<h5 title={this.getModel().model}>{this.getModel().model}</h5>
+						<h6 title="Price">Typically £{this.getModelPrice()}</h6>
 					</div>
 				</div>
 			</div>
@@ -447,6 +444,15 @@ class Result extends React.Component {
 	getMakeImage() {
 		let url = "media/makes/" + this.getModel().make.name + ".png";
 		return url.replace(/\s+/g, '_').toLowerCase();
+	}
+	
+	/**
+	 * Gets the typical price for the result's model.
+	 *
+	 * @returns {String} Typical model price.
+	 */
+	getModelPrice() {
+		return this.getModel().typical_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
 	
 	/**
