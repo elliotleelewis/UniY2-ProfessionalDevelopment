@@ -69,7 +69,36 @@ class ModuleResults extends React.Component {
 						}
 						break;
 					case "transmission":
-						if(filter.value.toLowerCase() !== "both" && filter.value.toLowerCase() !== result.transmission.toLowerCase() ) {
+						if( filter.value.toLowerCase() !== "both" && filter.value.toLowerCase() !== result.transmission.toLowerCase()) {
+							results.splice(i, 1);
+							i--;
+							continue main;
+						}
+						break;
+					case "seats":
+						let filterSeats = filter.value.charAt(0);
+						if(Number(result.seats) < Number(filterSeats)){
+							results.splice(i, 1);
+							i--;
+							continue main;
+						}
+						break;
+					case "fuel_consumption":
+						values = ["low", "medium", "considerable"];
+						let filterValues = ["minimal", "medium", "considerable"];
+						filterNumber = values.indexOf(filter.value.toLowerCase());
+						let resultFuelConsumption = filterValues.indexOf(result.fuel_consumption.toLowerCase());
+						if(resultFuelConsumption > filterNumber){
+							results.splice(i, 1);
+							i--;
+							continue main;
+						}
+						break;
+					case "acceleration":
+						values = ["steady", "medium", "fast"];
+						filterNumber = values.indexOf(filter.value.toLowerCase());
+						let resultAcceleration = values.indexOf(result.acceleration.toLowerCase());
+						if(resultAcceleration > filterNumber){
 							results.splice(i, 1);
 							i--;
 							continue main;
