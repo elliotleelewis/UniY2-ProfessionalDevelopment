@@ -69,7 +69,7 @@ class ModuleResults extends React.Component {
 						}
 						break;
 					case "transmission":
-						if( filter.value.toLowerCase() !== "both" && filter.value.toLowerCase() !== result.transmission.toLowerCase()) {
+						if(filter.value.toLowerCase() !== "both" && filter.value.toLowerCase() !== result.transmission.toLowerCase()) {
 							results.splice(i, 1);
 							i--;
 							continue main;
@@ -77,7 +77,7 @@ class ModuleResults extends React.Component {
 						break;
 					case "seats":
 						let filterSeats = filter.value.charAt(0);
-						if(Number(result.seats) < Number(filterSeats)){
+						if(Number(result.seats) < Number(filterSeats)) {
 							results.splice(i, 1);
 							i--;
 							continue main;
@@ -88,7 +88,7 @@ class ModuleResults extends React.Component {
 						let filterValues = ["minimal", "medium", "considerable"];
 						filterNumber = values.indexOf(filter.value.toLowerCase());
 						let resultFuelConsumption = filterValues.indexOf(result.fuel_consumption.toLowerCase());
-						if(resultFuelConsumption > filterNumber){
+						if(resultFuelConsumption > filterNumber) {
 							results.splice(i, 1);
 							i--;
 							continue main;
@@ -98,14 +98,13 @@ class ModuleResults extends React.Component {
 						values = ["steady", "medium", "fast"];
 						filterNumber = values.indexOf(filter.value.toLowerCase());
 						let resultAcceleration = values.indexOf(result.acceleration.toLowerCase());
-						if(resultAcceleration > filterNumber){
+						if(resultAcceleration > filterNumber) {
 							results.splice(i, 1);
 							i--;
 							continue main;
 						}
 						break;
 				}
-				
 			}
 		}
 		this.state = {
@@ -147,8 +146,7 @@ class ModuleResults extends React.Component {
 							<option value="priceHigh">Price High to Low</option>
 						</select>
 					</div>
-					{this.getBestResultElement()}
-					{this.getResultElements()}
+					{this.getBestResultElement()} {this.getResultElements()}
 				</div>
 			</div>
 		)
@@ -231,7 +229,9 @@ class ModuleResults extends React.Component {
 	}
 	
 	/**
-	 * TODO
+	 * Returns the pros/cons of the best result model as little badges that the
+	 * user can quickly, and visually see what's good or maybe not so good
+	 * about the model.
 	 *
 	 * @returns {XML[]} JSX elements array.
 	 */
@@ -301,9 +301,9 @@ class ModuleResults extends React.Component {
 			);
 		}
 		attributes.sort(function(attributeA, attributeB) {
-			if(attributeA.props.children.charAt(0) == "-" && attributeB.props.children.charAt(0) == "+")
+			if(attributeA.props.children.charAt(0) === "-" && attributeB.props.children.charAt(0) === "+")
 				return 1;
-			else if(attributeA.props.children.charAt(0) == "+" && attributeB.props.children.charAt(0) == "-")
+			else if(attributeA.props.children.charAt(0) === "+" && attributeB.props.children.charAt(0) === "-")
 				return -1;
 			else
 				return attributeA.props.children.localeCompare(attributeB.props.children);
@@ -312,7 +312,7 @@ class ModuleResults extends React.Component {
 	}
 	
 	/**
-	 * TODO
+	 * Returns the best result model's element to render.
 	 *
 	 * @returns {XML} JSX Element.
 	 */
@@ -385,7 +385,7 @@ class ModuleResults extends React.Component {
 	}
 	
 	/**
-	 * TODO
+	 * Returns the best result model.
 	 *
 	 * @returns {Object} The best result object.
 	 */
