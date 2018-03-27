@@ -1,34 +1,137 @@
 {
-  "name": "mmutech-autotrader",
-  "author": "MMUTech",
-  "version": "1.0.0",
-  "license": "MIT",
+  "private": true,
   "homepage": "https://elliotleelewis.github.io/MMUTech-Autotrader",
   "repository": {
     "type": "git",
     "url": "https://github.com/elliotleelewis/MMUTech-Autotrader.git"
   },
   "scripts": {
-    "docs": "jsdoc -c jsdoc.json",
-    "start": "gulp"
+    "build": "cross-env NODE_ENV=development webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "build:prod": "cross-env NODE_ENV=production webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "build:watch": "npm run build -- --watch",
+    "lint": "eslint --ext .jsx,.js src/js"
   },
   "dependencies": {
-    "bootstrap": "^4.0.0-alpha.6",
-    "jquery": "^3.1.1",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
-    "react-hammerjs": "^0.5.0",
-    "react-slider": "^0.7.0",
-    "tether": "^1.4.0"
+    "autobind-decorator": "^2.1.0",
+    "bootstrap": "^4.0.0",
+    "create-react-class": "^15.6.3",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.1",
+    "prop-types": "^15.6.1",
+    "query-string": "^6.0.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-hammerjs": "^1.0.1",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "react-slider": "^0.11.0",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6"
   },
   "devDependencies": {
-    "babel-preset-es2017": "^6.22.0",
-    "babel-preset-react": "^6.23.0",
-    "babelify": "^7.3.0",
-    "browserify": "^14.1.0",
-    "docdash": "^0.4.0",
-    "gulp": "^3.9.1",
-    "gulp-sass": "^3.1.0",
-    "jsdoc": "^3.4.3"
+    "babel-eslint": "^8.2.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-react": "^6.24.1",
+    "cross-env": "^5.1.4",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "html-webpack-plugin": "^2.30.1",
+    "laravel-mix": "^1.7.0",
+    "webpack": "^3.11.0"
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": "airbnb",
+    "globals": {
+      "document": true,
+      "window": true,
+      "$": true
+    },
+    "rules": {
+      "arrow-parens": [
+        "error",
+        "always"
+      ],
+      "brace-style": [
+        "error",
+        "stroustrup"
+      ],
+      "indent": [
+        "error",
+        "tab",
+        {
+          "SwitchCase": 1
+        }
+      ],
+      "max-len": [
+        "error",
+        {
+          "code": 140,
+          "comments": 100
+        }
+      ],
+      "no-plusplus": "off",
+      "no-tabs": "off",
+      "no-use-before-define": [
+        "error",
+        {
+          "functions": false
+        }
+      ],
+      "one-var": "off",
+      "import/order": [
+        "error",
+        {
+          "group": [
+            "builtin",
+            "external",
+            "parent",
+            "sibling",
+            "index"
+          ],
+          "newlines-between": "always"
+        }
+      ],
+      "jsx-a11y/anchor-is-valid": [
+        "error",
+        {
+          "components": [
+            "Link"
+          ],
+          "specialLink": [
+            "to"
+          ],
+          "aspects": [
+            "noHref",
+            "invalidHref",
+            "preferButton"
+          ]
+        }
+      ],
+      "react/jsx-indent": [
+        "error",
+        "tab"
+      ],
+      "react/jsx-indent-props": [
+        "error",
+        "tab"
+      ],
+      "react/sort-comp": [
+        "error",
+        {
+          "order": [
+            "static-methods",
+            "constructor",
+            "render",
+            "lifecycle",
+            "everything-else"
+          ]
+        }
+      ]
+    }
   }
 }

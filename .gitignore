@@ -1,8 +1,9 @@
 ### Custom
 .DS_Store
 .idea/
-build/
-docs/
+/public/dist
+/public/index.html
+/public/mix-manifest.json
 
 
 ### Node template

@@ -4,18 +4,6 @@ $slider-height: 20px;
 	padding: ($spacing / 2) $spacing $spacing;
 	align-items: center;
 	justify-content: center;
-	> .container-fluid {
-		width: 100%;
-		.row {
-			display: flex;
-			width: 100%;
-			margin: 0;
-			@media (max-width: $mobile-breakpoint) {
-				padding-bottom: $spacing;
-				justify-content: center;
-			}
-		}
-	}
 	.filters {
 		display: flex;
 		width: 100%;
@@ -136,7 +124,7 @@ $slider-height: 20px;
 				}
 			}
 		}
-		> button {
+		> a {
 			margin-top: $spacing * 1.5;
 		}
 	}
