@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 /**
  * Search result element for {@link ResultsPage}.
  */
-export default class Result extends Component {
+export default class Result extends PureComponent {
 	static propTypes = {
 		active: PropTypes.bool.isRequired,
 		model: PropTypes.object.isRequired,
@@ -19,7 +19,8 @@ export default class Result extends Component {
 		return (
 			<div
 				className={`col-md-4 col-12 result${(this.props.active ? ' active' : '')}`}
-				title={`${this.getModel().make.name} ${this.getModel().model}`}
+				role="button"
+				title={`${this.props.model.make.name} ${this.props.model.model}`}
 				onClick={this.props.onClick}
 			>
 				<div className="result-container">
@@ -28,10 +29,10 @@ export default class Result extends Component {
 						<div
 							className="result-make"
 							style={{ backgroundImage: `url(${this.getMakeImage()})` }}
-							title={this.getModel().make.name}
+							title={this.props.model.make.name}
 							data-toggle="tooltip"
 						/>
-						<h5 title={this.getModel().model}>{this.getModel().model}</h5>
+						<h5 title={this.props.model.model}>{this.props.model.model}</h5>
 						<h6 title="Price">Typically £{this.getModelPrice()}</h6>
 					</div>
 				</div>
@@ -44,7 +45,7 @@ export default class Result extends Component {
 	 * @returns {string} - Image URL.
 	 */
 	getModelImage() {
-		const url = `media/models/${this.getModel().make.name}/${this.getModel().model}.jpg`;
+		const url = `media/models/${this.props.model.make.name}/${this.props.model.model}.jpg`;
 		return url.replace(/\s+/g, '_').toLowerCase();
 	}
 
@@ -53,7 +54,7 @@ export default class Result extends Component {
 	 * @returns {string} - Image URL.
 	 */
 	getMakeImage() {
-		const url = `media/makes/${this.getModel().make.name}.png`;
+		const url = `media/makes/${this.props.model.make.name}.png`;
 		return url.replace(/\s+/g, '_').toLowerCase();
 	}
 
@@ -62,14 +63,6 @@ export default class Result extends Component {
 	 * @returns {string} - Typical model price.
 	 */
 	getModelPrice() {
-		return this.getModel().typical_price.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-	}
-
-	/**
-	 * Gets the result's model.
-	 * @returns {string} - Result's model.
-	 */
-	getModel() {
-		return this.props.model;
+		return this.props.model.typical_price.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 	}
 }

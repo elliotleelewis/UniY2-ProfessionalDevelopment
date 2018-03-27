@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { parse } from 'query-string';
 
 import * as actions from '../../reducers/actions';
 
@@ -12,16 +13,13 @@ import Result from './components/result';
  */
 @withRouter
 @connect((store) => ({
-	data: store.results.data,
 	results: store.results.results,
 	sort: store.results.sort,
 	selectedResult: store.results.selectedResult,
 }))
 export default class ResultsPage extends Component {
 	static propTypes = {
-		category: PropTypes.string.isRequired,
-		value: PropTypes.string.isRequired,
-		filters: PropTypes.arrayOf(PropTypes.object).isRequired,
+		results: PropTypes.arrayOf(PropTypes.object).isRequired,
 	};
 
 	/**
@@ -34,84 +32,16 @@ export default class ResultsPage extends Component {
 		super(props);
 		this.onClick = this.onClick.bind(this);
 		this.changeSort = this.changeSort.bind(this);
-		this.props.dispatch(actions.setResults(this.props.data.models.filter((model) => {
-			if (this.props.category === 'body_type' && this.props.value !== model.body_type) {
-				return false;
-			}
-			for (const filter of this.props.filters) {
-				switch (filter.filter) {
-					case 'doors': {
-						const value = filter.value.charAt(0);
-						if (Number(model.doors) < Number(value)) {
-							return false;
-						}
-						break;
-					}
-					case 'price': {
-						const min = filter.value[0],
-							max = filter.value[1];
-						if (model.max_price < min || model.min_price > max) {
-							return false;
-						}
-						break;
-					}
-					case 'running_costs': {
-						const values = ['free', 'low', 'medium', 'considerable'],
-							filterIndex = values.indexOf(filter.value.toLowerCase()),
-							modelAnnualTax = values.indexOf(model.annual_tax.toLowerCase()),
-							modelInsurance = values.indexOf(model.insurance.toLowerCase());
-						if (modelAnnualTax > filterIndex || modelInsurance > filterIndex) {
-							return false;
-						}
-						break;
-					}
-					case 'boot_size': {
-						const values = ['small', 'medium', 'large'],
-							filterIndex = values.indexOf(filter.value.toLowerCase()),
-							modelBootSize = values.indexOf(model.boot_size.toLowerCase());
-						if (modelBootSize > filterIndex) {
-							return false;
-						}
-						break;
-					}
-					case 'transmission': {
-						if (filter.value.toLowerCase() !== 'both' && filter.value.toLowerCase() !== model.transmission.toLowerCase()) {
-							return false;
-						}
-						break;
-					}
-					case 'seats': {
-						const filterSeats = filter.value.charAt(0);
-						if (Number(model.seats) < Number(filterSeats)) {
-							return false;
-						}
-						break;
-					}
-					case 'fuel_consumption': {
-						const values = ['low', 'medium', 'considerable'],
-							filterValues = ['minimal', 'medium', 'considerable'],
-							filterIndex = values.indexOf(filter.value.toLowerCase()),
-							modelFuelConsumption = filterValues.indexOf(model.fuel_consumption.toLowerCase());
-						if (modelFuelConsumption > filterIndex) {
-							return false;
-						}
-						break;
-					}
-					case 'acceleration': {
-						const values = ['steady', 'medium', 'fast'],
-							filterIndex = values.indexOf(filter.value.toLowerCase()),
-							modelAcceleration = values.indexOf(model.acceleration.toLowerCase());
-						if (modelAcceleration > filterIndex) {
-							return false;
-						}
-						break;
-					}
-					default:
-						break;
-				}
-			}
-			return true;
-		})));
+		const urlParams = parse(this.props.location.search);
+		if (!urlParams.category || !urlParams.value) {
+			console.log('NOPE');
+		}
+		// TODO get filters from URL...
+		this.props.dispatch(actions.setResultsSettings({
+			category: urlParams.category,
+			value: urlParams.value,
+			filters: [],
+		}));
 	}
 
 	/**
@@ -134,15 +64,15 @@ export default class ResultsPage extends Component {
 			<div id="results" className="module">
 				<div className="container-fluid">
 					<div className="row form-group">
-						<label className="offset-md-6 col-md-2 col-4" htmlFor="sort">Sort By:</label>
+						<label className="offset-md-8 col-md-2 col-4" htmlFor="sort">Sort By:</label>
 						<select id="sort" className="col-md-2 col-8 form-control" onChange={this.changeSort}>
 							<option value="relevancy">Relevancy</option>
 							<option value="priceLow">Price Low to High</option>
 							<option value="priceHigh">Price High to Low</option>
 						</select>
 					</div>
-					{this.getBestResultElement()}
-					{this.getResultElements()}
+					{(this.props.results && this.props.results.length > 0) ? this.getBestResultElement() : null}
+					{(this.props.results && this.props.results.length > 0) ? this.getResultElements() : null}
 				</div>
 			</div>
 		);
@@ -153,6 +83,9 @@ export default class ResultsPage extends Component {
 	 */
 	componentDidMount() {
 		this.props.dispatch(actions.setTitle('Results'));
+	}
+
+	componentDidUpdate() {
 		$('[data-toggle="tooltip"]').tooltip();
 	}
 
@@ -255,7 +188,7 @@ export default class ResultsPage extends Component {
 	 * @returns {React} JSX Element.
 	 */
 	getBestResultElement() {
-		if (this.state.sort !== 'relevancy') {
+		if (this.props.sort !== 'relevancy') {
 			return null;
 		}
 		const bestResult = this.getBestResult();
@@ -308,7 +241,7 @@ export default class ResultsPage extends Component {
 					/>
 				));
 			}
-			if (this.props.selectedResult < i + 3 && !shownSelected) {
+			if (this.props.selectedResult && this.props.selectedResult < i + 3 && !shownSelected) {
 				row.splice(
 					this.props.selectedResult + (1 - i),
 					0,

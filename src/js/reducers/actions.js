@@ -9,8 +9,8 @@ export const TOGGLE_PRESETS = 'TOGGLE_PRESETS';
 export const SET_OPTIONS_SETTINGS = 'SET_OPTIONS_SETTINGS';
 export const SET_FILTER_VALUE = 'SET_FILTER_VALUE';
 // Results
-export const SET_RESULTS = 'SET_RESULTS';
-export const CHANGE_RESULT_SORT = 'TOGGLE_SELECTED_RESULT';
+export const SET_RESULTS_SETTINGS = 'SET_RESULTS_SETTINGS';
+export const CHANGE_RESULT_SORT = 'CHANGE_RESULT_SORT';
 export const TOGGLE_SELECTED_RESULT = 'TOGGLE_SELECTED_RESULT';
 
 // --- GENERATORS ---
@@ -58,10 +58,10 @@ export function setFilterValue(index, filter, value) {
 	};
 }
 // Results
-export function setResults(results) {
+export function setResultsSettings(settings) {
 	return {
-		type: SET_RESULTS,
-		payload: results,
+		type: SET_RESULTS_SETTINGS,
+		payload: settings,
 	};
 }
 export function changeResultSort(sort) {

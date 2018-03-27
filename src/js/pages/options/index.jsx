@@ -16,12 +16,20 @@ import TextSlider from './components/text-slider';
  */
 @withRouter
 @connect((store) => ({
+	category: store.options.category,
+	value: store.options.value,
 	filters: store.options.filters,
 }))
 export default class OptionsPage extends Component {
 	static propTypes = {
 		dispatch: PropTypes.func.isRequired,
+		category: PropTypes.string,
+		value: PropTypes.string,
 		filters: PropTypes.arrayOf(PropTypes.object).isRequired,
+	};
+	static defaultProps = {
+		category: null,
+		value: null,
 	};
 
 	/**
@@ -30,7 +38,6 @@ export default class OptionsPage extends Component {
 	 */
 	constructor(props) {
 		super(props);
-		this.showResults = this.showResults.bind(this);
 		this.onFilterChange = this.onFilterChange.bind(this);
 		const urlParams = parse(this.props.location.search);
 		if (!urlParams.category || !urlParams.value) {
@@ -48,7 +55,7 @@ export default class OptionsPage extends Component {
 			<div id="options" className="module">
 				<div className="filters">
 					{this.getFilterElements()}
-					<Link className="btn btn-lg btn-primary" to="/results" onClick={this.showResults}>Search</Link>
+					<Link className="btn btn-lg btn-primary" to={this.getResultUrl()}>Search</Link>
 				</div>
 			</div>
 		);
@@ -58,13 +65,12 @@ export default class OptionsPage extends Component {
 		this.props.dispatch(actions.setTitle('Options'));
 	}
 
-	/**
-	 * Calls the {@link App#showResults} function. Switches the web app to
-	 * the results module.
-	 */
-	showResults() {
-		console.log('TEST1234');
-		// this.props.mainPage.updatePage(this.props.mainPage.getAppModules().results.hash, params);
+	getResultUrl() {
+		let url = '/results?';
+		url += `category=${this.props.category}`;
+		url += `&value=${this.props.value}`;
+		// TODO add filters...
+		return url;
 	}
 
 	/**

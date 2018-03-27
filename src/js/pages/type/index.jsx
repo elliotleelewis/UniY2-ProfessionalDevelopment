@@ -94,6 +94,8 @@ export default class TypePage extends Component {
 				key={JSON.stringify(item)}
 				type={item}
 				relativeSelectedIndex={this.getRelativeSelectedIndex(i)}
+				nextType={() => this.props.dispatch(actions.typeIndexInc())}
+				prevType={() => this.props.dispatch(actions.typeIndexDec())}
 			/>
 		));
 	}
