@@ -19,6 +19,7 @@ import Result from './components/result';
 }))
 export default class ResultsPage extends Component {
 	static propTypes = {
+		dispatch: PropTypes.func.isRequired,
 		results: PropTypes.arrayOf(PropTypes.object).isRequired,
 	};
 
@@ -40,7 +41,7 @@ export default class ResultsPage extends Component {
 		this.props.dispatch(actions.setResultsSettings({
 			category: urlParams.category,
 			value: urlParams.value,
-			filters: [],
+			filters: urlParams.filters ? JSON.parse(urlParams.filters) : [],
 		}));
 	}
 
@@ -61,15 +62,17 @@ export default class ResultsPage extends Component {
 			);
 		}
 		return (
-			<div id="results" className="module">
+			<div id="results" className="module px-4 pb-4">
 				<div className="container-fluid">
-					<div className="row form-group">
-						<label className="offset-md-8 col-md-2 col-4" htmlFor="sort">Sort By:</label>
-						<select id="sort" className="col-md-2 col-8 form-control" onChange={this.changeSort}>
-							<option value="relevancy">Relevancy</option>
-							<option value="priceLow">Price Low to High</option>
-							<option value="priceHigh">Price High to Low</option>
-						</select>
+					<div className="form-group form-inline d-flex">
+						<label className="d-flex my-0 ml-auto align-items-center" htmlFor="sort">
+							Sort By:
+							<select id="sort" className="form-control ml-2" onChange={this.changeSort}>
+								<option value="relevancy">Relevancy</option>
+								<option value="priceLow">Price Low to High</option>
+								<option value="priceHigh">Price High to Low</option>
+							</select>
+						</label>
 					</div>
 					{(this.props.results && this.props.results.length > 0) ? this.getBestResultElement() : null}
 					{(this.props.results && this.props.results.length > 0) ? this.getResultElements() : null}
@@ -131,28 +134,28 @@ export default class ResultsPage extends Component {
 		const attributes = [];
 		const result = this.getBestResult();
 		if (result.seats === '5') {
-			attributes.push(<div key={0} className="badge badge-pill badge-success">+ Seats</div>);
+			attributes.push(<div key={0} className="badge badge-pill badge-success mx-2 mt-2">+ Seats</div>);
 		}
 		else if (result.seats === '2') {
-			attributes.push(<div key={0} className="badge badge-pill badge-danger">- Seats</div>);
+			attributes.push(<div key={0} className="badge badge-pill badge-danger mx-2 mt-2">- Seats</div>);
 		}
 		if (result.doors === '5') {
-			attributes.push(<div key={1} className="badge badge-pill badge-success">+ Doors</div>);
+			attributes.push(<div key={1} className="badge badge-pill badge-success mx-2 mt-2">+ Doors</div>);
 		}
 		else if (result.doors === '2') {
-			attributes.push(<div key={1} className="badge badge-pill badge-danger">- Doors</div>);
+			attributes.push(<div key={1} className="badge badge-pill badge-danger mx-2 mt-2">- Doors</div>);
 		}
 		if (result.boot_size.toLowerCase() === 'large') {
-			attributes.push(<div key={2} className="badge badge-pill badge-success">+ Boot Size</div>);
+			attributes.push(<div key={2} className="badge badge-pill badge-success mx-2 mt-2">+ Boot Size</div>);
 		}
 		else if (result.boot_size.toLowerCase() === 'small') {
-			attributes.push(<div key={2} className="badge badge-pill badge-danger">- Boot Size</div>);
+			attributes.push(<div key={2} className="badge badge-pill badge-danger mx-2 mt-2">- Boot Size</div>);
 		}
 		if (result.fuel_consumption.toLowerCase() === 'low') {
-			attributes.push(<div key={3} className="badge badge-pill badge-success">+ Fuel Consumption</div>);
+			attributes.push(<div key={3} className="badge badge-pill badge-success mx-2 mt-2">+ Fuel Consumption</div>);
 		}
 		else if (result.fuel_consumption.toLowerCase() === 'considerable') {
-			attributes.push(<div key={3} className="badge badge-pill badge-danger">- Fuel Consumption</div>);
+			attributes.push(<div key={3} className="badge badge-pill badge-danger mx-2 mt-2">- Fuel Consumption</div>);
 		}
 		const runningCostValues = ['free', 'low', 'medium', 'considerable'];
 		const runningCosts = (
@@ -160,16 +163,16 @@ export default class ResultsPage extends Component {
 			+ runningCostValues.indexOf(result.insurance.toLowerCase())
 		) / 2;
 		if (runningCosts <= 1.5) {
-			attributes.push(<div key={4} className="badge badge-pill badge-success">+ Running Costs</div>);
+			attributes.push(<div key={4} className="badge badge-pill badge-success mx-2 mt-2">+ Running Costs</div>);
 		}
 		else if (runningCosts >= 2.5) {
-			attributes.push(<div key={4} className="badge badge-pill badge-danger">- Running Costs</div>);
+			attributes.push(<div key={4} className="badge badge-pill badge-danger mx-2 mt-2">- Running Costs</div>);
 		}
 		if (result.acceleration.toLowerCase() === 'fast') {
-			attributes.push(<div key={5} className="badge badge-pill badge-success">+ Speed</div>);
+			attributes.push(<div key={5} className="badge badge-pill badge-success mx-2 mt-2">+ Speed</div>);
 		}
 		else if (result.acceleration.toLowerCase() === 'steady') {
-			attributes.push(<div key={5} className="badge badge-pill badge-danger">- Speed</div>);
+			attributes.push(<div key={5} className="badge badge-pill badge-danger mx-2 mt-2">- Speed</div>);
 		}
 		attributes.sort((attributeA, attributeB) => {
 			if (attributeA.props.children.charAt(0) === '-' && attributeB.props.children.charAt(0) === '+') {
@@ -197,23 +200,26 @@ export default class ResultsPage extends Component {
 		let bestResultModel = `media/models/${bestResult.make.name}/${bestResult.model}.jpg`;
 		bestResultModel = bestResultModel.replace(/\s+/g, '_').toLowerCase();
 		return (
-			<div className="row hidden-sm-down featured-result">
-				<div className="col-4 featured-result-image-container">
-					<div className="featured-result-image" style={{ backgroundImage: `url(${bestResultModel})` }} />
+			<div className="featured-result row m-0 mb-3">
+				<div className="featured-result-image-container col-4 h-100">
+					<div className="featured-result-image h-100" style={{ backgroundImage: `url(${bestResultModel})` }} />
 				</div>
-				<div className="col-8 featured-result-info">
-					<h3>Best Result</h3>
-					<div className="result-info">
-						<div
-							className="result-make"
-							style={{ backgroundImage: `url(${bestResultMake})` }}
-							title={bestResult.make.name}
-							data-toggle="tooltip"
-						/>
-						<h4 title={bestResult.model}>{bestResult.model}</h4>
-					</div>
-					<div className="featured-result-tags">
-						{this.getBestAttributes()}
+				<div className="col-8 d-flex m-0 py-3 flex-column">
+					<h4 className="m-0 text-center">Best Result:</h4>
+					<div className="d-flex h-100 p-3 flex-column align-items-center justify-content-center">
+						<div className="d-flex align-items-center">
+							<img
+								className="featured-result-make mh-100"
+								src={bestResultMake}
+								alt={bestResult.make.name}
+								title={bestResult.make.name}
+								data-toggle="tooltip"
+							/>
+							<h3 className="my-0 ml-3" title={bestResult.model}>{bestResult.model}</h3>
+						</div>
+						<div className="d-flex flex-wrap align-items-center justify-content-center">
+							{this.getBestAttributes()}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -241,22 +247,22 @@ export default class ResultsPage extends Component {
 					/>
 				));
 			}
-			if (this.props.selectedResult && this.props.selectedResult < i + 3 && !shownSelected) {
+			if (this.props.selectedResult !== null && this.props.selectedResult < i + 3 && !shownSelected) {
 				row.splice(
 					this.props.selectedResult + (1 - i),
 					0,
 					(
 						<div
 							key={results.length}
-							className="col-12 selected-result"
+							className="selected-result col-12 mb-3"
 							data-arrow-offset={this.props.selectedResult - i}
 						>
-							<div className="col-12 selected-result-indicator">
-								<div className="col-4 triangle-container">
+							<div className="col-12 d-flex p-0">
+								<div className="triangle-container col-4 d-flex my-auto justify-content-center">
 									<div className="triangle" />
 								</div>
 							</div>
-							<div className="col-12 selected-result-info">
+							<div className="selected-result-info col-12 d-flex align-items-center justify-content-center">
 								The selected model is {results[this.props.selectedResult].model}
 							</div>
 						</div>

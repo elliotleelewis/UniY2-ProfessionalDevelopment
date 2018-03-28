@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+import React, { Fragment, PureComponent } from 'react';
 
 /**
  * Individual body type option for type slider.
@@ -17,14 +17,19 @@ export default class Type extends PureComponent {
 	 * @returns {React} - JSX element.
 	 */
 	render() {
+		const TypeComponent = () => (
+			<Fragment>
+				<svg className="w-100">
+					<title>{this.props.type}</title>
+					<use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref={this.getIconFilepath()} />
+				</svg>
+				<h5 className="w-100 m-0 text-center">{this.props.type}</h5>
+			</Fragment>
+		);
 		if (Math.abs(this.props.relativeSelectedIndex) !== 1) {
 			return (
 				<div className={`type ${this.getClassName()}`}>
-					<svg>
-						<title>{this.props.type}</title>
-						<use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref={this.getIconFilepath()} />
-					</svg>
-					<h5>{this.props.type}</h5>
+					<TypeComponent />
 				</div>
 			);
 		}
@@ -35,11 +40,7 @@ export default class Type extends PureComponent {
 				onClick={(this.props.relativeSelectedIndex === 1) ? this.props.nextType : this.props.prevType}
 				tabIndex={0}
 			>
-				<svg>
-					<title>{this.props.type}</title>
-					<use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref={this.getIconFilepath()} />
-				</svg>
-				<h5>{this.props.type}</h5>
+				<TypeComponent />
 			</div>
 		);
 	}

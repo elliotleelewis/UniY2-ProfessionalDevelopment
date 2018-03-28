@@ -1,26 +1,9 @@
 $slider-height: 20px;
 &#options {
-	display: flex;
-	padding: ($spacing / 2) $spacing $spacing;
-	align-items: center;
-	justify-content: center;
-	.filters {
-		display: flex;
-		width: 100%;
-		max-width: 600px;
-		flex: 1 0 auto;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		text-align: center;
+	.container {
+		max-width: 720px;
 		> div {
-			width: 100%;
-			text-align: center;
-			&:not(:first-of-type) {
-				padding-top: $spacing;
-			}
 			&:not(:last-of-type) {
-				padding-bottom: $spacing;
 				border-bottom: 1px solid $trans-bg;
 			}
 			&.range-slider {
@@ -54,37 +37,6 @@ $slider-height: 20px;
 						}
 					}
 				}
-			}
-			&.text-selector {
-				.items {
-					display: flex;
-					margin-top: $spacing;
-					align-items: center;
-					justify-content: center;
-					@media (max-width: $mobile-breakpoint) {
-						flex-direction: column;
-					}
-					.btn {
-						&:not(:first-of-type) {
-							margin-left: $spacing / 2;
-							@media (max-width: $mobile-breakpoint) {
-								margin-left: 0;
-								margin-top: $spacing / 4;
-							}
-						}
-						&:not(:last-of-type) {
-							margin-right: $spacing / 2;
-							@media (max-width: $mobile-breakpoint) {
-								margin-right: 0;
-								margin-bottom: $spacing / 4;
-							}
-						}
-					}
-				}
-			}
-			h4 {
-				margin-bottom: 0;
-				color: $text-colour;
 			}
 			.slider {
 				width: 100%;
@@ -123,9 +75,6 @@ $slider-height: 20px;
 					}
 				}
 			}
-		}
-		> a {
-			margin-top: $spacing * 1.5;
 		}
 	}
 }

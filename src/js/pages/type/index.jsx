@@ -43,9 +43,9 @@ export default class TypePage extends Component {
 	render() {
 		return (
 			<div id="type" className="module">
-				<div className="types-container">
+				<div className="types-container d-flex mx-3 flex-column align-items-center justify-content-center">
 					<Hammer onSwipe={this.handleSwipe}>
-						<div className="types">
+						<div className="types position-relative d-flex w-100 align-items-center justify-content-center">
 							{this.eachType()}
 						</div>
 					</Hammer>

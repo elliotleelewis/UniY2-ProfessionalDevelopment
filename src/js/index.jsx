@@ -38,7 +38,7 @@ class App extends Component {
 	render() {
 		return (
 			<div id="main-page" className="d-flex w-100 h-100 flex-column">
-				<header className="d-flex pt-2 p-3 flex-column align-items-center">
+				<header className="d-flex p-3 flex-column align-items-center">
 					<img className="w-100 mh-100" src="media/brand/logo.png" alt="AutoTrader Logo" />
 					<div className="w-100 mt-2 text-center">
 						<h2 className="m-0">{this.props.title}</h2>

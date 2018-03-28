@@ -16,53 +16,33 @@ export default class Result extends PureComponent {
 	 * @returns {React} - JSX element.
 	 */
 	render() {
+		let makeUrl = `media/makes/${this.props.model.make.name}.png`;
+		makeUrl = makeUrl.replace(/\s+/g, '_').toLowerCase();
+		let modelUrl = `media/models/${this.props.model.make.name}/${this.props.model.model}.jpg`;
+		modelUrl = modelUrl.replace(/\s+/g, '_').toLowerCase();
+		const modelPrice = this.props.model.typical_price.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 		return (
 			<div
-				className={`col-md-4 col-12 result${(this.props.active ? ' active' : '')}`}
+				className={`${(this.props.active ? 'active ' : '')}result col-md-4 col-12 my-3`}
 				role="button"
 				title={`${this.props.model.make.name} ${this.props.model.model}`}
 				onClick={this.props.onClick}
 			>
-				<div className="result-container">
-					<div className="result-image" style={{ backgroundImage: `url(${this.getModelImage()})` }} />
-					<div className="result-info">
-						<div
-							className="result-make"
-							style={{ backgroundImage: `url(${this.getMakeImage()})` }}
+				<div className="result-container h-100">
+					<div className="result-image" style={{ backgroundImage: `url(${modelUrl})` }} />
+					<div className="result-info d-flex p-2 align-items-center">
+						<img
+							className="mh-100"
+							src={makeUrl}
+							alt={this.props.model.make.name}
 							title={this.props.model.make.name}
 							data-toggle="tooltip"
 						/>
-						<h5 title={this.props.model.model}>{this.props.model.model}</h5>
-						<h6 title="Price">Typically £{this.getModelPrice()}</h6>
+						<h5 className="w-100 my-0 ml-2" title={this.props.model.model}>{this.props.model.model}</h5>
+						<h6 className="m-0" title="Price">~ £{modelPrice}</h6>
 					</div>
 				</div>
 			</div>
 		);
-	}
-
-	/**
-	 * Gets the image URL for the result's model.
-	 * @returns {string} - Image URL.
-	 */
-	getModelImage() {
-		const url = `media/models/${this.props.model.make.name}/${this.props.model.model}.jpg`;
-		return url.replace(/\s+/g, '_').toLowerCase();
-	}
-
-	/**
-	 * Gets the image URL for the result's make's logo.
-	 * @returns {string} - Image URL.
-	 */
-	getMakeImage() {
-		const url = `media/makes/${this.props.model.make.name}.png`;
-		return url.replace(/\s+/g, '_').toLowerCase();
-	}
-
-	/**
-	 * Gets the typical price for the result's model.
-	 * @returns {string} - Typical model price.
-	 */
-	getModelPrice() {
-		return this.props.model.typical_price.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 	}
 }

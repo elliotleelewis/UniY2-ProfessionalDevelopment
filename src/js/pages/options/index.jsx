@@ -52,10 +52,10 @@ export default class OptionsPage extends Component {
 	 */
 	render() {
 		return (
-			<div id="options" className="module">
-				<div className="filters">
+			<div id="options" className="module justify-content-center px-4 pb-3">
+				<div className="container d-flex flex-column align-items-center">
 					{this.getFilterElements()}
-					<Link className="btn btn-lg btn-primary" to={this.getResultUrl()}>Search</Link>
+					<Link className="btn btn-lg btn-primary my-3" to={this.getResultUrl()}>Search</Link>
 				</div>
 			</div>
 		);

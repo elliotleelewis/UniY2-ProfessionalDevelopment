@@ -1,7 +1,9 @@
-@import "~bootstrap/scss/bootstrap";
-@import "colors";
-@import "vars";
-@import "default";
+// Imports
+@import 'vars';
+@import '~bootstrap/scss/bootstrap';
+@import 'default';
+
+// Styles
 .frame {
 	min-height: 100%;
 	background: $theme-colour no-repeat fixed center;
@@ -36,9 +38,9 @@
 	height: 100%;
 	display: flex;
 	flex-flow: column;
-	@import "moduleType";
-	@import "moduleOptions";
-	@import "moduleResults";
+	@import 'moduleType';
+	@import 'moduleOptions';
+	@import 'moduleResults';
 }
 button {
 	cursor: pointer;

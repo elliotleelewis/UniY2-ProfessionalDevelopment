@@ -32,8 +32,8 @@ export default class TextSlider extends Component {
 	 */
 	render() {
 		return (
-			<div className="text-slider">
-				<h4>{this.props.label}</h4>
+			<div className="text-slider w-100 py-3 text-center">
+				<h4 className="m-0 text-white">{this.props.label}</h4>
 				<ReactSlider
 					min={0}
 					max={this.props.items.length - 1}

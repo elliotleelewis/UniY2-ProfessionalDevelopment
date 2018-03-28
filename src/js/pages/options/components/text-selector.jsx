@@ -32,9 +32,9 @@ export default class TextSelector extends Component {
 	 */
 	render() {
 		return (
-			<div className="text-selector">
-				<h4>{this.props.label}</h4>
-				<div className="items">
+			<div className="text-selector w-100 py-3 text-center">
+				<h4 className="m-0 text-white">{this.props.label}</h4>
+				<div className="items d-flex align-items-center justify-content-center flex-column flex-md-row">
 					{this.getItems()}
 				</div>
 			</div>
@@ -60,7 +60,7 @@ export default class TextSelector extends Component {
 		return this.props.items.map((item, i) => (
 			<button
 				key={i}
-				className={`btn btn-${(this.state.value === i) ? '' : 'outline-'}secondary`}
+				className={`btn btn-${(this.state.value === i) ? '' : 'outline-'}secondary mx-2 mt-3`}
 				onClick={() => this.onChange(i)}
 			>
 				{item}

@@ -1,3 +1,11 @@
+// Imports
+@import 'colors';
+
+// Variables
+$theme-colors: (
+	trans: $trans-bg
+);
+
 $desktop-breakpoint: 768px;
 $mobile-breakpoint: $desktop-breakpoint - 1px;
 $transition-length: 0.25s;

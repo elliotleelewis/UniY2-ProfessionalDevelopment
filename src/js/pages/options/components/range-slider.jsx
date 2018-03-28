@@ -40,8 +40,8 @@ export default class RangeSlider extends Component {
 	 */
 	render() {
 		return (
-			<div className="range-slider">
-				<h4>{this.props.label}</h4>
+			<div className="range-slider w-100 py-3 text-center">
+				<h4 className="m-0 text-white">{this.props.label}</h4>
 				<ReactSlider
 					min={this.props.min}
 					max={this.props.max}
