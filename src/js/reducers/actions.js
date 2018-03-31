@@ -47,12 +47,11 @@ export function setOptionsSettings(category, value) {
 		},
 	};
 }
-export function setFilterValue(index, filter, value) {
+export function setFilterValue(index, value) {
 	return {
 		type: SET_FILTER_VALUE,
 		payload: {
 			index,
-			filter,
 			value,
 		},
 	};

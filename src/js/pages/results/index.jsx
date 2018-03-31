@@ -33,16 +33,6 @@ export default class ResultsPage extends Component {
 		super(props);
 		this.onClick = this.onClick.bind(this);
 		this.changeSort = this.changeSort.bind(this);
-		const urlParams = parse(this.props.location.search);
-		if (!urlParams.category || !urlParams.value) {
-			console.log('NOPE');
-		}
-		// TODO get filters from URL...
-		this.props.dispatch(actions.setResultsSettings({
-			category: urlParams.category,
-			value: urlParams.value,
-			filters: urlParams.filters ? JSON.parse(urlParams.filters) : [],
-		}));
 	}
 
 	/**
@@ -86,6 +76,15 @@ export default class ResultsPage extends Component {
 	 */
 	componentDidMount() {
 		this.props.dispatch(actions.setTitle('Results'));
+		const urlParams = parse(this.props.location.search);
+		if (!urlParams.category || !urlParams.value) {
+			console.log('NOPE');
+		}
+		this.props.dispatch(actions.setResultsSettings({
+			category: urlParams.category,
+			value: urlParams.value,
+			filters: urlParams.filters ? JSON.parse(urlParams.filters) : [],
+		}));
 	}
 
 	componentDidUpdate() {

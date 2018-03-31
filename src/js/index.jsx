@@ -16,11 +16,15 @@ let middleware = [
 	//
 ];
 if (process.env.NODE_ENV !== 'production') {
+	const { composeWithDevTools } = require('redux-devtools-extension');
 	const { logger } = require('redux-logger');
-	middleware = [
+	middleware = composeWithDevTools(applyMiddleware(
 		...middleware,
 		logger,
-	];
+	));
+}
+else {
+	middleware = applyMiddleware(...middleware);
 }
 
 @withRouter
@@ -53,7 +57,7 @@ class App extends Component {
 }
 
 render(
-	<Provider store={createStore(reducers, applyMiddleware(...middleware))}>
+	<Provider store={createStore(reducers, middleware)}>
 		<Router>
 			<App />
 		</Router>

@@ -39,11 +39,6 @@ export default class OptionsPage extends Component {
 	constructor(props) {
 		super(props);
 		this.onFilterChange = this.onFilterChange.bind(this);
-		const urlParams = parse(this.props.location.search);
-		if (!urlParams.category || !urlParams.value) {
-			console.log('NOPE');
-		}
-		this.props.dispatch(actions.setOptionsSettings(urlParams.category, urlParams.value));
 	}
 
 	/**
@@ -63,13 +58,18 @@ export default class OptionsPage extends Component {
 
 	componentDidMount() {
 		this.props.dispatch(actions.setTitle('Options'));
+		const urlParams = parse(this.props.location.search);
+		if (!urlParams.category || !urlParams.value) {
+			console.log('NOPE');
+		}
+		this.props.dispatch(actions.setOptionsSettings(urlParams.category, urlParams.value));
 	}
 
 	getResultUrl() {
 		let url = '/results?';
 		url += `category=${this.props.category}`;
 		url += `&value=${this.props.value}`;
-		// TODO add filters...
+		url += `&filters=${JSON.stringify(this.getValues())}`;
 		return url;
 	}
 
@@ -99,7 +99,7 @@ export default class OptionsPage extends Component {
 							prefix="£"
 							min={settings.min}
 							max={settings.max}
-							value={[settings.defaultValue[0], settings.defaultValue[1]]}
+							value={[filter.value[0], filter.value[1]]}
 							onChange={(value) => this.onFilterChange(i, value)}
 						/>
 					);
@@ -109,7 +109,7 @@ export default class OptionsPage extends Component {
 							key={filter.type}
 							label="Seats"
 							items={['2+', '4+', '5+', '7+']}
-							value={settings.defaultValue}
+							value={filter.value}
 							onChange={(value) => this.onFilterChange(i, value)}
 						/>
 					);
@@ -119,7 +119,7 @@ export default class OptionsPage extends Component {
 							key={filter.type}
 							label="Doors"
 							items={['2+', '3+', '4+', '5+']}
-							value={settings.defaultValue}
+							value={filter.value}
 							onChange={(value) => this.onFilterChange(i, value)}
 						/>
 					);
@@ -129,7 +129,7 @@ export default class OptionsPage extends Component {
 							key={filter.type}
 							label="Boot Size"
 							items={['Small', 'Medium', 'Large']}
-							value={settings.defaultValue}
+							value={filter.value}
 							onChange={(value) => this.onFilterChange(i, value)}
 						/>
 					);
@@ -139,7 +139,7 @@ export default class OptionsPage extends Component {
 							key={filter.type}
 							label="Transmission"
 							items={['Both', 'Manual', 'Automatic']}
-							value={settings.defaultValue}
+							value={filter.value}
 							onChange={(value) => this.onFilterChange(i, value)}
 						/>
 					);
@@ -149,7 +149,7 @@ export default class OptionsPage extends Component {
 							key={filter.type}
 							label="Fuel Consumption"
 							items={['Low', 'Medium', 'Considerable']}
-							value={settings.defaultValue}
+							value={filter.value}
 							onChange={(value) => this.onFilterChange(i, value)}
 						/>
 					);
@@ -159,7 +159,7 @@ export default class OptionsPage extends Component {
 							key={filter.type}
 							label="Acceleration"
 							items={['Steady', 'Medium', 'Fast']}
-							value={settings.defaultValue}
+							value={filter.value}
 							onChange={(value) => this.onFilterChange(i, value)}
 						/>
 					);
@@ -169,7 +169,7 @@ export default class OptionsPage extends Component {
 							key={filter.type}
 							label="Running Costs"
 							items={['Low', 'Medium', 'Considerable']}
-							value={settings.defaultValue}
+							value={filter.value}
 							onChange={(value) => this.onFilterChange(i, value)}
 						/>
 					);
@@ -177,5 +177,12 @@ export default class OptionsPage extends Component {
 					return null;
 			}
 		});
+	}
+
+	getValues() {
+		return this.props.filters.map((filter) => ({
+			type: filter.type,
+			value: filter.value,
+		}));
 	}
 }

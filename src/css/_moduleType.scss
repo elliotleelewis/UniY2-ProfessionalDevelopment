@@ -102,6 +102,7 @@
 				overflow: auto;
 				.preset {
 					min-width: 120px;
+					flex: 1 0 auto;
 					background: none;
 					text-decoration: none;
 					&:hover {

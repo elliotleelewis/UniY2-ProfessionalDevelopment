@@ -3,7 +3,6 @@ import * as actions from './actions';
 const initialState = {
 	category: null,
 	value: null,
-	values: [],
 	filters: [],
 };
 
@@ -11,6 +10,8 @@ export default function typeReducer(state = initialState, action) {
 	switch (action.type) {
 		case actions.SET_OPTIONS_SETTINGS:
 			return setOptionsSettings(state, action.payload);
+		case actions.SET_FILTER_VALUE:
+			return setFilterValue(state, action.payload);
 		default:
 			return state;
 	}
@@ -27,23 +28,19 @@ function setOptionsSettings(state, settings) {
 				newState.filters = [
 					{
 						type: 'doors',
-						settings: {
-							defaultValue: '5+',
-						},
+						value: '5+',
 					},
 					{
 						type: 'price',
+						value: [0, 30000],
 						settings: {
 							min: 0,
 							max: 55000,
-							defaultValue: [0, 30000],
 						},
 					},
 					{
 						type: 'running_costs',
-						settings: {
-							defaultValue: 'Low',
-						},
+						value: 'Low',
 					},
 				];
 				break;
@@ -51,23 +48,19 @@ function setOptionsSettings(state, settings) {
 				newState.filters = [
 					{
 						type: 'price',
+						value: [0, 32000],
 						settings: {
 							min: 0,
 							max: 50000,
-							defaultValue: [0, 32000],
 						},
 					},
 					{
 						type: 'boot_size',
-						settings: {
-							defaultValue: 'Large',
-						},
+						value: 'Large',
 					},
 					{
 						type: 'transmission',
-						settings: {
-							defaultValue: 'Both',
-						},
+						value: 'Both',
 					},
 				];
 				break;
@@ -75,29 +68,23 @@ function setOptionsSettings(state, settings) {
 				newState.filters = [
 					{
 						type: 'seats',
-						settings: {
-							defaultValue: '5+',
-						},
+						value: '5+',
 					},
 					{
 						type: 'price',
+						value: [0, 40000],
 						settings: {
 							min: 0,
 							max: 60000,
-							defaultValue: [0, 40000],
 						},
 					},
 					{
 						type: 'boot_size',
-						settings: {
-							defaultValue: 'Medium',
-						},
+						value: 'Medium',
 					},
 					{
 						type: 'fuel_consumption',
-						settings: {
-							defaultValue: 'Medium',
-						},
+						value: 'Medium',
 					},
 				];
 				break;
@@ -105,23 +92,19 @@ function setOptionsSettings(state, settings) {
 				newState.filters = [
 					{
 						type: 'seats',
-						settings: {
-							defaultValue: '5+',
-						},
+						value: '5+',
 					},
 					{
 						type: 'price',
+						value: [0, 35000],
 						settings: {
 							min: 0,
 							max: 50000,
-							defaultValue: [0, 35000],
 						},
 					},
 					{
 						type: 'running_costs',
-						settings: {
-							defaultValue: 'Medium',
-						},
+						value: 'Medium',
 					},
 				];
 				break;
@@ -129,29 +112,23 @@ function setOptionsSettings(state, settings) {
 				newState.filters = [
 					{
 						type: 'seats',
-						settings: {
-							defaultValue: '2+',
-						},
+						value: '2+',
 					},
 					{
 						type: 'price',
+						value: [0, 35000],
 						settings: {
 							min: 0,
 							max: 150000,
-							defaultValue: [0, 35000],
 						},
 					},
 					{
 						type: 'running_costs',
-						settings: {
-							defaultValue: 'Considerable',
-						},
+						value: 'Considerable',
 					},
 					{
 						type: 'transmission',
-						settings: {
-							defaultValue: 'Both',
-						},
+						value: 'Both',
 					},
 				];
 				break;
@@ -159,23 +136,19 @@ function setOptionsSettings(state, settings) {
 				newState.filters = [
 					{
 						type: 'seats',
-						settings: {
-							defaultValue: '2+',
-						},
+						value: '2+',
 					},
 					{
 						type: 'price',
+						value: [0, 80000],
 						settings: {
 							min: 0,
 							max: 200000,
-							defaultValue: [0, 80000],
 						},
 					},
 					{
 						type: 'running_costs',
-						settings: {
-							defaultValue: 'Considerable',
-						},
+						value: 'Considerable',
 					},
 				];
 				break;
@@ -183,23 +156,19 @@ function setOptionsSettings(state, settings) {
 				newState.filters = [
 					{
 						type: 'price',
+						value: [0, 50000],
 						settings: {
 							min: 0,
 							max: 70000,
-							defaultValue: [0, 50000],
 						},
 					},
 					{
 						type: 'fuel_consumption',
-						settings: {
-							defaultValue: 'Medium',
-						},
+						value: 'Medium',
 					},
 					{
 						type: 'running_costs',
-						settings: {
-							defaultValue: 'Medium',
-						},
+						value: 'Medium',
 					},
 				];
 				break;
@@ -213,23 +182,19 @@ function setOptionsSettings(state, settings) {
 				newState.filters = [
 					{
 						type: 'price',
+						value: [0, 25000],
 						settings: {
 							min: 0,
 							max: 50000,
-							defaultValue: [0, 25000],
 						},
 					},
 					{
 						type: 'running_costs',
-						settings: {
-							defaultValue: 'Low',
-						},
+						value: 'Low',
 					},
 					{
 						type: 'transmission',
-						settings: {
-							defaultValue: 'Automatic',
-						},
+						value: 'Automatic',
 					},
 				];
 				break;
@@ -237,23 +202,19 @@ function setOptionsSettings(state, settings) {
 				newState.filters = [
 					{
 						type: 'price',
+						value: [1000, 30000],
 						settings: {
 							min: 0,
 							max: 90000,
-							defaultValue: [1000, 30000],
 						},
 					},
 					{
 						type: 'fuel_consumption',
-						settings: {
-							defaultValue: 'Low',
-						},
+						value: 'Low',
 					},
 					{
 						type: 'running_costs',
-						settings: {
-							defaultValue: 'Low',
-						},
+						value: 'Low',
 					},
 				];
 				break;
@@ -261,23 +222,19 @@ function setOptionsSettings(state, settings) {
 				newState.filters = [
 					{
 						type: 'price',
+						value: [0, 30000],
 						settings: {
 							min: 0,
 							max: 30000,
-							defaultValue: [0, 30000],
 						},
 					},
 					{
 						type: 'running_costs',
-						settings: {
-							defaultValue: 'Low',
-						},
+						value: 'Low',
 					},
 					{
 						type: 'seats',
-						settings: {
-							defaultValue: '5+',
-						},
+						value: '5+',
 					},
 				];
 				break;
@@ -285,29 +242,23 @@ function setOptionsSettings(state, settings) {
 				newState.filters = [
 					{
 						type: 'price',
+						value: [0, 30000],
 						settings: {
 							min: 0,
 							max: 30000,
-							defaultValue: [0, 30000],
 						},
 					},
 					{
 						type: 'fuel_consumption',
-						settings: {
-							defaultValue: 'Low',
-						},
+						value: 'Low',
 					},
 					{
 						type: 'boot_size',
-						settings: {
-							defaultValue: 'Medium',
-						},
+						value: 'Medium',
 					},
 					{
 						type: 'running_costs',
-						settings: {
-							defaultValue: 'Low',
-						},
+						value: 'Low',
 					},
 				];
 				break;
@@ -315,23 +266,19 @@ function setOptionsSettings(state, settings) {
 				newState.filters = [
 					{
 						type: 'price',
+						value: [0, 30000],
 						settings: {
 							min: 0,
 							max: 30000,
-							defaultValue: [0, 30000],
 						},
 					},
 					{
 						type: 'fuel_consumption',
-						settings: {
-							defaultValue: 'Low',
-						},
+						value: 'Low',
 					},
 					{
 						type: 'boot_size',
-						settings: {
-							defaultValue: 'Medium',
-						},
+						value: 'Medium',
 					},
 				];
 				break;
@@ -339,23 +286,19 @@ function setOptionsSettings(state, settings) {
 				newState.filters = [
 					{
 						type: 'price',
+						value: [0, 30000],
 						settings: {
 							min: 0,
 							max: 30000,
-							defaultValue: [0, 30000],
 						},
 					},
 					{
 						type: 'running_costs',
-						settings: {
-							defaultValue: 'Low',
-						},
+						value: 'Low',
 					},
 					{
 						type: 'transmission',
-						settings: {
-							defaultValue: 'Automatic',
-						},
+						value: 'Automatic',
 					},
 				];
 				break;
@@ -363,23 +306,19 @@ function setOptionsSettings(state, settings) {
 				newState.filters = [
 					{
 						type: 'price',
+						value: [0, 30000],
 						settings: {
 							min: 0,
 							max: 30000,
-							defaultValue: [0, 30000],
 						},
 					},
 					{
 						type: 'boot_size',
-						settings: {
-							defaultValue: 'Medium',
-						},
+						value: 'Medium',
 					},
 					{
 						type: 'transmission',
-						settings: {
-							defaultValue: 'Automatic',
-						},
+						value: 'Automatic',
 					},
 				];
 				break;
@@ -389,7 +328,17 @@ function setOptionsSettings(state, settings) {
 	}
 	newState.values = newState.filters.map((filter) => ({
 		filter: filter.type,
-		value: filter.settings.defaultValue,
+		value: filter.value,
 	}));
 	return newState;
+}
+
+function setFilterValue(state, settings) {
+	const filters = state.filters.map((filter, i) => {
+		if (i === settings.index) {
+			return { ...filter, value: settings.value };
+		}
+		return { ...filter };
+	});
+	return { ...state, filters };
 }
