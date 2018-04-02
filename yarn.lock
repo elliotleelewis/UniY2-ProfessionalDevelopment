@@ -439,10 +439,6 @@ atob@~1.1.0:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/atob/-/atob-1.1.3.tgz#95f13629b12c3a51a5d215abdce2aa9f32f80773"
 
-autobind-decorator@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/autobind-decorator/-/autobind-decorator-2.1.0.tgz#4451240dbfeff46361c506575a63ed40f0e5bc68"
-
 autoprefixer@^6.3.1:
   version "6.7.7"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-6.7.7.tgz#1dbd1c835658e35ce3f9984099db00585c782014"
@@ -3119,23 +3115,23 @@ eslint-import-resolver-node@^0.3.1:
     debug "^2.6.8"
     resolve "^1.2.0"
 
-eslint-module-utils@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/eslint-module-utils/-/eslint-module-utils-2.1.1.tgz#abaec824177613b8a95b299639e1b6facf473449"
+eslint-module-utils@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/eslint-module-utils/-/eslint-module-utils-2.2.0.tgz#b270362cd88b1a48ad308976ce7fa54e98411746"
   dependencies:
     debug "^2.6.8"
     pkg-dir "^1.0.0"
 
-eslint-plugin-import@^2.9.0:
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.9.0.tgz#26002efbfca5989b7288ac047508bd24f217b169"
+eslint-plugin-import@^2.10.0:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.10.0.tgz#fa09083d5a75288df9c6c7d09fe12255985655e7"
   dependencies:
     builtin-modules "^1.1.1"
     contains-path "^0.1.0"
     debug "^2.6.8"
     doctrine "1.5.0"
     eslint-import-resolver-node "^0.3.1"
-    eslint-module-utils "^2.1.1"
+    eslint-module-utils "^2.2.0"
     has "^1.0.1"
     lodash "^4.17.4"
     minimatch "^3.0.3"
@@ -7501,9 +7497,9 @@ rc@^1.1.2, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-dom@^16.2.0:
-  version "16.2.0"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.2.0.tgz#69003178601c0ca19b709b33a83369fe6124c044"
+react-dom@^16.3.0:
+  version "16.3.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.3.0.tgz#b318e52184188ecb5c3e81117420cca40618643e"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -7550,13 +7546,13 @@ react-router@^4.2.0:
     prop-types "^15.5.4"
     warning "^3.0.0"
 
-react-slider@^0.11.0:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/react-slider/-/react-slider-0.11.0.tgz#68be37aeec30d081ee6fc183e7d7915935902da4"
+react-slider@^0.11.2:
+  version "0.11.2"
+  resolved "https://registry.yarnpkg.com/react-slider/-/react-slider-0.11.2.tgz#ae014e1454c3cdd5f28b5c2495b2a08abd9971e6"
 
-react@^16.2.0:
-  version "16.2.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.2.0.tgz#a31bd2dab89bff65d42134fa187f24d054c273ba"
+react@^16.3.0:
+  version "16.3.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.3.0.tgz#fc5a01c68f91e9b38e92cf83f7b795ebdca8ddff"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
