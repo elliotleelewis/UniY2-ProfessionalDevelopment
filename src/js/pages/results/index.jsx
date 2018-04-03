@@ -20,7 +20,15 @@ import Result from './components/result';
 export default class ResultsPage extends Component {
 	static propTypes = {
 		dispatch: PropTypes.func.isRequired,
+		location: PropTypes.shape({
+			search: PropTypes.string.isRequired,
+		}).isRequired,
 		results: PropTypes.arrayOf(PropTypes.object).isRequired,
+		sort: PropTypes.string.isRequired,
+		selectedResult: PropTypes.number,
+	};
+	static defaultProps = {
+		selectedResult: null,
 	};
 
 	/**

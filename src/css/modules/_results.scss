@@ -1,4 +1,7 @@
+// Variables
 $result-height: 300px;
+
+// Styles
 &#results {
 	.container-fluid {
 		.form-group {
@@ -9,8 +12,8 @@ $result-height: 300px;
 		.row {
 			&.featured-result {
 				height: $result-height;
-				background: $trans-bg;
 				border-radius: $spacing / 2;
+				background: $trans-bg;
 				.featured-result-image-container {
 					padding: 0 20px 0 0;
 					.featured-result-image {
@@ -25,8 +28,17 @@ $result-height: 300px;
 			}
 			.result {
 				height: $result-height;
-				cursor: pointer;
+				outline: none;
 				transition: all $transition-length ease-in-out;
+				cursor: pointer;
+				@media (max-width: $mobile-breakpoint) {
+					&:first-child {
+						margin-top: 0;
+					}
+					&:last-child {
+						margin-bottom: 0;
+					}
+				}
 				&:hover {
 					transform: scale(1.05);
 				}
@@ -34,14 +46,6 @@ $result-height: 300px;
 					.result-container {
 						border: white 2px solid;
 						border-image-outset: 2px;
-					}
-				}
-				@media (max-width: $mobile-breakpoint) {
-					&:first-child {
-						margin-top: 0;
-					}
-					&:last-child {
-						margin-bottom: 0;
 					}
 				}
 				.result-container {
@@ -60,8 +64,8 @@ $result-height: 300px;
 						}
 						h5 {
 							overflow: hidden;
-							white-space: nowrap;
 							text-overflow: ellipsis;
+							white-space: nowrap;
 						}
 						h6 {
 							white-space: nowrap;
@@ -85,13 +89,13 @@ $result-height: 300px;
 					}
 				}
 				.triangle-container {
-					margin-left: auto;
 					margin-right: auto;
+					margin-left: auto;
 					.triangle {
 						width: 0;
 						height: 0;
-						border-left: 1.5rem solid transparent;
 						border-right: 1.5rem solid transparent;
+						border-left: 1.5rem solid transparent;
 						border-bottom: 1rem solid $trans-bg;
 					}
 				}

@@ -59,7 +59,7 @@ export default class TextSelector extends Component {
 	getItems() {
 		return this.props.items.map((item, i) => (
 			<button
-				key={i}
+				key={item}
 				className={`btn btn-${(this.state.value === i) ? '' : 'outline-'}secondary mx-2 mt-3`}
 				onClick={() => this.onChange(i)}
 			>

@@ -7,7 +7,22 @@ import React, { PureComponent } from 'react';
 export default class Result extends PureComponent {
 	static propTypes = {
 		active: PropTypes.bool.isRequired,
-		model: PropTypes.object.isRequired,
+		model: PropTypes.shape({
+			make: PropTypes.object.isRequired,
+			model: PropTypes.string.isRequired,
+			body_type: PropTypes.string.isRequired,
+			min_price: PropTypes.string.isRequired,
+			max_price: PropTypes.string.isRequired,
+			typical_price: PropTypes.string.isRequired,
+			seats: PropTypes.string.isRequired,
+			doors: PropTypes.string.isRequired,
+			boot_size: PropTypes.string.isRequired,
+			transmission: PropTypes.string.isRequired,
+			fuel_consumption: PropTypes.string.isRequired,
+			acceleration: PropTypes.string.isRequired,
+			insurance: PropTypes.string.isRequired,
+			annual_tax: PropTypes.string.isRequired,
+		}).isRequired,
 		onClick: PropTypes.func.isRequired,
 	};
 
@@ -22,9 +37,8 @@ export default class Result extends PureComponent {
 		modelUrl = modelUrl.replace(/\s+/g, '_').toLowerCase();
 		const modelPrice = this.props.model.typical_price.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 		return (
-			<div
-				className={`${(this.props.active ? 'active ' : '')}result col-md-4 col-12 my-3`}
-				role="button"
+			<button
+				className={`${(this.props.active ? 'active ' : '')}result col-md-4 col-12 my-3 border-0 bg-transparent text-white`}
 				title={`${this.props.model.make.name} ${this.props.model.model}`}
 				onClick={this.props.onClick}
 			>
@@ -42,7 +56,7 @@ export default class Result extends PureComponent {
 						<h6 className="m-0" title="Price">~ £{modelPrice}</h6>
 					</div>
 				</div>
-			</div>
+			</button>
 		);
 	}
 }

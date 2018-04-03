@@ -23,6 +23,9 @@ import TextSlider from './components/text-slider';
 export default class OptionsPage extends Component {
 	static propTypes = {
 		dispatch: PropTypes.func.isRequired,
+		location: PropTypes.shape({
+			search: PropTypes.string.isRequired,
+		}).isRequired,
 		category: PropTypes.string,
 		value: PropTypes.string,
 		filters: PropTypes.arrayOf(PropTypes.object).isRequired,

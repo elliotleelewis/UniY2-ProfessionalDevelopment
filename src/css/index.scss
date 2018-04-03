@@ -6,10 +6,10 @@
 // Styles
 .frame {
 	min-height: 100%;
+	overflow: auto;
 	background: $theme-colour no-repeat fixed center;
 	background-size: cover;
 	background-position-y: 100%;
-	overflow: auto;
 	@media print {
 		background: white !important;
 	}
@@ -34,13 +34,13 @@
 	}
 }
 .module {
+	display: flex;
 	width: 100%;
 	height: 100%;
-	display: flex;
 	flex-flow: column;
-	@import 'moduleType';
-	@import 'moduleOptions';
-	@import 'moduleResults';
+	@import 'modules/type';
+	@import 'modules/options';
+	@import 'modules/results';
 }
 button {
 	cursor: pointer;

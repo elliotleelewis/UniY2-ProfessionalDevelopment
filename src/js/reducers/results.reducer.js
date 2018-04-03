@@ -39,8 +39,8 @@ function setResultsSettings(state, options) {
 		if (options.category === 'body_type' && options.value !== model.body_type) {
 			return false;
 		}
-		for (const filter of options.filters) {
-			switch (filter.filter) {
+		return options.filters.every((filter) => {
+			switch (filter.type) {
 				case 'doors': {
 					const value = filter.value.charAt(0);
 					if (Number(model.doors) < Number(value)) {
@@ -110,8 +110,8 @@ function setResultsSettings(state, options) {
 				default:
 					break;
 			}
-		}
-		return true;
+			return true;
+		});
 	});
 	return newState;
 }

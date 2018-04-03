@@ -1,3 +1,4 @@
+// Styles
 &#type {
 	* {
 		user-select: none;
@@ -14,37 +15,37 @@
 				transition: all $transition-length ease-in-out;
 				cursor: pointer;
 				&.before-pre-selected, &.pre-selected, &.selected, &.post-selected, &.after-post-selected {
-					position: absolute;
 					display: flex;
+					position: absolute;
+					width: 15%;
 					top: 0;
 					bottom: 0;
-					width: 15%;
-					justify-content: center;
 					flex-direction: column;
+					justify-content: center;
 				}
 				&.before-pre-selected {
 					left: -50%;
 				}
 				&.pre-selected {
-					opacity: 0.5;
 					left: 7.5%;
 					transform: translateX(-50%);
+					opacity: 0.5;
 				}
 				&.selected {
 					width: 40%;
 					left: 50%;
-					outline: none;
-					opacity: 1;
-					cursor: default;
 					transform: translateX(-50%);
+					opacity: 1;
+					outline: none;
+					cursor: default;
 					h5 {
 						opacity: 1;
 					}
 				}
 				&.post-selected {
-					opacity: 0.5;
 					left: 92.5%;
 					transform: translateX(-50%);
+					opacity: 0.5;
 				}
 				&.after-post-selected {
 					left: 150%;
@@ -65,10 +66,10 @@
 					transition: fill $transition-length ease-in-out;
 				}
 				h5 {
-					overflow: hidden;
-					text-overflow: ellipsis;
 					opacity: 0;
+					overflow: hidden;
 					transition: opacity $transition-length ease-in-out;
+					text-overflow: ellipsis;
 					@media (min-width: $mobile-breakpoint) {
 						opacity: 1;
 					}
@@ -79,8 +80,8 @@
 	footer {
 		flex: 0 0 auto;
 		#toggle-presets-button {
-			background-color: $trans-bg;
 			border-radius: 10px 10px 0 0;
+			background-color: $trans-bg;
 		}
 		.presets-container {
 			height: 175px;
