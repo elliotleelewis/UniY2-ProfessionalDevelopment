@@ -13,12 +13,11 @@ $result-height: 300px;
 			&.featured-result {
 				height: $result-height;
 				border-radius: $spacing / 2;
-				background: $trans-bg;
 				.featured-result-image-container {
 					padding: 0 20px 0 0;
 					.featured-result-image {
 						border-radius: $spacing / 2;
-						background: opacify($trans-bg, 0.25) no-repeat center;
+						background: no-repeat center;
 						background-size: cover;
 					}
 				}
@@ -30,15 +29,6 @@ $result-height: 300px;
 				height: $result-height;
 				outline: none;
 				transition: all $transition-length ease-in-out;
-				cursor: pointer;
-				@media (max-width: $mobile-breakpoint) {
-					&:first-child {
-						margin-top: 0;
-					}
-					&:last-child {
-						margin-bottom: 0;
-					}
-				}
 				&:hover {
 					transform: scale(1.05);
 				}
@@ -53,12 +43,11 @@ $result-height: 300px;
 					overflow: hidden;
 					.result-image {
 						height: 75%;
-						background: opacify($trans-bg, 0.25) no-repeat center;
+						background: no-repeat center;
 						background-size: cover;
 					}
 					.result-info {
 						height: 25%;
-						background: $trans-bg;
 						img {
 							max-width: 64px;
 						}
@@ -94,15 +83,14 @@ $result-height: 300px;
 					.triangle {
 						width: 0;
 						height: 0;
-						border-right: 1.5rem solid transparent;
-						border-left: 1.5rem solid transparent;
-						border-bottom: 1rem solid $trans-bg;
+						border-right: 1.5rem solid transparent !important;
+						border-bottom: 1rem solid;
+						border-left: 1.5rem solid transparent !important;
 					}
 				}
 				.selected-result-info {
 					height: calc(100% - 1rem);
 					border-radius: $spacing / 2;
-					background: $trans-bg;
 				}
 			}
 		}

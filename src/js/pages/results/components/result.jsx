@@ -42,8 +42,8 @@ export default class Result extends PureComponent {
 				title={`${this.props.model.make.name} ${this.props.model.model}`}
 				onClick={this.props.onClick}
 			>
-				<div className="result-container h-100">
-					<div className="result-image" style={{ backgroundImage: `url(${modelUrl})` }} />
+				<div className="result-container h-100 bg-trans">
+					<div className="result-image bg-trans" style={{ backgroundImage: `url(${modelUrl})` }} />
 					<div className="result-info d-flex p-2 align-items-center">
 						<img
 							className="mh-100"

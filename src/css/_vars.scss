@@ -3,10 +3,9 @@
 
 // Variables
 $theme-colors: (
-	trans: $trans-bg
+	trans: $trans
 );
 
 $desktop-breakpoint: 768px;
-$mobile-breakpoint: $desktop-breakpoint - 1px;
 $transition-length: 0.25s;
-$spacing: 25px;
+$spacing: 24px;

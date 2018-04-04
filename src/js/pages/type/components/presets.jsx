@@ -29,14 +29,13 @@ export default class Presets extends Component {
 		return (
 			<footer className="d-flex mt-2 flex-column align-items-center">
 				<button
-					id="toggle-presets-button"
-					className="d-flex px-3 py-1 border-0 text-white"
+					className="d-flex px-3 py-1 border-0 bg-trans text-white"
 					title={this.props.hidden ? 'Show' : 'Hide'}
 					onClick={() => this.props.dispatch(actions.togglePresets())}
 				>
 					<i className="material-icons">{`arrow_drop_${!this.props.hidden ? 'down' : 'up'}`}</i>
 				</button>
-				<div className={`${!this.props.hidden ? '' : 'hidden '}presets-container d-flex w-100 p-3 flex-column`}>
+				<div className={`${!this.props.hidden ? '' : 'hidden '}presets-container d-flex w-100 p-3 flex-column bg-trans`}>
 					<h3 className="mb-3 text-center">Lifestyle</h3>
 					<div className="presets d-flex w-100 m-auto">
 						{this.getPresets()}

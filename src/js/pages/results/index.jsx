@@ -207,9 +207,9 @@ export default class ResultsPage extends Component {
 		let bestResultModel = `media/models/${bestResult.make.name}/${bestResult.model}.jpg`;
 		bestResultModel = bestResultModel.replace(/\s+/g, '_').toLowerCase();
 		return (
-			<div className="featured-result row m-0 mb-3">
+			<div className="featured-result row m-0 mb-3 bg-trans">
 				<div className="featured-result-image-container col-4 h-100">
-					<div className="featured-result-image h-100" style={{ backgroundImage: `url(${bestResultModel})` }} />
+					<div className="featured-result-image h-100 bg-trans" style={{ backgroundImage: `url(${bestResultModel})` }} />
 				</div>
 				<div className="col-8 d-flex m-0 py-3 flex-column">
 					<h4 className="m-0 text-center">Best Result:</h4>
@@ -266,10 +266,10 @@ export default class ResultsPage extends Component {
 						>
 							<div className="col-12 d-flex p-0">
 								<div className="triangle-container col-4 d-flex my-auto justify-content-center">
-									<div className="triangle" />
+									<div className="triangle border-trans" />
 								</div>
 							</div>
-							<div className="selected-result-info col-12 d-flex align-items-center justify-content-center">
+							<div className="selected-result-info col-12 d-flex align-items-center justify-content-center bg-trans">
 								The selected model is {results[this.props.selectedResult].model}
 							</div>
 						</div>

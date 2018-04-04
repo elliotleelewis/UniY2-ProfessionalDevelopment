@@ -7,7 +7,7 @@
 .frame {
 	min-height: 100%;
 	overflow: auto;
-	background: $theme-colour no-repeat fixed center;
+	background: $bg-average no-repeat fixed center;
 	background-size: cover;
 	background-position-y: 100%;
 	@media print {
@@ -16,8 +16,6 @@
 }
 #react-root {
 	overflow: hidden;
-	background-color: $trans-bg;
-	color: $text-colour;
 	@media (min-width: $desktop-breakpoint) {
 		border-radius: $spacing;
 	}

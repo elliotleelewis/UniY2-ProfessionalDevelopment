@@ -52,9 +52,8 @@
 				}
 				&:not(.selected) {
 					&:hover, &:focus {
-						color: $text-hover;
 						svg {
-							fill: $text-hover;
+							fill: white;
 						}
 					}
 					&:active {
@@ -62,7 +61,7 @@
 					}
 				}
 				svg {
-					fill: $text-colour;
+					fill: white;
 					transition: fill $transition-length ease-in-out;
 				}
 				h5 {
@@ -70,7 +69,7 @@
 					overflow: hidden;
 					transition: opacity $transition-length ease-in-out;
 					text-overflow: ellipsis;
-					@media (min-width: $mobile-breakpoint) {
+					@media (min-width: $desktop-breakpoint) {
 						opacity: 1;
 					}
 				}
@@ -79,15 +78,13 @@
 	}
 	footer {
 		flex: 0 0 auto;
-		#toggle-presets-button {
+		> button {
 			border-radius: 10px 10px 0 0;
-			background-color: $trans-bg;
 		}
 		.presets-container {
 			height: 175px;
 			flex: 0 0 auto;
 			overflow: hidden;
-			background-color: $trans-bg;
 			transition: all $transition-length ease-in-out;
 			&.hidden {
 				height: 0;
@@ -107,16 +104,15 @@
 					background: none;
 					text-decoration: none;
 					&:hover {
-						color: $text-hover;
 						.preset-icon svg {
-							fill: $text-hover;
+							fill: white;
 						}
 					}
 					.preset-icon {
 						max-width: 150px;
 						max-height: 50px;
 						svg {
-							fill: $text-colour;
+							fill: white;
 							transition: all $transition-length ease-in-out;
 						}
 					}

@@ -7,14 +7,14 @@ $slider-height: 20px;
 		max-width: 720px;
 		> div {
 			&:not(:last-of-type) {
-				border-bottom: 1px solid $trans-bg;
+				border-bottom: 1px solid $trans;
 			}
 			&.range-slider {
 				.slider {
 					.bar {
 						&.bar-1 {
 							z-index: 1;
-							background: transparentize($text-colour, 0.25);
+							background: transparentize(white, 0.25);
 						}
 						&.bar-2 {
 							border-top-right-radius: $slider-height / 2;
@@ -49,7 +49,7 @@ $slider-height: 20px;
 					height: 25%;
 					top: $slider-height;
 					margin: ($slider-height / 4) 0;
-					background: $trans-bg;
+					background: $trans;
 					&.bar-0 {
 						border-top-left-radius: $slider-height / 2;
 						border-bottom-left-radius: $slider-height / 2;
@@ -62,10 +62,10 @@ $slider-height: 20px;
 					top: $slider-height;
 					justify-content: center;
 					border-radius: 50%;
-					background-color: $text-colour;
+					background-color: white;
 					cursor: pointer;
 					&.active {
-						background-color: $text-hover;
+						background-color: white;
 					}
 					.handle-value {
 						display: flex;
