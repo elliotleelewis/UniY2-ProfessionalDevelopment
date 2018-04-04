@@ -1,6 +1,4 @@
-$text-colour: white;
-$text-hover: #AAA;
-$theme-colour: #333;
+// Variables
 $bg-average: #4C5660;
-$dark-bg-average: darken($bg-average, 30%);
-$trans-bg: transparentize($dark-bg-average, 0.75);
+$dark-bg-average: darken($bg-average, 25%);
+$trans: transparentize($dark-bg-average, 0.75);
