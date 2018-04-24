@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
+import { parse } from 'query-string';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { parse } from 'query-string';
 
 import * as actions from '../../reducers/actions';
 
@@ -87,7 +87,7 @@ export default class OptionsPage extends Component {
 	}
 
 	/**
-	 * Returns the correct, configured filter elements for the body_type/lifestyle selected.
+	 * Returns the correct, configured filter elements for the body-type/preset selected.
 	 * @returns {React[]} - Array of filter elements.
 	 */
 	getFilterElements() {
