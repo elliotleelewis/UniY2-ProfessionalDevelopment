@@ -105,7 +105,7 @@ export default class ResultsPage extends Component {
 	 * @param index {number} - Index of the result clicked on.
 	 */
 	onClick(index) {
-		this.props.dispatch(actions.toggleSelectedResult(index));
+		this.props.dispatch(actions.setSelectedResult(index));
 	}
 
 	/**
@@ -114,21 +114,6 @@ export default class ResultsPage extends Component {
 	 */
 	changeSort(event) {
 		this.props.dispatch(actions.changeResultSort(event.target.value));
-	}
-
-	/**
-	 * Chooses the correct sort function for the models and then applies it to the results.
-	 * @param results {array} Results to sort.
-	 */
-	sort(results) {
-		switch (this.props.sort) {
-			case 'priceHigh':
-				return results.sort((resultA, resultB) => resultB.typical_price - resultA.typical_price);
-			case 'priceLow':
-				return results.sort((resultA, resultB) => resultA.typical_price - resultB.typical_price);
-			default:
-				return results.sort((resultA, resultB) => resultA.model.localeCompare(resultB.model));
-		}
 	}
 
 	/**
@@ -203,9 +188,9 @@ export default class ResultsPage extends Component {
 		}
 		const bestResult = this.getBestResult();
 		let bestResultMake = `media/makes/${bestResult.make.name}.png`;
-		bestResultMake = bestResultMake.replace(/\s+/g, '_').toLowerCase();
+		bestResultMake = bestResultMake.replace(/\s+/g, '-').toLowerCase();
 		let bestResultModel = `media/models/${bestResult.make.name}/${bestResult.model}.jpg`;
-		bestResultModel = bestResultModel.replace(/\s+/g, '_').toLowerCase();
+		bestResultModel = bestResultModel.replace(/\s+/g, '-').toLowerCase();
 		return (
 			<div className="featured-result row m-0 mb-3 bg-trans">
 				<div className="featured-result-image-container col-4 h-100">
@@ -299,6 +284,13 @@ export default class ResultsPage extends Component {
 	 * @returns {object[]} - The results state.
 	 */
 	getResults() {
-		return this.sort(this.props.results);
+		switch (this.props.sort) {
+			case 'priceHigh':
+				return this.props.results.sort((resultA, resultB) => resultB.typical_price - resultA.typical_price);
+			case 'priceLow':
+				return this.props.results.sort((resultA, resultB) => resultA.typical_price - resultB.typical_price);
+			default:
+				return this.props.results.sort((resultA, resultB) => resultA.model.localeCompare(resultB.model));
+		}
 	}
 }

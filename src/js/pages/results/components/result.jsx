@@ -32,9 +32,9 @@ export default class Result extends PureComponent {
 	 */
 	render() {
 		let makeUrl = `media/makes/${this.props.model.make.name}.png`;
-		makeUrl = makeUrl.replace(/\s+/g, '_').toLowerCase();
+		makeUrl = makeUrl.replace(/\s+/g, '-').toLowerCase();
 		let modelUrl = `media/models/${this.props.model.make.name}/${this.props.model.model}.jpg`;
-		modelUrl = modelUrl.replace(/\s+/g, '_').toLowerCase();
+		modelUrl = modelUrl.replace(/\s+/g, '-').toLowerCase();
 		const modelPrice = this.props.model.typical_price.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 		return (
 			<button

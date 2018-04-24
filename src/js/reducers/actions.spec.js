@@ -77,10 +77,10 @@ describe('actions', () => {
 		it('should return the correct action object when using the action generator for the "TOGGLE_SELECTED_RESULT" action', () => {
 			const index = 1;
 			const expectedAction = {
-				type: actions.TOGGLE_SELECTED_RESULT,
+				type: actions.SET_SELECTED_RESULT,
 				payload: index,
 			};
-			expect(actions.toggleSelectedResult(index)).toEqual(expectedAction);
+			expect(actions.setSelectedResult(index)).toEqual(expectedAction);
 		});
 	});
 });

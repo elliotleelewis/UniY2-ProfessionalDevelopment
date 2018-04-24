@@ -8,11 +8,10 @@ const preparedData = data.models.map((model) => Object.assign(model, {
 
 const initialState = {
 	category: null,
-	value: null,
-	filters: [],
 	results: [],
 	sort: 'relevancy',
 	selectedResult: null,
+	value: null,
 };
 
 export default function typeReducer(state = initialState, action) {
@@ -21,7 +20,7 @@ export default function typeReducer(state = initialState, action) {
 			return setResultsSettings(state, action.payload);
 		case actions.CHANGE_RESULT_SORT:
 			return { ...state, sort: action.payload };
-		case actions.TOGGLE_SELECTED_RESULT:
+		case actions.SET_SELECTED_RESULT:
 			return { ...state, selectedResult: (state.selectedResult === action.payload) ? null : action.payload };
 		default:
 			return state;
@@ -33,10 +32,9 @@ function setResultsSettings(state, options) {
 		...state,
 		category: options.category,
 		value: options.value,
-		filters: options.filters,
 	};
 	newState.results = preparedData.filter((model) => {
-		if (options.category === 'body_type' && options.value !== model.body_type) {
+		if (options.category === 'body-type' && options.value !== model.body_type) {
 			return false;
 		}
 		return options.filters.every((filter) => {

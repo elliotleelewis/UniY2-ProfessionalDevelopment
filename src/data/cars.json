@@ -1,6 +1,6 @@
 {
   "makes": {
-    "alfa_romeo": {
+    "alfa-romeo": {
       "name": "Alfa Romeo",
       "headquarters": "Turin, Italy",
       "area_served": "Worldwide"
@@ -40,7 +40,7 @@
       "headquarters": "Seoul, South Korea",
       "area_served": "Worldwide"
     },
-    "land_rover": {
+    "land-rover": {
       "name": "Land Rover",
       "headquarters": "Whitley, United Kingdom",
       "area_served": "Worldwide"
@@ -83,9 +83,9 @@
   },
   "models": [
     {
-      "make": "alfa_romeo",
+      "make": "alfa-romeo",
       "model": "Giulietta",
-      "body_type": "Hatchback",
+      "body_type": "hatchback",
       "min_price": "3600",
       "max_price": "21995",
       "typical_price": "9650",
@@ -99,9 +99,9 @@
       "annual_tax": "Low"
     },
     {
-      "make": "alfa_romeo",
+      "make": "alfa-romeo",
       "model": "159",
-      "body_type": "Saloon",
+      "body_type": "saloon",
       "min_price": "750",
       "max_price": "11500",
       "typical_price": "4450",
@@ -115,9 +115,9 @@
       "annual_tax": "Medium"
     },
     {
-      "make": "alfa_romeo",
+      "make": "alfa-romeo",
       "model": "159 Sportwagon",
-      "body_type": "Estate",
+      "body_type": "estate",
       "min_price": "2699",
       "max_price": "11995",
       "typical_price": "",
@@ -131,9 +131,9 @@
       "annual_tax": "Medium"
     },
     {
-      "make": "alfa_romeo",
+      "make": "alfa-romeo",
       "model": "Spider",
-      "body_type": "Convertible",
+      "body_type": "convertible",
       "min_price": "4565",
       "max_price": "16950",
       "typical_price": "7794",
@@ -147,9 +147,9 @@
       "annual_tax": "Considerable"
     },
     {
-      "make": "alfa_romeo",
+      "make": "alfa-romeo",
       "model": "Brera",
-      "body_type": "Coupe",
+      "body_type": "coupe",
       "min_price": "2950",
       "max_price": "14990",
       "typical_price": "8350",
@@ -165,7 +165,7 @@
     {
       "make": "bmw",
       "model": "3 Series Gran Turismo",
-      "body_type": "Hatchback",
+      "body_type": "hatchback",
       "min_price": "11950",
       "max_price": "42000",
       "typical_price": "30060",
@@ -181,7 +181,7 @@
     {
       "make": "bmw",
       "model": "3 Series",
-      "body_type": "Saloon",
+      "body_type": "saloon",
       "min_price": "13990",
       "max_price": "43500",
       "typical_price": "25160",
@@ -197,7 +197,7 @@
     {
       "make": "bmw",
       "model": "M3",
-      "body_type": "Saloon",
+      "body_type": "saloon",
       "min_price": "15990",
       "max_price": "19900",
       "typical_price": "16475",
@@ -213,7 +213,7 @@
     {
       "make": "bmw",
       "model": "5 Series",
-      "body_type": "Estate",
+      "body_type": "estate",
       "min_price": "5994",
       "max_price": "25500",
       "typical_price": "15944",
@@ -229,7 +229,7 @@
     {
       "make": "bmw",
       "model": "2 Series Gran Tourer",
-      "body_type": "MPV",
+      "body_type": "mpv",
       "min_price": "17783",
       "max_price": "31190",
       "typical_price": "24890",
@@ -245,7 +245,7 @@
     {
       "make": "bmw",
       "model": "X1",
-      "body_type": "SUV",
+      "body_type": "suv",
       "min_price": "11000",
       "max_price": "36790",
       "typical_price": "27850",
@@ -261,7 +261,7 @@
     {
       "make": "bmw",
       "model": "6 Series",
-      "body_type": "Convertible",
+      "body_type": "convertible",
       "min_price": "19200",
       "max_price": "36992",
       "typical_price": "29975",
@@ -277,7 +277,7 @@
     {
       "make": "bmw",
       "model": "1 Series",
-      "body_type": "Convertible",
+      "body_type": "convertible",
       "min_price": "4950",
       "max_price": "16900",
       "typical_price": "5990",
@@ -293,7 +293,7 @@
     {
       "make": "bmw",
       "model": "M2",
-      "body_type": "Coupe",
+      "body_type": "coupe",
       "min_price": "45200",
       "max_price": "58900",
       "typical_price": "51995",
@@ -309,7 +309,7 @@
     {
       "make": "citroen",
       "model": "C1",
-      "body_type": "Hatchback",
+      "body_type": "hatchback",
       "min_price": "3450",
       "max_price": "11499",
       "typical_price": "8715",
@@ -325,7 +325,7 @@
     {
       "make": "citroen",
       "model": "C5",
-      "body_type": "Saloon",
+      "body_type": "saloon",
       "min_price": "3950",
       "max_price": "18490",
       "typical_price": "4490",
@@ -341,7 +341,7 @@
     {
       "make": "citroen",
       "model": "Berlingo",
-      "body_type": "Estate",
+      "body_type": "estate",
       "min_price": "1100",
       "max_price": "3499",
       "typical_price": "2850",
@@ -357,7 +357,7 @@
     {
       "make": "citroen",
       "model": "C4 Picasso",
-      "body_type": "MPV",
+      "body_type": "mpv",
       "min_price": "6442",
       "max_price": "21500",
       "typical_price": "10475",
@@ -373,7 +373,7 @@
     {
       "make": "citroen",
       "model": "Grand C4 Picasso",
-      "body_type": "MPV",
+      "body_type": "mpv",
       "min_price": "8800",
       "max_price": "21900",
       "typical_price": "15000",
@@ -389,7 +389,7 @@
     {
       "make": "citroen",
       "model": "C-Crosser",
-      "body_type": "SUV",
+      "body_type": "suv",
       "min_price": "3290",
       "max_price": "11495",
       "typical_price": "6294",
@@ -405,7 +405,7 @@
     {
       "make": "citroen",
       "model": "DS3 Cabrio",
-      "body_type": "Convertible",
+      "body_type": "convertible",
       "min_price": "5990",
       "max_price": "11995",
       "typical_price": "9299",
@@ -421,7 +421,7 @@
     {
       "make": "citroen",
       "model": "C4",
-      "body_type": "Coupe",
+      "body_type": "coupe",
       "min_price": "1998",
       "max_price": "3995",
       "typical_price": "3695",
@@ -437,7 +437,7 @@
     {
       "make": "fiat",
       "model": "Panda Cross",
-      "body_type": "Hatchback",
+      "body_type": "hatchback",
       "min_price": "7995",
       "max_price": "15995",
       "typical_price": "8995",
@@ -453,7 +453,7 @@
     {
       "make": "ferrari",
       "model": "458 Italia Spider",
-      "body_type": "Convertible",
+      "body_type": "convertible",
       "min_price": "110000",
       "max_price": "350000",
       "typical_price": "160000",
@@ -469,7 +469,7 @@
     {
       "make": "fiat",
       "model": "Doblo",
-      "body_type": "Estate",
+      "body_type": "estate",
       "min_price": "4750",
       "max_price": "15995",
       "typical_price": "13690",
@@ -485,7 +485,7 @@
     {
       "make": "fiat",
       "model": "500L",
-      "body_type": "MPV",
+      "body_type": "mpv",
       "min_price": "5222",
       "max_price": "22000",
       "typical_price": "13665",
@@ -501,7 +501,7 @@
     {
       "make": "fiat",
       "model": "500X",
-      "body_type": "SUV",
+      "body_type": "suv",
       "min_price": "9944",
       "max_price": "22794",
       "typical_price": "14295",
@@ -517,7 +517,7 @@
     {
       "make": "fiat",
       "model": "Spider",
-      "body_type": "Convertible",
+      "body_type": "convertible",
       "min_price": "17995",
       "max_price": "24245",
       "typical_price": "19545",
@@ -532,8 +532,8 @@
     },
     {
       "make": "fiat",
-      "model": "Coupe",
-      "body_type": "Coupe",
+      "model": "coupe",
+      "body_type": "coupe",
       "min_price": "2695",
       "max_price": "10995",
       "typical_price": "7995",
@@ -549,7 +549,7 @@
     {
       "make": "ford",
       "model": "Fiesta",
-      "body_type": "Hatchback",
+      "body_type": "hatchback",
       "min_price": "995",
       "max_price": "40000",
       "typical_price": "5995",
@@ -565,7 +565,7 @@
     {
       "make": "ford",
       "model": "Mondeo",
-      "body_type": "Saloon",
+      "body_type": "saloon",
       "min_price": "14767",
       "max_price": "24875",
       "typical_price": "19300",
@@ -581,7 +581,7 @@
     {
       "make": "ford",
       "model": "Focus",
-      "body_type": "Estate",
+      "body_type": "estate",
       "min_price": "3695",
       "max_price": "15799",
       "typical_price": "8142",
@@ -597,7 +597,7 @@
     {
       "make": "ford",
       "model": "C-Max",
-      "body_type": "MPV",
+      "body_type": "mpv",
       "min_price": "4000",
       "max_price": "15500",
       "typical_price": "10200",
@@ -613,7 +613,7 @@
     {
       "make": "ford",
       "model": "S-Max",
-      "body_type": "MPV",
+      "body_type": "mpv",
       "min_price": "1250",
       "max_price": "500000",
       "typical_price": "8000",
@@ -629,7 +629,7 @@
     {
       "make": "ford",
       "model": "Kuga",
-      "body_type": "SUV",
+      "body_type": "suv",
       "min_price": "4995",
       "max_price": "55000",
       "typical_price": "7000",
@@ -645,7 +645,7 @@
     {
       "make": "ford",
       "model": "Mustang",
-      "body_type": "Convertible",
+      "body_type": "convertible",
       "min_price": "31500",
       "max_price": "65000",
       "typical_price": "35820",
@@ -661,7 +661,7 @@
     {
       "make": "ford",
       "model": "Puma",
-      "body_type": "Coupe",
+      "body_type": "coupe",
       "min_price": "575",
       "max_price": "4490",
       "typical_price": "995",
@@ -677,7 +677,7 @@
     {
       "make": "honda",
       "model": "Civic",
-      "body_type": "Hatchback",
+      "body_type": "hatchback",
       "min_price": "9250",
       "max_price": "35950",
       "typical_price": "18565",
@@ -693,7 +693,7 @@
     {
       "make": "honda",
       "model": "Accord",
-      "body_type": "Saloon",
+      "body_type": "saloon",
       "min_price": "5585",
       "max_price": "21102",
       "typical_price": "12495",
@@ -709,7 +709,7 @@
     {
       "make": "honda",
       "model": "Civic Aerodeck",
-      "body_type": "Estate",
+      "body_type": "estate",
       "min_price": "650",
       "max_price": "995",
       "typical_price": "660",
@@ -725,7 +725,7 @@
     {
       "make": "honda",
       "model": "FR-V",
-      "body_type": "MPV",
+      "body_type": "mpv",
       "min_price": "1490",
       "max_price": "8500",
       "typical_price": "3295",
@@ -741,7 +741,7 @@
     {
       "make": "honda",
       "model": "CR-V",
-      "body_type": "SUV",
+      "body_type": "suv",
       "min_price": "13999",
       "max_price": "37788",
       "typical_price": "23025",
@@ -757,7 +757,7 @@
     {
       "make": "honda",
       "model": "S2000",
-      "body_type": "Convertible",
+      "body_type": "convertible",
       "min_price": "7700",
       "max_price": "17495",
       "typical_price": "11995",
@@ -773,7 +773,7 @@
     {
       "make": "honda",
       "model": "CR-Z",
-      "body_type": "Coupe",
+      "body_type": "coupe",
       "min_price": "4395",
       "max_price": "11500",
       "typical_price": "4494",
@@ -789,7 +789,7 @@
     {
       "make": "hyundai",
       "model": "i30",
-      "body_type": "Hatchback",
+      "body_type": "hatchback",
       "min_price": "7279",
       "max_price": "20490",
       "typical_price": "15795",
@@ -805,7 +805,7 @@
     {
       "make": "hyundai",
       "model": "Genesis",
-      "body_type": "Saloon",
+      "body_type": "saloon",
       "min_price": "29995",
       "max_price": "40000",
       "typical_price": "34995",
@@ -821,7 +821,7 @@
     {
       "make": "hyundai",
       "model": "i40",
-      "body_type": "Estate",
+      "body_type": "estate",
       "min_price": "4289",
       "max_price": "14990",
       "typical_price": "12995",
@@ -837,7 +837,7 @@
     {
       "make": "hyundai",
       "model": "i800",
-      "body_type": "MPV",
+      "body_type": "mpv",
       "min_price": "5495",
       "max_price": "18950",
       "typical_price": "13490",
@@ -853,7 +853,7 @@
     {
       "make": "hyundai",
       "model": "Tucson",
-      "body_type": "SUV",
+      "body_type": "suv",
       "min_price": "12900",
       "max_price": "28995",
       "typical_price": "19450",
@@ -869,7 +869,7 @@
     {
       "make": "hyundai",
       "model": "Veloster",
-      "body_type": "Coupe",
+      "body_type": "coupe",
       "min_price": "6000",
       "max_price": "12995",
       "typical_price": "9995",
@@ -883,9 +883,9 @@
       "annual_tax": "Medium"
     },
     {
-      "make": "land_rover",
+      "make": "land-rover",
       "model": "Discovery Sport",
-      "body_type": "SUV",
+      "body_type": "suv",
       "min_price": "24075",
       "max_price": "46995",
       "typical_price": "31095",
@@ -899,9 +899,9 @@
       "annual_tax": "Medium"
     },
     {
-      "make": "land_rover",
+      "make": "land-rover",
       "model": "Range Rover Evoque Convertible",
-      "body_type": "Convertible",
+      "body_type": "convertible",
       "min_price": "42370",
       "max_price": "74990",
       "typical_price": "47500",
@@ -915,9 +915,9 @@
       "annual_tax": "Medium"
     },
     {
-      "make": "land_rover",
+      "make": "land-rover",
       "model": "Range Rover Evoque",
-      "body_type": "Coupe",
+      "body_type": "coupe",
       "min_price": "16499",
       "max_price": "45000",
       "typical_price": "33000",
@@ -933,7 +933,7 @@
     {
       "make": "mercedes-benz",
       "model": "B Class",
-      "body_type": "Hatchback",
+      "body_type": "hatchback",
       "min_price": "2300",
       "max_price": "1100",
       "typical_price": "6499",
@@ -949,7 +949,7 @@
     {
       "make": "mercedes-benz",
       "model": "C Class",
-      "body_type": "Saloon",
+      "body_type": "saloon",
       "min_price": "3494",
       "max_price": "41950",
       "typical_price": "15450",
@@ -965,7 +965,7 @@
     {
       "make": "mercedes-benz",
       "model": "E Class",
-      "body_type": "Saloon",
+      "body_type": "saloon",
       "min_price": "11950",
       "max_price": "54995",
       "typical_price": "23890",
@@ -981,7 +981,7 @@
     {
       "make": "mercedes-benz",
       "model": "CLS",
-      "body_type": "Estate",
+      "body_type": "estate",
       "min_price": "17500",
       "max_price": "58980",
       "typical_price": "35950",
@@ -997,7 +997,7 @@
     {
       "make": "mercedes-benz",
       "model": "V Class",
-      "body_type": "MPV",
+      "body_type": "mpv",
       "min_price": "33995",
       "max_price": "99995",
       "typical_price": "46845",
@@ -1013,7 +1013,7 @@
     {
       "make": "mercedes-benz",
       "model": "GLC",
-      "body_type": "SUV",
+      "body_type": "suv",
       "min_price": "28000",
       "max_price": "42950",
       "typical_price": "35995",
@@ -1029,7 +1029,7 @@
     {
       "make": "mercedes-benz",
       "model": "M Class",
-      "body_type": "SUV",
+      "body_type": "suv",
       "min_price": "18004",
       "max_price": "49990",
       "typical_price": "23500",
@@ -1045,7 +1045,7 @@
     {
       "make": "mercedes-benz",
       "model": "SL",
-      "body_type": "Convertible",
+      "body_type": "convertible",
       "min_price": "48980",
       "max_price": "139900",
       "typical_price": "58000",
@@ -1061,7 +1061,7 @@
     {
       "make": "mercedes-benz",
       "model": "SLS",
-      "body_type": "Coupe",
+      "body_type": "coupe",
       "min_price": "139989",
       "max_price": "274990",
       "typical_price": "219950",
@@ -1077,7 +1077,7 @@
     {
       "make": "nissan",
       "model": "Juke",
-      "body_type": "Hatchback",
+      "body_type": "hatchback",
       "min_price": "7299",
       "max_price": "23000",
       "typical_price": "19175",
@@ -1093,7 +1093,7 @@
     {
       "make": "nissan",
       "model": "Qashqai",
-      "body_type": "Hatchback",
+      "body_type": "hatchback",
       "min_price": "1374",
       "max_price": "27594",
       "typical_price": "18795",
@@ -1109,7 +1109,7 @@
     {
       "make": "nissan",
       "model": "Primera",
-      "body_type": "Saloon",
+      "body_type": "saloon",
       "min_price": "699",
       "max_price": "1250",
       "typical_price": "699",
@@ -1125,7 +1125,7 @@
     {
       "make": "nissan",
       "model": "Primera Estate",
-      "body_type": "Estate",
+      "body_type": "estate",
       "min_price": "595",
       "max_price": "1589",
       "typical_price": "1190",
@@ -1141,7 +1141,7 @@
     {
       "make": "nissan",
       "model": "Pathfinder",
-      "body_type": "MPV",
+      "body_type": "mpv",
       "min_price": "8500",
       "max_price": "19995",
       "typical_price": "16850",
@@ -1157,7 +1157,7 @@
     {
       "make": "nissan",
       "model": "X-Trail",
-      "body_type": "SUV",
+      "body_type": "suv",
       "min_price": "14047",
       "max_price": "29995",
       "typical_price": "22395",
@@ -1173,7 +1173,7 @@
     {
       "make": "nissan",
       "model": "370 Z",
-      "body_type": "Convertible",
+      "body_type": "convertible",
       "min_price": "12595",
       "max_price": "20990",
       "typical_price": "15995",
@@ -1189,7 +1189,7 @@
     {
       "make": "nissan",
       "model": "GT-R",
-      "body_type": "Coupe",
+      "body_type": "coupe",
       "min_price": "56950",
       "max_price": "159850",
       "typical_price": "78050",
@@ -1205,7 +1205,7 @@
     {
       "make": "renault",
       "model": "Clio",
-      "body_type": "Hatchback",
+      "body_type": "hatchback",
       "min_price": "8000",
       "max_price": "24330",
       "typical_price": "11915",
@@ -1221,7 +1221,7 @@
     {
       "make": "renault",
       "model": "Megane",
-      "body_type": "Saloon",
+      "body_type": "saloon",
       "min_price": "695",
       "max_price": "1495",
       "typical_price": "999",
@@ -1237,7 +1237,7 @@
     {
       "make": "renault",
       "model": "Laguna Estate",
-      "body_type": "Estate",
+      "body_type": "estate",
       "min_price": "750",
       "max_price": "8950",
       "typical_price": "3990",
@@ -1253,7 +1253,7 @@
     {
       "make": "renault",
       "model": "Grand Scenic",
-      "body_type": "MPV",
+      "body_type": "mpv",
       "min_price": "8695",
       "max_price": "16000",
       "typical_price": "13500",
@@ -1269,7 +1269,7 @@
     {
       "make": "renault",
       "model": "Kadjar",
-      "body_type": "SUV",
+      "body_type": "suv",
       "min_price": "12000",
       "max_price": "26000",
       "typical_price": "19145",
@@ -1285,7 +1285,7 @@
     {
       "make": "renault",
       "model": "Wind",
-      "body_type": "Convertible",
+      "body_type": "convertible",
       "min_price": "3400",
       "max_price": "6999",
       "typical_price": "",
@@ -1301,7 +1301,7 @@
     {
       "make": "renault",
       "model": "Laguna Coupe",
-      "body_type": "Coupe",
+      "body_type": "coupe",
       "min_price": "3495",
       "max_price": "7995",
       "typical_price": "7900",
@@ -1317,7 +1317,7 @@
     {
       "make": "toyota",
       "model": "Avensis",
-      "body_type": "Saloon",
+      "body_type": "saloon",
       "min_price": "11495",
       "max_price": "22895",
       "typical_price": "18835",
@@ -1333,7 +1333,7 @@
     {
       "make": "toyota",
       "model": "Auris",
-      "body_type": "Estate",
+      "body_type": "estate",
       "min_price": "6595",
       "max_price": "18990",
       "typical_price": "8499",
@@ -1349,7 +1349,7 @@
     {
       "make": "toyota",
       "model": "Verso",
-      "body_type": "MPV",
+      "body_type": "mpv",
       "min_price": "8400",
       "max_price": "26995",
       "typical_price": "19175",
@@ -1365,7 +1365,7 @@
     {
       "make": "toyota",
       "model": "RAV4",
-      "body_type": "SUV",
+      "body_type": "suv",
       "min_price": "18599",
       "max_price": "33995",
       "typical_price": "24205",
@@ -1381,7 +1381,7 @@
     {
       "make": "toyota",
       "model": "MR2",
-      "body_type": "Convertible",
+      "body_type": "convertible",
       "min_price": "595",
       "max_price": "6990",
       "typical_price": "1995",
@@ -1397,7 +1397,7 @@
     {
       "make": "toyota",
       "model": "GT86",
-      "body_type": "Coupe",
+      "body_type": "coupe",
       "min_price": "10950",
       "max_price": "26475",
       "typical_price": "23455",
@@ -1413,7 +1413,7 @@
     {
       "make": "vauxhall",
       "model": "Ampera",
-      "body_type": "Hatchback",
+      "body_type": "hatchback",
       "min_price": "8289",
       "max_price": "19995",
       "typical_price": "10000",
@@ -1429,7 +1429,7 @@
     {
       "make": "vauxhall",
       "model": "Corsa",
-      "body_type": "Hatchback",
+      "body_type": "hatchback",
       "min_price": "4200",
       "max_price": "19999",
       "typical_price": "10155",
@@ -1445,7 +1445,7 @@
     {
       "make": "vauxhall",
       "model": "VXR8",
-      "body_type": "Saloon",
+      "body_type": "saloon",
       "min_price": "15995",
       "max_price": "59000",
       "typical_price": "54529",
@@ -1461,7 +1461,7 @@
     {
       "make": "vauxhall",
       "model": "Astra",
-      "body_type": "Estate",
+      "body_type": "estate",
       "min_price": "2675",
       "max_price": "17500",
       "typical_price": "7695",
@@ -1477,7 +1477,7 @@
     {
       "make": "vauxhall",
       "model": "Zafira Tourer",
-      "body_type": "MPV",
+      "body_type": "mpv",
       "min_price": "5580",
       "max_price": "21000",
       "typical_price": "8750",
@@ -1493,7 +1493,7 @@
     {
       "make": "vauxhall",
       "model": "Antara",
-      "body_type": "SUV",
+      "body_type": "suv",
       "min_price": "4990",
       "max_price": "18500",
       "typical_price": "8999",
@@ -1509,7 +1509,7 @@
     {
       "make": "vauxhall",
       "model": "Cascada",
-      "body_type": "Convertible",
+      "body_type": "convertible",
       "min_price": "8995",
       "max_price": "25996",
       "typical_price": "24000",
@@ -1525,7 +1525,7 @@
     {
       "make": "vauxhall",
       "model": "Astra GTC",
-      "body_type": "Coupe",
+      "body_type": "coupe",
       "min_price": "5599",
       "max_price": "28000",
       "typical_price": "21035",
@@ -1541,7 +1541,7 @@
     {
       "make": "volkswagen",
       "model": "Polo",
-      "body_type": "Hatchback",
+      "body_type": "hatchback",
       "min_price": "4000",
       "max_price": "18500",
       "typical_price": "9438",
@@ -1557,7 +1557,7 @@
     {
       "make": "volkswagen",
       "model": "Phaeton",
-      "body_type": "Saloon",
+      "body_type": "saloon",
       "min_price": "2450",
       "max_price": "11500",
       "typical_price": "4099",
@@ -1573,7 +1573,7 @@
     {
       "make": "volkswagen",
       "model": "Passat",
-      "body_type": "Estate",
+      "body_type": "estate",
       "min_price": "11994",
       "max_price": "37500",
       "typical_price": "21495",
@@ -1589,7 +1589,7 @@
     {
       "make": "volkswagen",
       "model": "Sharan",
-      "body_type": "MPV",
+      "body_type": "mpv",
       "min_price": "6990",
       "max_price": "22995",
       "typical_price": "15183",
@@ -1605,7 +1605,7 @@
     {
       "make": "volkswagen",
       "model": "Touran",
-      "body_type": "MPV",
+      "body_type": "mpv",
       "min_price": "5790",
       "max_price": "19938",
       "typical_price": "12900",
@@ -1621,7 +1621,7 @@
     {
       "make": "volkswagen",
       "model": "Tiguan",
-      "body_type": "SUV",
+      "body_type": "suv",
       "min_price": "6995",
       "max_price": "25788",
       "typical_price": "18000",
@@ -1637,7 +1637,7 @@
     {
       "make": "volkswagen",
       "model": "Golf",
-      "body_type": "Convertible",
+      "body_type": "convertible",
       "min_price": "6289",
       "max_price": "21000",
       "typical_price": "17750",
@@ -1653,7 +1653,7 @@
     {
       "make": "volkswagen",
       "model": "CC",
-      "body_type": "Coupe",
+      "body_type": "coupe",
       "min_price": "7289",
       "max_price": "28999",
       "typical_price": "25475",
@@ -1669,7 +1669,7 @@
     {
       "make": "volvo",
       "model": "V40",
-      "body_type": "Hatchback",
+      "body_type": "hatchback",
       "min_price": "5889",
       "max_price": "24980",
       "typical_price": "19000",
@@ -1685,7 +1685,7 @@
     {
       "make": "volvo",
       "model": "S80",
-      "body_type": "Saloon",
+      "body_type": "saloon",
       "min_price": "2495",
       "max_price": "14989",
       "typical_price": "13500",
@@ -1701,7 +1701,7 @@
     {
       "make": "volvo",
       "model": "XC70",
-      "body_type": "Estate",
+      "body_type": "estate",
       "min_price": "4490",
       "max_price": "21390",
       "typical_price": "14750",
@@ -1717,7 +1717,7 @@
     {
       "make": "volvo",
       "model": "V90",
-      "body_type": "Estate",
+      "body_type": "estate",
       "min_price": "29500",
       "max_price": "48980",
       "typical_price": "34485",
@@ -1733,7 +1733,7 @@
     {
       "make": "volvo",
       "model": "XC90",
-      "body_type": "SUV",
+      "body_type": "suv",
       "min_price": "3489",
       "max_price": "30500",
       "typical_price": "7450",
@@ -1749,7 +1749,7 @@
     {
       "make": "volvo",
       "model": "C70",
-      "body_type": "Convertible",
+      "body_type": "convertible",
       "min_price": "5500",
       "max_price": "19846",
       "typical_price": "11950",
@@ -1765,7 +1765,7 @@
     {
       "make": "volvo",
       "model": "C30",
-      "body_type": "Coupe",
+      "body_type": "coupe",
       "min_price": "2589",
       "max_price": "11250",
       "typical_price": "4950",

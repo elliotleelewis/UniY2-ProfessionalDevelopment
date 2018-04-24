@@ -1,9 +1,9 @@
+import PropTypes from 'prop-types';
+import { stringify } from 'query-string';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import Hammer from 'react-hammerjs';
-import PropTypes from 'prop-types';
-import { stringify } from 'query-string';
 
 import * as actions from '../../reducers/actions';
 
@@ -41,6 +41,7 @@ export default class TypePage extends Component {
 	 * @returns {React} JSX elements.
 	 */
 	render() {
+		const shortName = this.props.types[this.props.selectedTypeIndex].toLowerCase().replace(' ', '-');
 		return (
 			<div id="type" className="module">
 				<div className="types-container d-flex mx-3 flex-column align-items-center justify-content-center">
@@ -54,8 +55,8 @@ export default class TypePage extends Component {
 						to={{
 							pathname: '/options',
 							search: stringify({
-								category: 'body_type',
-								value: this.props.types[this.props.selectedTypeIndex],
+								category: 'body-type',
+								value: shortName,
 							}),
 						}}
 					>

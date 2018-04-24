@@ -12,6 +12,7 @@ mix.webpackConfig({
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: 'src/index.html',
+			hash: true,
 		}),
 	],
 });
@@ -22,12 +23,18 @@ mix.autoload({
 	'popper.js/dist/umd/popper.js': ['Popper'],
 });
 mix.extract([
+	'bootstrap',
 	'jquery',
 	'popper.js/dist/umd/popper.js',
+	'prop-types',
+	'query-string',
 	'react',
 	'react-dom',
 	'react-hammerjs',
+	'react-redux',
+	'react-router-dom',
 	'react-slider',
+	'redux',
 ]);
 
 // Compile

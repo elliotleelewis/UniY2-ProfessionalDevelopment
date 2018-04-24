@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
+import { stringify } from 'query-string';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { stringify } from 'query-string';
 
 import * as actions from '../../../reducers/actions';
 
@@ -59,7 +59,7 @@ export default class Presets extends Component {
 					to={{
 						pathname: '/options',
 						search: stringify({
-							category: 'lifestyle',
+							category: 'preset',
 							value: shortName,
 						}),
 					}}
