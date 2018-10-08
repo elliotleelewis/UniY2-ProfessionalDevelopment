@@ -1,9 +1,14 @@
 /* eslint-disable global-require */
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import {
+	ConnectedRouter as Router,
+	connectRouter,
+	routerMiddleware,
+} from 'connected-react-router';
+import { createHashHistory } from 'history';
+import React from 'react';
 import { render } from 'react-dom';
-import { Provider, connect } from 'react-redux';
-import { HashRouter as Router, Route, withRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { Route } from 'react-router';
 import { applyMiddleware, createStore } from 'redux';
 
 import TypePage from './pages/type/index';
@@ -13,8 +18,12 @@ import reducers from './reducers/index';
 
 import './css/index.scss';
 
+const history = createHashHistory({
+	basename: process.env.PUBLIC_URL,
+});
+
 let middleware = [
-	//
+	routerMiddleware(history),
 ];
 if (process.env.NODE_ENV !== 'production') {
 	const { composeWithDevTools } = require('redux-devtools-extension');
@@ -28,41 +37,17 @@ else {
 	middleware = applyMiddleware(...middleware);
 }
 
-class App extends Component {
-	static propTypes = {
-		title: PropTypes.string,
-	};
-
-	static defaultProps = {
-		title: '',
-	};
-
-	render() {
-		const { title } = this.props;
-		return (
+render(
+	<Provider store={createStore(connectRouter(history)(reducers), middleware)}>
+		<Router history={history}>
 			<div id="main-page" className="d-flex w-100 h-100 flex-column">
 				<header className="d-flex p-3 flex-column align-items-center">
 					<img className="w-100 mh-100" src={`${process.env.PUBLIC_URL}/media/brand/logo.png`} alt="AutoTrader" />
-					<div className="w-100 mt-2 text-center">
-						<h2 className="m-0">{title}</h2>
-					</div>
 				</header>
 				<Route exact path="/" component={TypePage} />
 				<Route path="/options" component={OptionsPage} />
 				<Route path="/results" component={ResultsPage} />
 			</div>
-		);
-	}
-}
-
-const ConnectedApp = withRouter(connect((store) => ({
-	title: store.app.title,
-}))(App));
-
-render(
-	<Provider store={createStore(reducers, middleware)}>
-		<Router>
-			<ConnectedApp />
 		</Router>
 	</Provider>,
 	document.getElementById('react-root'),

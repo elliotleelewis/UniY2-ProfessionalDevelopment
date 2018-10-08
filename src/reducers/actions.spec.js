@@ -1,16 +1,6 @@
 import * as actions from './actions';
 
 describe('actions', () => {
-	describe('app', () => {
-		it('should return the correct action object when using the action generator for the "SET_TITLE" action', () => {
-			const title = 'NEW TITLE';
-			const expectedAction = {
-				type: actions.SET_TITLE,
-				payload: title,
-			};
-			expect(actions.setTitle(title)).toEqual(expectedAction);
-		});
-	});
 	describe('type', () => {
 		it('should return the correct action object when using the action generator for the "TYPE_INDEX_INC" action', () => {
 			const expectedAction = {

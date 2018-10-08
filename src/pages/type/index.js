@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { stringify } from 'query-string';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Hammer from 'react-hammerjs';
 
 import * as actions from '../../reducers/actions';
@@ -62,11 +62,6 @@ class TypePage extends Component {
 				<Presets />
 			</div>
 		);
-	}
-
-	componentDidMount() {
-		const { dispatch } = this.props;
-		dispatch(actions.setTitle('Types'));
 	}
 
 	/**
@@ -131,7 +126,7 @@ class TypePage extends Component {
 		return out;
 	}
 }
-export default withRouter(connect((store) => ({
+export default connect((store) => ({
 	types: store.type.types,
 	selectedTypeIndex: store.type.selectedTypeIndex,
-}))(TypePage));
+}))(TypePage);

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { stringify } from 'query-string';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import * as actions from '../../../reducers/actions';
 
@@ -77,7 +77,7 @@ class Presets extends Component {
 		});
 	}
 }
-export default withRouter(connect((store) => ({
+export default connect((store) => ({
 	hidden: store.type.presetsHidden,
 	presets: store.type.presets,
-}))(Presets));
+}))(Presets);
