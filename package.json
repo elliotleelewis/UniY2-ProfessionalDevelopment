@@ -10,7 +10,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "lint:js": "eslint src",
-    "lint:css": "stylelint src",
+    "lint:css": "stylelint src/css",
     "docs": "esdoc"
   },
   "dependencies": {
@@ -83,16 +83,22 @@
     "rules": {
       "indentation": "tab",
       "color-hex-case": "upper",
-      "at-rule-no-unknown": false,
+      "at-rule-no-unknown": null,
       "at-rule-empty-line-before": "never",
       "declaration-empty-line-before": "never",
+      "no-descending-specificity": [
+        true,
+        {
+          "severity": "warning"
+        }
+      ],
       "max-empty-lines": 1,
       "rule-empty-line-before": [
         "never-multi-line"
       ],
       "selector-list-comma-newline-after": "never-multi-line",
       "selector-pseudo-element-colon-notation": "single",
-      "selector-type-no-unknown": false,
+      "selector-type-no-unknown": null,
       "order/order": [
         [
           "custom-properties",
