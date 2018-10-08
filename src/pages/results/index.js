@@ -180,27 +180,25 @@ class ResultsPage extends Component {
 			return null;
 		}
 		const bestResult = this.getBestResult();
-		let bestResultMake = `${process.env.PUBLIC_URL}/media/makes/${bestResult.make.name}.png`;
-		bestResultMake = bestResultMake.replace(/\s+/g, '-').toLowerCase();
-		let bestResultModel = `${process.env.PUBLIC_URL}/media/models/${bestResult.make.name}/${bestResult.model}.jpg`;
-		bestResultModel = bestResultModel.replace(/\s+/g, '-').toLowerCase();
+		const makeUrl = `${process.env.PUBLIC_URL}/media/makes/${bestResult.make.data_name}.png`;
+		const modelUrl = `${process.env.PUBLIC_URL}/media/models/${bestResult.make.data_name}/${bestResult.data_name}.jpg`;
 		return (
 			<div className="featured-result row m-0 mb-3 bg-trans">
 				<div className="featured-result-image-container col-4 h-100">
-					<div className="featured-result-image h-100 bg-trans" style={{ backgroundImage: `url(${bestResultModel})` }} />
+					<div className="featured-result-image h-100 bg-trans" style={{ backgroundImage: `url(${modelUrl})` }} />
 				</div>
 				<div className="col-8 d-flex m-0 py-3 flex-column">
 					<h4 className="m-0 text-center">Best Result:</h4>
 					<div className="d-flex h-100 p-3 flex-column align-items-center justify-content-center">
 						<div className="d-flex align-items-center">
 							<img
-								id="best-result-image"
-								className="featured-result-make mh-100"
-								src={bestResultMake}
+								id="featured-result-make"
+								className="mh-100"
+								src={makeUrl}
 								alt={bestResult.make.name}
 								title={bestResult.make.name}
 							/>
-							<UncontrolledTooltip target="best-result-image">{bestResult.make.name}</UncontrolledTooltip>
+							<UncontrolledTooltip target="featured-result-make">{bestResult.make.name}</UncontrolledTooltip>
 							<h3 className="my-0 ml-3" title={bestResult.model}>{bestResult.model}</h3>
 						</div>
 						<div className="d-flex flex-wrap align-items-center justify-content-center">
