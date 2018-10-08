@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import { UncontrolledTooltip } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { parse } from 'query-string';
@@ -79,7 +78,6 @@ class ResultsPage extends Component {
 	 */
 	componentDidMount() {
 		const { dispatch, location } = this.props;
-		dispatch(actions.setTitle('Results'));
 		const urlParams = parse(location.search);
 		if (!urlParams.category || !urlParams.value) {
 			console.log('NOPE');
@@ -298,8 +296,8 @@ class ResultsPage extends Component {
 		}
 	}
 }
-export default withRouter(connect((store) => ({
+export default connect((store) => ({
 	results: store.results.results,
 	sort: store.results.sort,
 	selectedResult: store.results.selectedResult,
-}))(ResultsPage));
+}))(ResultsPage);

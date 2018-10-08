@@ -1,6 +1,4 @@
 // --- TYPES ---
-// App
-export const SET_TITLE = 'SET_TITLE';
 // Type
 export const TYPE_INDEX_INC = 'TYPE_INDEX_INC';
 export const TYPE_INDEX_DEC = 'TYPE_INDEX_DEC';
@@ -14,13 +12,6 @@ export const CHANGE_RESULT_SORT = 'CHANGE_RESULT_SORT';
 export const SET_SELECTED_RESULT = 'SET_SELECTED_RESULT';
 
 // --- GENERATORS ---
-// App
-export function setTitle(title) {
-	return {
-		type: SET_TITLE,
-		payload: title,
-	};
-}
 // Type
 export function typeIndexInc() {
 	return {

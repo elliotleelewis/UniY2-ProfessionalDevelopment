@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { parse } from 'query-string';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import * as actions from '../../reducers/actions';
 
@@ -56,7 +56,6 @@ class OptionsPage extends Component {
 
 	componentDidMount() {
 		const { dispatch, location } = this.props;
-		dispatch(actions.setTitle('Options'));
 		const urlParams = parse(location.search);
 		if (!urlParams.category || !urlParams.value) {
 			console.log('NOPE');
@@ -189,8 +188,8 @@ class OptionsPage extends Component {
 		}));
 	}
 }
-export default withRouter(connect((store) => ({
+export default connect((store) => ({
 	category: store.options.category,
 	value: store.options.value,
 	filters: store.options.filters,
-}))(OptionsPage));
+}))(OptionsPage);
