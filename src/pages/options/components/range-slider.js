@@ -39,18 +39,20 @@ export default class RangeSlider extends Component {
 	 * @returns {React} - JSX element.
 	 */
 	render() {
+		const { label, min, max } = this.props;
+		const { value } = this.state;
 		return (
 			<div className="range-slider w-100 py-3 text-center">
-				<h4 className="m-0 text-white">{this.props.label}</h4>
+				<h4 className="m-0 text-white">{label}</h4>
 				<ReactSlider
-					min={this.props.min}
-					max={this.props.max}
+					min={min}
+					max={max}
 					step={1000}
-					value={this.state.value}
+					value={value}
 					onChange={this.onChange}
 					withBars
 					pearling
-					minDistance={(this.props.max - this.props.min) / 10}
+					minDistance={(max - min) / 10}
 				>
 					{this.getHandleValues()}
 				</ReactSlider>
@@ -66,7 +68,8 @@ export default class RangeSlider extends Component {
 		this.setState({
 			value,
 		});
-		this.props.onChange(value);
+		const { onChange } = this.props;
+		onChange(value);
 	}
 
 	/**
@@ -75,10 +78,11 @@ export default class RangeSlider extends Component {
 	 */
 	getHandleValues() {
 		const { prefix, affix } = this.props;
-		return this.state.value.map((value) => {
-			const val = ((prefix) || '') + value + ((affix) || '');
+		const { value } = this.state;
+		return value.map((val) => {
+			const v = ((prefix) || '') + val + ((affix) || '');
 			return (
-				<div key={val} className="handle-value">{val}</div>
+				<div key={v} className="handle-value">{v}</div>
 			);
 		});
 	}

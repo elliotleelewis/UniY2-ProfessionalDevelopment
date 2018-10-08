@@ -2,10 +2,7 @@
 .DS_Store
 .idea/
 /docs
-/public/dist
-/public/index.html
-/public/mix-manifest.json
-
+/build
 
 ### Node template
 # Logs

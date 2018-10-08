@@ -1,13 +1,14 @@
 {
-  "parser": "babel-eslint",
-  "extends": "airbnb",
+  "extends": [
+    "react-app",
+    "airbnb"
+  ],
   "env": {
     "jest": true
   },
   "globals": {
     "document": true,
-    "window": true,
-    "$": true
+    "window": true
   },
   "rules": {
     "arrow-parens": [
@@ -25,13 +26,6 @@
         "SwitchCase": 1
       }
     ],
-    "max-len": [
-      "error",
-      {
-        "code": 140,
-        "comments": 100
-      }
-    ],
     "no-plusplus": "off",
     "no-tabs": "off",
     "no-use-before-define": [
@@ -40,7 +34,6 @@
         "functions": false
       }
     ],
-    "one-var": "off",
     "import/order": [
       "error",
       {
@@ -70,6 +63,8 @@
         ]
       }
     ],
+    "jsx-a11y/label-has-for": "off",
+    "react/jsx-filename-extension": "off",
     "react/jsx-indent": [
       "error",
       "tab"
@@ -89,6 +84,7 @@
           "everything-else"
         ]
       }
-    ]
+    ],
+    "react/prefer-stateless-function": "off"
   }
 }

@@ -1,4 +1,4 @@
-import data from '../../data/cars.json';
+import data from '../data/cars.json';
 
 import * as actions from './actions';
 
@@ -21,7 +21,10 @@ export default function typeReducer(state = initialState, action) {
 		case actions.CHANGE_RESULT_SORT:
 			return { ...state, sort: action.payload };
 		case actions.SET_SELECTED_RESULT:
-			return { ...state, selectedResult: (state.selectedResult === action.payload) ? null : action.payload };
+			return {
+				...state,
+				selectedResult: (state.selectedResult === action.payload) ? null : action.payload,
+			};
 		default:
 			return state;
 	}
@@ -47,27 +50,27 @@ function setResultsSettings(state, options) {
 					break;
 				}
 				case 'price': {
-					const min = filter.value[0],
-						max = filter.value[1];
+					const min = filter.value[0];
+					const max = filter.value[1];
 					if (model.max_price < min || model.min_price > max) {
 						return false;
 					}
 					break;
 				}
 				case 'running_costs': {
-					const values = ['free', 'low', 'medium', 'considerable'],
-						filterIndex = values.indexOf(filter.value.toLowerCase()),
-						modelAnnualTax = values.indexOf(model.annual_tax.toLowerCase()),
-						modelInsurance = values.indexOf(model.insurance.toLowerCase());
+					const values = ['free', 'low', 'medium', 'considerable'];
+					const filterIndex = values.indexOf(filter.value.toLowerCase());
+					const modelAnnualTax = values.indexOf(model.annual_tax.toLowerCase());
+					const modelInsurance = values.indexOf(model.insurance.toLowerCase());
 					if (modelAnnualTax > filterIndex || modelInsurance > filterIndex) {
 						return false;
 					}
 					break;
 				}
 				case 'boot_size': {
-					const values = ['small', 'medium', 'large'],
-						filterIndex = values.indexOf(filter.value.toLowerCase()),
-						modelBootSize = values.indexOf(model.boot_size.toLowerCase());
+					const values = ['small', 'medium', 'large'];
+					const filterIndex = values.indexOf(filter.value.toLowerCase());
+					const modelBootSize = values.indexOf(model.boot_size.toLowerCase());
 					if (modelBootSize > filterIndex) {
 						return false;
 					}
@@ -87,19 +90,19 @@ function setResultsSettings(state, options) {
 					break;
 				}
 				case 'fuel_consumption': {
-					const values = ['low', 'medium', 'considerable'],
-						filterValues = ['minimal', 'medium', 'considerable'],
-						filterIndex = values.indexOf(filter.value.toLowerCase()),
-						modelFuelConsumption = filterValues.indexOf(model.fuel_consumption.toLowerCase());
+					const values = ['low', 'medium', 'considerable'];
+					const filterValues = ['minimal', 'medium', 'considerable'];
+					const filterIndex = values.indexOf(filter.value.toLowerCase());
+					const modelFuelConsumption = filterValues.indexOf(model.fuel_consumption.toLowerCase());
 					if (modelFuelConsumption > filterIndex) {
 						return false;
 					}
 					break;
 				}
 				case 'acceleration': {
-					const values = ['steady', 'medium', 'fast'],
-						filterIndex = values.indexOf(filter.value.toLowerCase()),
-						modelAcceleration = values.indexOf(model.acceleration.toLowerCase());
+					const values = ['steady', 'medium', 'fast'];
+					const filterIndex = values.indexOf(filter.value.toLowerCase());
+					const modelAcceleration = values.indexOf(model.acceleration.toLowerCase());
 					if (modelAcceleration > filterIndex) {
 						return false;
 					}

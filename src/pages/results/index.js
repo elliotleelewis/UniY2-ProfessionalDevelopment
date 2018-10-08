@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { UncontrolledTooltip } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { parse } from 'query-string';
 
@@ -11,13 +12,7 @@ import Result from './components/result';
 /**
  * The final page of the web app. Where final car results are shown.
  */
-@withRouter
-@connect((store) => ({
-	results: store.results.results,
-	sort: store.results.sort,
-	selectedResult: store.results.selectedResult,
-}))
-export default class ResultsPage extends Component {
+class ResultsPage extends Component {
 	static propTypes = {
 		dispatch: PropTypes.func.isRequired,
 		location: PropTypes.shape({
@@ -27,6 +22,7 @@ export default class ResultsPage extends Component {
 		sort: PropTypes.string.isRequired,
 		selectedResult: PropTypes.number,
 	};
+
 	static defaultProps = {
 		selectedResult: null,
 	};
@@ -48,23 +44,22 @@ export default class ResultsPage extends Component {
 	 * @returns {React} - JSX element.
 	 */
 	render() {
-		if (this.props.results.length === 0) {
+		const { results } = this.props;
+		if (results.length === 0) {
 			return (
-				<div className="module" id="results">
+				<div id="results" className="page">
 					<div className="container-fluid">
-						<div className="row">
-							No results found!
-						</div>
+						<div className="row">No results found!</div>
 					</div>
 				</div>
 			);
 		}
 		return (
-			<div id="results" className="module px-4 pb-4">
+			<div id="results" className="page px-4 pb-4">
 				<div className="container-fluid">
 					<div className="form-group form-inline d-flex">
 						<label className="d-flex my-0 ml-auto align-items-center" htmlFor="sort">
-							Sort By:
+							{'Sort By:'}
 							<select id="sort" className="form-control ml-2" onChange={this.changeSort}>
 								<option value="relevancy">Relevancy</option>
 								<option value="priceLow">Price Low to High</option>
@@ -72,8 +67,8 @@ export default class ResultsPage extends Component {
 							</select>
 						</label>
 					</div>
-					{(this.props.results && this.props.results.length > 0) ? this.getBestResultElement() : null}
-					{(this.props.results && this.props.results.length > 0) ? this.getResultElements() : null}
+					{(results && results.length > 0) ? this.getBestResultElement() : null}
+					{(results && results.length > 0) ? this.getResultElements() : null}
 				</div>
 			</div>
 		);
@@ -83,20 +78,17 @@ export default class ResultsPage extends Component {
 	 * Triggers the bootstrap tooltip's once the element has been loaded.
 	 */
 	componentDidMount() {
-		this.props.dispatch(actions.setTitle('Results'));
-		const urlParams = parse(this.props.location.search);
+		const { dispatch, location } = this.props;
+		dispatch(actions.setTitle('Results'));
+		const urlParams = parse(location.search);
 		if (!urlParams.category || !urlParams.value) {
 			console.log('NOPE');
 		}
-		this.props.dispatch(actions.setResultsSettings({
+		dispatch(actions.setResultsSettings({
 			category: urlParams.category,
 			value: urlParams.value,
 			filters: urlParams.filters ? JSON.parse(urlParams.filters) : [],
 		}));
-	}
-
-	componentDidUpdate() {
-		$('[data-toggle="tooltip"]').tooltip();
 	}
 
 	/**
@@ -105,7 +97,8 @@ export default class ResultsPage extends Component {
 	 * @param index {number} - Index of the result clicked on.
 	 */
 	onClick(index) {
-		this.props.dispatch(actions.setSelectedResult(index));
+		const { dispatch } = this.props;
+		dispatch(actions.setSelectedResult(index));
 	}
 
 	/**
@@ -113,7 +106,8 @@ export default class ResultsPage extends Component {
 	 * @param event {object} - Select change event.
 	 */
 	changeSort(event) {
-		this.props.dispatch(actions.changeResultSort(event.target.value));
+		const { dispatch } = this.props;
+		dispatch(actions.changeResultSort(event.target.value));
 	}
 
 	/**
@@ -170,7 +164,7 @@ export default class ResultsPage extends Component {
 			if (attributeA.props.children.charAt(0) === '-' && attributeB.props.children.charAt(0) === '+') {
 				return 1;
 			}
-			else if (attributeA.props.children.charAt(0) === '+' && attributeB.props.children.charAt(0) === '-') {
+			if (attributeA.props.children.charAt(0) === '+' && attributeB.props.children.charAt(0) === '-') {
 				return -1;
 			}
 			return attributeA.props.children.localeCompare(attributeB.props.children);
@@ -183,13 +177,14 @@ export default class ResultsPage extends Component {
 	 * @returns {React} JSX Element.
 	 */
 	getBestResultElement() {
-		if (this.props.sort !== 'relevancy') {
+		const { sort } = this.props;
+		if (sort !== 'relevancy') {
 			return null;
 		}
 		const bestResult = this.getBestResult();
-		let bestResultMake = `media/makes/${bestResult.make.name}.png`;
+		let bestResultMake = `${process.env.PUBLIC_URL}/media/makes/${bestResult.make.name}.png`;
 		bestResultMake = bestResultMake.replace(/\s+/g, '-').toLowerCase();
-		let bestResultModel = `media/models/${bestResult.make.name}/${bestResult.model}.jpg`;
+		let bestResultModel = `${process.env.PUBLIC_URL}/media/models/${bestResult.make.name}/${bestResult.model}.jpg`;
 		bestResultModel = bestResultModel.replace(/\s+/g, '-').toLowerCase();
 		return (
 			<div className="featured-result row m-0 mb-3 bg-trans">
@@ -201,12 +196,13 @@ export default class ResultsPage extends Component {
 					<div className="d-flex h-100 p-3 flex-column align-items-center justify-content-center">
 						<div className="d-flex align-items-center">
 							<img
+								id="best-result-image"
 								className="featured-result-make mh-100"
 								src={bestResultMake}
 								alt={bestResult.make.name}
 								title={bestResult.make.name}
-								data-toggle="tooltip"
 							/>
+							<UncontrolledTooltip target="best-result-image">{bestResult.make.name}</UncontrolledTooltip>
 							<h3 className="my-0 ml-3" title={bestResult.model}>{bestResult.model}</h3>
 						</div>
 						<div className="d-flex flex-wrap align-items-center justify-content-center">
@@ -225,29 +221,30 @@ export default class ResultsPage extends Component {
 	 */
 	getResultElements() {
 		let shownSelected = false;
-		const results = this.getResults(),
-			resultElements = [];
+		const results = this.getResults();
+		const resultElements = [];
+		const { selectedResult } = this.props;
 		for (let i = 0; i < results.length; i += 3) {
 			const row = [];
 			for (let j = 0; j < Math.min(3, results.length - i); j++) {
 				row.push((
 					<Result
 						key={i + j}
-						active={i + j === this.props.selectedResult}
+						active={i + j === selectedResult}
 						model={results[i + j]}
 						onClick={() => this.onClick(i + j)}
 					/>
 				));
 			}
-			if (this.props.selectedResult !== null && this.props.selectedResult < i + 3 && !shownSelected) {
+			if (selectedResult !== null && selectedResult < i + 3 && !shownSelected) {
 				row.splice(
-					this.props.selectedResult + (1 - i),
+					selectedResult + (1 - i),
 					0,
 					(
 						<div
 							key={results.length}
 							className="selected-result col-12 mb-3"
-							data-arrow-offset={this.props.selectedResult - i}
+							data-arrow-offset={selectedResult - i}
 						>
 							<div className="col-12 d-flex p-0">
 								<div className="triangle-container col-4 d-flex my-auto justify-content-center">
@@ -255,7 +252,7 @@ export default class ResultsPage extends Component {
 								</div>
 							</div>
 							<div className="selected-result-info col-12 d-flex align-items-center justify-content-center bg-trans">
-								The selected model is {results[this.props.selectedResult].model}
+								{`The selected model is ${results[selectedResult].model}`}
 							</div>
 						</div>
 					),
@@ -284,13 +281,25 @@ export default class ResultsPage extends Component {
 	 * @returns {object[]} - The results state.
 	 */
 	getResults() {
-		switch (this.props.sort) {
+		const { results, sort } = this.props;
+		switch (sort) {
 			case 'priceHigh':
-				return this.props.results.sort((resultA, resultB) => resultB.typical_price - resultA.typical_price);
+				return results.sort(
+					(resultA, resultB) => resultB.typical_price - resultA.typical_price,
+				);
 			case 'priceLow':
-				return this.props.results.sort((resultA, resultB) => resultA.typical_price - resultB.typical_price);
+				return results.sort(
+					(resultA, resultB) => resultA.typical_price - resultB.typical_price,
+				);
 			default:
-				return this.props.results.sort((resultA, resultB) => resultA.model.localeCompare(resultB.model));
+				return results.sort(
+					(resultA, resultB) => resultA.model.localeCompare(resultB.model),
+				);
 		}
 	}
 }
+export default withRouter(connect((store) => ({
+	results: store.results.results,
+	sort: store.results.sort,
+	selectedResult: store.results.selectedResult,
+}))(ResultsPage));

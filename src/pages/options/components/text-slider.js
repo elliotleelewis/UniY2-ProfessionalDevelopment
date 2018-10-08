@@ -31,18 +31,20 @@ export default class TextSlider extends Component {
 	 * @returns {React} - JSX element.
 	 */
 	render() {
+		const { items, label } = this.props;
+		const { value } = this.state;
 		return (
 			<div className="text-slider w-100 py-3 text-center">
-				<h4 className="m-0 text-white">{this.props.label}</h4>
+				<h4 className="m-0 text-white">{label}</h4>
 				<ReactSlider
 					min={0}
-					max={this.props.items.length - 1}
-					value={this.state.value}
+					max={items.length - 1}
+					value={value}
 					onChange={this.onChange}
 					withBars
 					pearling
 				>
-					<div className="handle-value">{this.props.items[this.state.value]}</div>
+					<div className="handle-value">{items[value]}</div>
 				</ReactSlider>
 			</div>
 		);
@@ -56,6 +58,7 @@ export default class TextSlider extends Component {
 		this.setState({
 			value: index,
 		});
-		this.props.onChange(this.props.items[index].toLowerCase());
+		const { items, onChange } = this.props;
+		onChange(items[index].toLowerCase());
 	}
 }
