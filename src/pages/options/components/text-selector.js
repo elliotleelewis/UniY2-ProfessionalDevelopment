@@ -31,9 +31,10 @@ export default class TextSelector extends Component {
 	 * @returns {React} - JSX element.
 	 */
 	render() {
+		const { label } = this.props;
 		return (
 			<div className="text-selector w-100 py-3 text-center">
-				<h4 className="m-0 text-white">{this.props.label}</h4>
+				<h4 className="m-0 text-white">{label}</h4>
 				<div className="items d-flex align-items-center justify-content-center flex-column flex-md-row">
 					{this.getItems()}
 				</div>
@@ -49,7 +50,8 @@ export default class TextSelector extends Component {
 		this.setState({
 			value: index,
 		});
-		this.props.onChange(this.props.items[index].toLowerCase());
+		const { items, onChange } = this.props;
+		onChange(items[index].toLowerCase());
 	}
 
 	/**
@@ -57,10 +59,13 @@ export default class TextSelector extends Component {
 	 * @returns {React[]} - Array of JSX elements.
 	 */
 	getItems() {
-		return this.props.items.map((item, i) => (
+		const { items } = this.props;
+		const { value } = this.state;
+		return items.map((item, i) => (
 			<button
 				key={item}
-				className={`btn btn-${(this.state.value === i) ? '' : 'outline-'}secondary mx-2 mt-3`}
+				className={`btn btn-${(value === i) ? '' : 'outline-'}secondary mx-2 mt-3`}
+				type="button"
 				onClick={() => this.onChange(i)}
 			>
 				{item}

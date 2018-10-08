@@ -14,13 +14,7 @@ import TextSlider from './components/text-slider';
  * The second page of the web app. Where secondary configuration takes place
  * before results are shown.
  */
-@withRouter
-@connect((store) => ({
-	category: store.options.category,
-	value: store.options.value,
-	filters: store.options.filters,
-}))
-export default class OptionsPage extends Component {
+class OptionsPage extends Component {
 	static propTypes = {
 		dispatch: PropTypes.func.isRequired,
 		location: PropTypes.shape({
@@ -30,6 +24,7 @@ export default class OptionsPage extends Component {
 		value: PropTypes.string,
 		filters: PropTypes.arrayOf(PropTypes.object).isRequired,
 	};
+
 	static defaultProps = {
 		category: null,
 		value: null,
@@ -50,7 +45,7 @@ export default class OptionsPage extends Component {
 	 */
 	render() {
 		return (
-			<div id="options" className="module justify-content-center px-4 pb-3">
+			<div id="options" className="page justify-content-center px-4 pb-3">
 				<div className="container d-flex flex-column align-items-center">
 					{this.getFilterElements()}
 					<Link className="btn btn-lg btn-primary my-3" to={this.getResultUrl()}>Search</Link>
@@ -60,18 +55,20 @@ export default class OptionsPage extends Component {
 	}
 
 	componentDidMount() {
-		this.props.dispatch(actions.setTitle('Options'));
-		const urlParams = parse(this.props.location.search);
+		const { dispatch, location } = this.props;
+		dispatch(actions.setTitle('Options'));
+		const urlParams = parse(location.search);
 		if (!urlParams.category || !urlParams.value) {
 			console.log('NOPE');
 		}
-		this.props.dispatch(actions.setOptionsSettings(urlParams.category, urlParams.value));
+		dispatch(actions.setOptionsSettings(urlParams.category, urlParams.value));
 	}
 
 	getResultUrl() {
+		const { category, value } = this.props;
 		let url = '/results?';
-		url += `category=${this.props.category}`;
-		url += `&value=${this.props.value}`;
+		url += `category=${category}`;
+		url += `&value=${value}`;
 		url += `&filters=${JSON.stringify(this.getValues())}`;
 		return url;
 	}
@@ -82,8 +79,9 @@ export default class OptionsPage extends Component {
 	 * @param {string} value - The new value of the filter.
 	 */
 	onFilterChange(index, value) {
+		const { dispatch } = this.props;
 		const val = (typeof value === 'string') ? value.toLowerCase() : value;
-		this.props.dispatch(actions.setFilterValue(index, val));
+		dispatch(actions.setFilterValue(index, val));
 	}
 
 	/**
@@ -91,7 +89,8 @@ export default class OptionsPage extends Component {
 	 * @returns {React[]} - Array of filter elements.
 	 */
 	getFilterElements() {
-		return this.props.filters.map((filter, i) => {
+		const { filters } = this.props;
+		return filters.map((filter, i) => {
 			const { settings } = filter;
 			switch (filter.type) {
 				case 'price':
@@ -183,9 +182,15 @@ export default class OptionsPage extends Component {
 	}
 
 	getValues() {
-		return this.props.filters.map((filter) => ({
+		const { filters } = this.props;
+		return filters.map((filter) => ({
 			type: filter.type,
 			value: filter.value,
 		}));
 	}
 }
+export default withRouter(connect((store) => ({
+	category: store.options.category,
+	value: store.options.value,
+	filters: store.options.filters,
+}))(OptionsPage));

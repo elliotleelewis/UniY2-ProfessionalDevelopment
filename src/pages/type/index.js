@@ -13,12 +13,7 @@ import Presets from './components/presets';
 /**
  * First page of the web app. Contains the body types slider and the presets slider.
  */
-@withRouter
-@connect((store) => ({
-	types: store.type.types,
-	selectedTypeIndex: store.type.selectedTypeIndex,
-}))
-export default class TypePage extends Component {
+class TypePage extends Component {
 	static propTypes = {
 		dispatch: PropTypes.func.isRequired,
 		types: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -41,9 +36,10 @@ export default class TypePage extends Component {
 	 * @returns {React} JSX elements.
 	 */
 	render() {
-		const shortName = this.props.types[this.props.selectedTypeIndex].toLowerCase().replace(' ', '-');
+		const { types, selectedTypeIndex } = this.props;
+		const shortName = types[selectedTypeIndex].toLowerCase().replace(' ', '-');
 		return (
-			<div id="type" className="module">
+			<div id="type" className="page">
 				<div className="types-container d-flex mx-3 flex-column align-items-center justify-content-center">
 					<Hammer onSwipe={this.handleSwipe}>
 						<div className="types position-relative d-flex w-100 align-items-center justify-content-center">
@@ -60,7 +56,7 @@ export default class TypePage extends Component {
 							}),
 						}}
 					>
-						Select
+						{'Select'}
 					</Link>
 				</div>
 				<Presets />
@@ -69,7 +65,8 @@ export default class TypePage extends Component {
 	}
 
 	componentDidMount() {
-		this.props.dispatch(actions.setTitle('Types'));
+		const { dispatch } = this.props;
+		dispatch(actions.setTitle('Types'));
 	}
 
 	/**
@@ -77,11 +74,12 @@ export default class TypePage extends Component {
 	 * @param {object} event - Swipe event.
 	 */
 	handleSwipe(event) {
+		const { dispatch } = this.props;
 		if (event.direction === 2) {
-			this.props.dispatch(actions.TYPE_INDEX_INC);
+			dispatch(actions.typeIndexInc());
 		}
 		else if (event.direction === 4) {
-			this.props.dispatch(actions.TYPE_INDEX_DEC);
+			dispatch(actions.typeIndexDec());
 		}
 	}
 
@@ -90,13 +88,14 @@ export default class TypePage extends Component {
 	 * @returns {React[]} Array of JSX elements to render.
 	 */
 	eachType() {
-		return this.props.types.map((item, i) => (
+		const { dispatch, types } = this.props;
+		return types.map((item, i) => (
 			<Type
 				key={JSON.stringify(item)}
 				type={item}
 				relativeSelectedIndex={this.getRelativeSelectedIndex(i)}
-				nextType={() => this.props.dispatch(actions.typeIndexInc())}
-				prevType={() => this.props.dispatch(actions.typeIndexDec())}
+				nextType={() => dispatch(actions.typeIndexInc())}
+				prevType={() => dispatch(actions.typeIndexDec())}
 			/>
 		));
 	}
@@ -120,8 +119,9 @@ export default class TypePage extends Component {
 	 * getRelativeSelectedIndex(1)
 	 */
 	getRelativeSelectedIndex(i) {
-		const typesCount = this.props.types.length;
-		let out = i - this.props.selectedTypeIndex;
+		const { selectedTypeIndex, types } = this.props;
+		const typesCount = types.length;
+		let out = i - selectedTypeIndex;
 		if (out > (typesCount / 2)) {
 			out -= typesCount;
 		}
@@ -131,3 +131,7 @@ export default class TypePage extends Component {
 		return out;
 	}
 }
+export default withRouter(connect((store) => ({
+	types: store.type.types,
+	selectedTypeIndex: store.type.selectedTypeIndex,
+}))(TypePage));

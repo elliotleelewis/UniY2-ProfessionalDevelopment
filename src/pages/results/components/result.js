@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
+import { UncontrolledTooltip } from 'reactstrap';
 
 /**
  * Search result element for {@link ResultsPage}.
@@ -31,29 +32,32 @@ export default class Result extends PureComponent {
 	 * @returns {React} - JSX element.
 	 */
 	render() {
-		let makeUrl = `media/makes/${this.props.model.make.name}.png`;
+		const { active, model, onClick } = this.props;
+		let makeUrl = `${process.env.PUBLIC_URL}/media/makes/${model.make.name}.png`;
 		makeUrl = makeUrl.replace(/\s+/g, '-').toLowerCase();
-		let modelUrl = `media/models/${this.props.model.make.name}/${this.props.model.model}.jpg`;
+		let modelUrl = `${process.env.PUBLIC_URL}/media/models/${model.make.name}/${model.model}.jpg`;
 		modelUrl = modelUrl.replace(/\s+/g, '-').toLowerCase();
-		const modelPrice = this.props.model.typical_price.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+		const modelPrice = model.typical_price.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 		return (
 			<button
-				className={`${(this.props.active ? 'active ' : '')}result col-md-4 col-12 my-3 border-0 bg-transparent text-white`}
-				title={`${this.props.model.make.name} ${this.props.model.model}`}
-				onClick={this.props.onClick}
+				className={`${(active ? 'active ' : '')}result col-md-4 col-12 my-3 border-0 bg-transparent text-white`}
+				title={`${model.make.name} ${model.model}`}
+				type="button"
+				onClick={onClick}
 			>
 				<div className="result-container h-100 bg-trans">
 					<div className="result-image bg-trans" style={{ backgroundImage: `url(${modelUrl})` }} />
 					<div className="result-info d-flex p-2 align-items-center">
 						<img
+							id={`result-make-logo-${model.make.name}`}
 							className="mh-100"
 							src={makeUrl}
-							alt={this.props.model.make.name}
-							title={this.props.model.make.name}
-							data-toggle="tooltip"
+							alt={model.make.name}
+							title={model.make.name}
 						/>
-						<h5 className="w-100 my-0 ml-2" title={this.props.model.model}>{this.props.model.model}</h5>
-						<h6 className="m-0" title="Price">~ £{modelPrice}</h6>
+						<UncontrolledTooltip target={`result-make-logo-${model.make.name}`}>{model.make.name}</UncontrolledTooltip>
+						<h5 className="w-100 my-0 ml-2" title={model.model}>{model.model}</h5>
+						<h6 className="m-0" title="Price">{`~ £${modelPrice}`}</h6>
 					</div>
 				</div>
 			</button>

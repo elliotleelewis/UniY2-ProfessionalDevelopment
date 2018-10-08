@@ -1,4 +1,4 @@
-import filters from '../../data/filters.json';
+import filters from '../data/filters.json';
 
 import * as actions from './actions';
 
