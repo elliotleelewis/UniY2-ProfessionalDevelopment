@@ -21,7 +21,7 @@ $result-height: 300px;
 						background-size: cover;
 					}
 				}
-				.featured-result-make {
+				#featured-result-make {
 					max-width: 64px;
 				}
 			}
@@ -42,15 +42,10 @@ $result-height: 300px;
 					border-radius: $spacing / 2;
 					overflow: hidden;
 					.result-image {
-						height: 75%;
 						background: no-repeat center;
 						background-size: cover;
 					}
 					.result-info {
-						height: 25%;
-						img {
-							max-width: 64px;
-						}
 						h5 {
 							overflow: hidden;
 							text-overflow: ellipsis;

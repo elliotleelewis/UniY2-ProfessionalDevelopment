@@ -2,8 +2,12 @@ import data from '../data/cars.json';
 
 import * as actions from './actions';
 
-const preparedData = data.models.map((model) => Object.assign(model, {
+let preparedData = Object.keys(data.makes).map((make) => Object.assign(data.makes[make], {
+	data_name: data.makes[make].name.replace(/\s+/g, '-').toLowerCase(),
+}));
+preparedData = data.models.map((model) => Object.assign(model, {
 	make: data.makes[model.make],
+	data_name: model.model.replace(/\s+/g, '-').toLowerCase(),
 }));
 
 const initialState = {
