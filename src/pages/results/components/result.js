@@ -23,6 +23,7 @@ export default class Result extends PureComponent {
 			acceleration: PropTypes.string.isRequired,
 			insurance: PropTypes.string.isRequired,
 			annual_tax: PropTypes.string.isRequired,
+			data_name: PropTypes.string.isRequired,
 		}).isRequired,
 		onClick: PropTypes.func.isRequired,
 	};
