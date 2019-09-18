@@ -32,7 +32,9 @@ describe('actions', () => {
 					value,
 				},
 			};
-			expect(actions.setOptionsSettings(category, value)).toEqual(expectedAction);
+			expect(actions.setOptionsSettings(category, value)).toEqual(
+				expectedAction,
+			);
 		});
 		it('should return the correct action object when using the action generator for the "SET_FILTER_VALUE" action', () => {
 			const index = 1;
@@ -44,7 +46,9 @@ describe('actions', () => {
 					value,
 				},
 			};
-			expect(actions.setFilterValue(index, value)).toEqual(expectedAction);
+			expect(actions.setFilterValue(index, value)).toEqual(
+				expectedAction,
+			);
 		});
 	});
 	describe('results', () => {
@@ -54,7 +58,9 @@ describe('actions', () => {
 				type: actions.SET_RESULTS_SETTINGS,
 				payload: settings,
 			};
-			expect(actions.setResultsSettings(settings)).toEqual(expectedAction);
+			expect(actions.setResultsSettings(settings)).toEqual(
+				expectedAction,
+			);
 		});
 		it('should return the correct action object when using the action generator for the "CHANGE_RESULT_SORT" action', () => {
 			const sort = 'SORT';

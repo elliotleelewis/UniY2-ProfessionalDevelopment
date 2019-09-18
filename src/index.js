@@ -22,18 +22,12 @@ const history = createHashHistory({
 	basename: process.env.PUBLIC_URL,
 });
 
-let middleware = [
-	routerMiddleware(history),
-];
+let middleware = [routerMiddleware(history)];
 if (process.env.NODE_ENV !== 'production') {
 	const { composeWithDevTools } = require('redux-devtools-extension');
 	const { logger } = require('redux-logger');
-	middleware = composeWithDevTools(applyMiddleware(
-		...middleware,
-		logger,
-	));
-}
-else {
+	middleware = composeWithDevTools(applyMiddleware(...middleware, logger));
+} else {
 	middleware = applyMiddleware(...middleware);
 }
 
@@ -42,7 +36,11 @@ render(
 		<Router history={history}>
 			<div id="main-page" className="d-flex w-100 h-100 flex-column">
 				<header className="d-flex p-3 flex-column align-items-center">
-					<img className="w-100 mh-100" src={`${process.env.PUBLIC_URL}/media/brand/logo.png`} alt="AutoTrader" />
+					<img
+						className="w-100 mh-100"
+						src={`${process.env.PUBLIC_URL}/media/brand/logo.png`}
+						alt="AutoTrader"
+					/>
 				</header>
 				<Route exact path="/" component={TypePage} />
 				<Route path="/options" component={OptionsPage} />

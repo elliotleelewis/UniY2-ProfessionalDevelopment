@@ -37,7 +37,9 @@ class TypePage extends Component {
 	 */
 	render() {
 		const { types, selectedTypeIndex } = this.props;
-		const shortName = types[selectedTypeIndex].toLowerCase().replace(' ', '-');
+		const shortName = types[selectedTypeIndex]
+			.toLowerCase()
+			.replace(' ', '-');
 		return (
 			<div id="type" className="page">
 				<div className="types-container d-flex mx-3 flex-column align-items-center justify-content-center">
@@ -72,8 +74,7 @@ class TypePage extends Component {
 		const { dispatch } = this.props;
 		if (event.direction === 2) {
 			dispatch(actions.typeIndexInc());
-		}
-		else if (event.direction === 4) {
+		} else if (event.direction === 4) {
 			dispatch(actions.typeIndexDec());
 		}
 	}
@@ -117,10 +118,9 @@ class TypePage extends Component {
 		const { selectedTypeIndex, types } = this.props;
 		const typesCount = types.length;
 		let out = i - selectedTypeIndex;
-		if (out > (typesCount / 2)) {
+		if (out > typesCount / 2) {
 			out -= typesCount;
-		}
-		else if (out < -(typesCount / 2)) {
+		} else if (out < -(typesCount / 2)) {
 			out += typesCount;
 		}
 		return out;

@@ -61,12 +61,12 @@ $result-height: 300px;
 				height: $result-height;
 				@media (min-width: $desktop-breakpoint) {
 					order: 1;
-					&[data-arrow-offset="0"] {
+					&[data-arrow-offset='0'] {
 						.triangle-container {
 							margin-left: 0;
 						}
 					}
-					&[data-arrow-offset="2"] {
+					&[data-arrow-offset='2'] {
 						.triangle-container {
 							margin-right: 0;
 						}

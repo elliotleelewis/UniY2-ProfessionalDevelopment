@@ -17,12 +17,7 @@ export default class Type extends PureComponent {
 	 * @returns {React} - JSX element.
 	 */
 	render() {
-		const {
-			nextType,
-			prevType,
-			relativeSelectedIndex,
-			type,
-		} = this.props;
+		const { nextType, prevType, relativeSelectedIndex, type } = this.props;
 		let action;
 		switch (relativeSelectedIndex) {
 			case -1:
@@ -50,7 +45,10 @@ export default class Type extends PureComponent {
 			>
 				<svg className="w-100">
 					<title>{type}</title>
-					<use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref={this.getIconFilepath()} />
+					<use
+						xmlnsXlink="http://www.w3.org/1999/xlink"
+						xlinkHref={this.getIconFilepath()}
+					/>
 				</svg>
 				<h5 className="w-100 m-0 text-center">{type}</h5>
 			</div>
@@ -79,6 +77,8 @@ export default class Type extends PureComponent {
 	 */
 	getIconFilepath() {
 		const { type } = this.props;
-		return `${process.env.PUBLIC_URL}/media/icons.svg#icon-${type.toLowerCase()}`;
+		return `${
+			process.env.PUBLIC_URL
+		}/media/icons.svg#icon-${type.toLowerCase()}`;
 	}
 }

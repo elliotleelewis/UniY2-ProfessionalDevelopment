@@ -57,17 +57,32 @@ class ResultsPage extends Component {
 			<div id="results" className="page px-4 pb-4">
 				<div className="container-fluid">
 					<div className="form-group form-inline d-flex">
-						<label className="d-flex my-0 ml-auto align-items-center" htmlFor="sort">
+						<label
+							className="d-flex my-0 ml-auto align-items-center"
+							htmlFor="sort"
+						>
 							{'Sort By:'}
-							<select id="sort" className="form-control ml-2" onChange={this.changeSort}>
+							<select
+								id="sort"
+								className="form-control ml-2"
+								onChange={this.changeSort}
+							>
 								<option value="relevancy">Relevancy</option>
-								<option value="priceLow">Price Low to High</option>
-								<option value="priceHigh">Price High to Low</option>
+								<option value="priceLow">
+									Price Low to High
+								</option>
+								<option value="priceHigh">
+									Price High to Low
+								</option>
 							</select>
 						</label>
 					</div>
-					{(results && results.length > 0) ? this.getBestResultElement() : null}
-					{(results && results.length > 0) ? this.getResultElements() : null}
+					{results && results.length > 0
+						? this.getBestResultElement()
+						: null}
+					{results && results.length > 0
+						? this.getResultElements()
+						: null}
 				</div>
 			</div>
 		);
@@ -82,11 +97,13 @@ class ResultsPage extends Component {
 		if (!urlParams.category || !urlParams.value) {
 			console.log('NOPE');
 		}
-		dispatch(actions.setResultsSettings({
-			category: urlParams.category,
-			value: urlParams.value,
-			filters: urlParams.filters ? JSON.parse(urlParams.filters) : [],
-		}));
+		dispatch(
+			actions.setResultsSettings({
+				category: urlParams.category,
+				value: urlParams.value,
+				filters: urlParams.filters ? JSON.parse(urlParams.filters) : [],
+			}),
+		);
 	}
 
 	/**
@@ -118,54 +135,140 @@ class ResultsPage extends Component {
 		const attributes = [];
 		const result = this.getBestResult();
 		if (result.seats === '5') {
-			attributes.push(<div key={0} className="badge badge-pill badge-success mx-2 mt-2">+ Seats</div>);
-		}
-		else if (result.seats === '2') {
-			attributes.push(<div key={0} className="badge badge-pill badge-danger mx-2 mt-2">- Seats</div>);
+			attributes.push(
+				<div
+					key={0}
+					className="badge badge-pill badge-success mx-2 mt-2"
+				>
+					+ Seats
+				</div>,
+			);
+		} else if (result.seats === '2') {
+			attributes.push(
+				<div
+					key={0}
+					className="badge badge-pill badge-danger mx-2 mt-2"
+				>
+					- Seats
+				</div>,
+			);
 		}
 		if (result.doors === '5') {
-			attributes.push(<div key={1} className="badge badge-pill badge-success mx-2 mt-2">+ Doors</div>);
-		}
-		else if (result.doors === '2') {
-			attributes.push(<div key={1} className="badge badge-pill badge-danger mx-2 mt-2">- Doors</div>);
+			attributes.push(
+				<div
+					key={1}
+					className="badge badge-pill badge-success mx-2 mt-2"
+				>
+					+ Doors
+				</div>,
+			);
+		} else if (result.doors === '2') {
+			attributes.push(
+				<div
+					key={1}
+					className="badge badge-pill badge-danger mx-2 mt-2"
+				>
+					- Doors
+				</div>,
+			);
 		}
 		if (result.boot_size.toLowerCase() === 'large') {
-			attributes.push(<div key={2} className="badge badge-pill badge-success mx-2 mt-2">+ Boot Size</div>);
-		}
-		else if (result.boot_size.toLowerCase() === 'small') {
-			attributes.push(<div key={2} className="badge badge-pill badge-danger mx-2 mt-2">- Boot Size</div>);
+			attributes.push(
+				<div
+					key={2}
+					className="badge badge-pill badge-success mx-2 mt-2"
+				>
+					+ Boot Size
+				</div>,
+			);
+		} else if (result.boot_size.toLowerCase() === 'small') {
+			attributes.push(
+				<div
+					key={2}
+					className="badge badge-pill badge-danger mx-2 mt-2"
+				>
+					- Boot Size
+				</div>,
+			);
 		}
 		if (result.fuel_consumption.toLowerCase() === 'low') {
-			attributes.push(<div key={3} className="badge badge-pill badge-success mx-2 mt-2">+ Fuel Consumption</div>);
-		}
-		else if (result.fuel_consumption.toLowerCase() === 'considerable') {
-			attributes.push(<div key={3} className="badge badge-pill badge-danger mx-2 mt-2">- Fuel Consumption</div>);
+			attributes.push(
+				<div
+					key={3}
+					className="badge badge-pill badge-success mx-2 mt-2"
+				>
+					+ Fuel Consumption
+				</div>,
+			);
+		} else if (result.fuel_consumption.toLowerCase() === 'considerable') {
+			attributes.push(
+				<div
+					key={3}
+					className="badge badge-pill badge-danger mx-2 mt-2"
+				>
+					- Fuel Consumption
+				</div>,
+			);
 		}
 		const runningCostValues = ['free', 'low', 'medium', 'considerable'];
-		const runningCosts = (
-			runningCostValues.indexOf(result.annual_tax.toLowerCase())
-			+ runningCostValues.indexOf(result.insurance.toLowerCase())
-		) / 2;
+		const runningCosts =
+			(runningCostValues.indexOf(result.annual_tax.toLowerCase()) +
+				runningCostValues.indexOf(result.insurance.toLowerCase())) /
+			2;
 		if (runningCosts <= 1.5) {
-			attributes.push(<div key={4} className="badge badge-pill badge-success mx-2 mt-2">+ Running Costs</div>);
-		}
-		else if (runningCosts >= 2.5) {
-			attributes.push(<div key={4} className="badge badge-pill badge-danger mx-2 mt-2">- Running Costs</div>);
+			attributes.push(
+				<div
+					key={4}
+					className="badge badge-pill badge-success mx-2 mt-2"
+				>
+					+ Running Costs
+				</div>,
+			);
+		} else if (runningCosts >= 2.5) {
+			attributes.push(
+				<div
+					key={4}
+					className="badge badge-pill badge-danger mx-2 mt-2"
+				>
+					- Running Costs
+				</div>,
+			);
 		}
 		if (result.acceleration.toLowerCase() === 'fast') {
-			attributes.push(<div key={5} className="badge badge-pill badge-success mx-2 mt-2">+ Speed</div>);
-		}
-		else if (result.acceleration.toLowerCase() === 'steady') {
-			attributes.push(<div key={5} className="badge badge-pill badge-danger mx-2 mt-2">- Speed</div>);
+			attributes.push(
+				<div
+					key={5}
+					className="badge badge-pill badge-success mx-2 mt-2"
+				>
+					+ Speed
+				</div>,
+			);
+		} else if (result.acceleration.toLowerCase() === 'steady') {
+			attributes.push(
+				<div
+					key={5}
+					className="badge badge-pill badge-danger mx-2 mt-2"
+				>
+					- Speed
+				</div>,
+			);
 		}
 		attributes.sort((attributeA, attributeB) => {
-			if (attributeA.props.children.charAt(0) === '-' && attributeB.props.children.charAt(0) === '+') {
+			if (
+				attributeA.props.children.charAt(0) === '-' &&
+				attributeB.props.children.charAt(0) === '+'
+			) {
 				return 1;
 			}
-			if (attributeA.props.children.charAt(0) === '+' && attributeB.props.children.charAt(0) === '-') {
+			if (
+				attributeA.props.children.charAt(0) === '+' &&
+				attributeB.props.children.charAt(0) === '-'
+			) {
 				return -1;
 			}
-			return attributeA.props.children.localeCompare(attributeB.props.children);
+			return attributeA.props.children.localeCompare(
+				attributeB.props.children,
+			);
 		});
 		return attributes;
 	}
@@ -185,7 +288,10 @@ class ResultsPage extends Component {
 		return (
 			<div className="featured-result row m-0 mb-3 bg-trans">
 				<div className="featured-result-image-container col-4 h-100">
-					<div className="featured-result-image h-100 bg-trans" style={{ backgroundImage: `url(${modelUrl})` }} />
+					<div
+						className="featured-result-image h-100 bg-trans"
+						style={{ backgroundImage: `url(${modelUrl})` }}
+					/>
 				</div>
 				<div className="col-8 d-flex m-0 py-3 flex-column">
 					<h4 className="m-0 text-center">Best Result:</h4>
@@ -198,8 +304,12 @@ class ResultsPage extends Component {
 								alt={bestResult.make.name}
 								title={bestResult.make.name}
 							/>
-							<UncontrolledTooltip target="featured-result-make">{bestResult.make.name}</UncontrolledTooltip>
-							<h3 className="my-0 ml-3" title={bestResult.model}>{bestResult.model}</h3>
+							<UncontrolledTooltip target="featured-result-make">
+								{bestResult.make.name}
+							</UncontrolledTooltip>
+							<h3 className="my-0 ml-3" title={bestResult.model}>
+								{bestResult.model}
+							</h3>
 						</div>
 						<div className="d-flex flex-wrap align-items-center justify-content-center">
 							{this.getBestAttributes()}
@@ -223,43 +333,45 @@ class ResultsPage extends Component {
 		for (let i = 0; i < results.length; i += 3) {
 			const row = [];
 			for (let j = 0; j < Math.min(3, results.length - i); j++) {
-				row.push((
+				row.push(
 					<Result
 						key={i + j}
 						active={i + j === selectedResult}
 						model={results[i + j]}
 						onClick={() => this.onClick(i + j)}
-					/>
-				));
+					/>,
+				);
 			}
-			if (selectedResult !== null && selectedResult < i + 3 && !shownSelected) {
+			if (
+				selectedResult !== null &&
+				selectedResult < i + 3 &&
+				!shownSelected
+			) {
 				row.splice(
 					selectedResult + (1 - i),
 					0,
-					(
-						<div
-							key={results.length}
-							className="selected-result col-12 mb-3"
-							data-arrow-offset={selectedResult - i}
-						>
-							<div className="col-12 d-flex p-0">
-								<div className="triangle-container col-4 d-flex my-auto justify-content-center">
-									<div className="triangle border-trans" />
-								</div>
-							</div>
-							<div className="selected-result-info col-12 d-flex align-items-center justify-content-center bg-trans">
-								{`The selected model is ${results[selectedResult].model}`}
+					<div
+						key={results.length}
+						className="selected-result col-12 mb-3"
+						data-arrow-offset={selectedResult - i}
+					>
+						<div className="col-12 d-flex p-0">
+							<div className="triangle-container col-4 d-flex my-auto justify-content-center">
+								<div className="triangle border-trans" />
 							</div>
 						</div>
-					),
+						<div className="selected-result-info col-12 d-flex align-items-center justify-content-center bg-trans">
+							{`The selected model is ${results[selectedResult].model}`}
+						</div>
+					</div>,
 				);
 				shownSelected = !shownSelected;
 			}
-			resultElements.push((
+			resultElements.push(
 				<div key={i / 3} className="row">
 					{row}
-				</div>
-			));
+				</div>,
+			);
 		}
 		return resultElements;
 	}
@@ -281,15 +393,17 @@ class ResultsPage extends Component {
 		switch (sort) {
 			case 'priceHigh':
 				return results.sort(
-					(resultA, resultB) => resultB.typical_price - resultA.typical_price,
+					(resultA, resultB) =>
+						resultB.typical_price - resultA.typical_price,
 				);
 			case 'priceLow':
 				return results.sort(
-					(resultA, resultB) => resultA.typical_price - resultB.typical_price,
+					(resultA, resultB) =>
+						resultA.typical_price - resultB.typical_price,
 				);
 			default:
-				return results.sort(
-					(resultA, resultB) => resultA.model.localeCompare(resultB.model),
+				return results.sort((resultA, resultB) =>
+					resultA.model.localeCompare(resultB.model),
 				);
 		}
 	}

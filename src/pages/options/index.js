@@ -48,7 +48,12 @@ class OptionsPage extends Component {
 			<div id="options" className="page justify-content-center px-4 pb-3">
 				<div className="container d-flex flex-column align-items-center">
 					{this.getFilterElements()}
-					<Link className="btn btn-lg btn-primary my-3" to={this.getResultUrl()}>Search</Link>
+					<Link
+						className="btn btn-lg btn-primary my-3"
+						to={this.getResultUrl()}
+					>
+						Search
+					</Link>
 				</div>
 			</div>
 		);
@@ -60,7 +65,9 @@ class OptionsPage extends Component {
 		if (!urlParams.category || !urlParams.value) {
 			console.log('NOPE');
 		}
-		dispatch(actions.setOptionsSettings(urlParams.category, urlParams.value));
+		dispatch(
+			actions.setOptionsSettings(urlParams.category, urlParams.value),
+		);
 	}
 
 	getResultUrl() {
@@ -79,7 +86,7 @@ class OptionsPage extends Component {
 	 */
 	onFilterChange(index, value) {
 		const { dispatch } = this.props;
-		const val = (typeof value === 'string') ? value.toLowerCase() : value;
+		const val = typeof value === 'string' ? value.toLowerCase() : value;
 		dispatch(actions.setFilterValue(index, val));
 	}
 

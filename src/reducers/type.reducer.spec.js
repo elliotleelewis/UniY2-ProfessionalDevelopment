@@ -9,11 +9,7 @@ describe('type.reducer', () => {
 		const initialSelectedTypeIndex = 1;
 		let state = {
 			selectedTypeIndex: initialSelectedTypeIndex,
-			types: [
-				'A',
-				'B',
-				'C',
-			],
+			types: ['A', 'B', 'C'],
 		};
 		state = reducer(state, {
 			type: actions.TYPE_INDEX_INC,
@@ -23,11 +19,7 @@ describe('type.reducer', () => {
 	it('should handle TYPE_INDEX_INC edge case', () => {
 		let state = {
 			selectedTypeIndex: 2,
-			types: [
-				'A',
-				'B',
-				'C',
-			],
+			types: ['A', 'B', 'C'],
 		};
 		state = reducer(state, {
 			type: actions.TYPE_INDEX_INC,
@@ -38,11 +30,7 @@ describe('type.reducer', () => {
 		const initialSelectedTypeIndex = 1;
 		let state = {
 			selectedTypeIndex: initialSelectedTypeIndex,
-			types: [
-				'A',
-				'B',
-				'C',
-			],
+			types: ['A', 'B', 'C'],
 		};
 		state = reducer(state, {
 			type: actions.TYPE_INDEX_DEC,
@@ -52,11 +40,7 @@ describe('type.reducer', () => {
 	it('should handle TYPE_INDEX_DEC edge case', () => {
 		let state = {
 			selectedTypeIndex: 0,
-			types: [
-				'A',
-				'B',
-				'C',
-			],
+			types: ['A', 'B', 'C'],
 		};
 		state = reducer(state, {
 			type: actions.TYPE_INDEX_DEC,

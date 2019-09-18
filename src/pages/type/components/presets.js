@@ -30,9 +30,15 @@ class Presets extends Component {
 					type="button"
 					onClick={() => dispatch(actions.togglePresets())}
 				>
-					<i className="material-icons">{`arrow_drop_${!hidden ? 'down' : 'up'}`}</i>
+					<i className="material-icons">{`arrow_drop_${
+						!hidden ? 'down' : 'up'
+					}`}</i>
 				</button>
-				<div className={`${!hidden ? '' : 'hidden '}presets-container d-flex w-100 p-3 flex-column bg-trans`}>
+				<div
+					className={`${
+						!hidden ? '' : 'hidden '
+					}presets-container d-flex w-100 p-3 flex-column bg-trans`}
+				>
 					<h3 className="mb-3 text-center">Lifestyle</h3>
 					<div className="presets d-flex w-100 m-auto">
 						{this.getPresets()}

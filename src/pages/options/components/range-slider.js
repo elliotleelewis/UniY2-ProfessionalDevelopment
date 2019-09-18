@@ -80,9 +80,11 @@ export default class RangeSlider extends Component {
 		const { prefix, affix } = this.props;
 		const { value } = this.state;
 		return value.map((val) => {
-			const v = ((prefix) || '') + val + ((affix) || '');
+			const v = (prefix || '') + val + (affix || '');
 			return (
-				<div key={v} className="handle-value">{v}</div>
+				<div key={v} className="handle-value">
+					{v}
+				</div>
 			);
 		});
 	}

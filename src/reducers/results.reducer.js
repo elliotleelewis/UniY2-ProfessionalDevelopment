@@ -2,13 +2,17 @@ import data from '../data/cars.json';
 
 import * as actions from './actions';
 
-let preparedData = Object.keys(data.makes).map((make) => Object.assign(data.makes[make], {
-	data_name: data.makes[make].name.replace(/\s+/g, '-').toLowerCase(),
-}));
-preparedData = data.models.map((model) => Object.assign(model, {
-	make: data.makes[model.make],
-	data_name: model.model.replace(/\s+/g, '-').toLowerCase(),
-}));
+let preparedData = Object.keys(data.makes).map((make) =>
+	Object.assign(data.makes[make], {
+		data_name: data.makes[make].name.replace(/\s+/g, '-').toLowerCase(),
+	}),
+);
+preparedData = data.models.map((model) =>
+	Object.assign(model, {
+		make: data.makes[model.make],
+		data_name: model.model.replace(/\s+/g, '-').toLowerCase(),
+	}),
+);
 
 const initialState = {
 	category: null,
@@ -27,7 +31,10 @@ export default function typeReducer(state = initialState, action) {
 		case actions.SET_SELECTED_RESULT:
 			return {
 				...state,
-				selectedResult: (state.selectedResult === action.payload) ? null : action.payload,
+				selectedResult:
+					state.selectedResult === action.payload
+						? null
+						: action.payload,
 			};
 		default:
 			return state;
@@ -41,7 +48,10 @@ function setResultsSettings(state, options) {
 		value: options.value,
 	};
 	newState.results = preparedData.filter((model) => {
-		if (options.category === 'body-type' && options.value !== model.body_type) {
+		if (
+			options.category === 'body-type' &&
+			options.value !== model.body_type
+		) {
 			return false;
 		}
 		return options.filters.every((filter) => {
@@ -63,25 +73,42 @@ function setResultsSettings(state, options) {
 				}
 				case 'running_costs': {
 					const values = ['free', 'low', 'medium', 'considerable'];
-					const filterIndex = values.indexOf(filter.value.toLowerCase());
-					const modelAnnualTax = values.indexOf(model.annual_tax.toLowerCase());
-					const modelInsurance = values.indexOf(model.insurance.toLowerCase());
-					if (modelAnnualTax > filterIndex || modelInsurance > filterIndex) {
+					const filterIndex = values.indexOf(
+						filter.value.toLowerCase(),
+					);
+					const modelAnnualTax = values.indexOf(
+						model.annual_tax.toLowerCase(),
+					);
+					const modelInsurance = values.indexOf(
+						model.insurance.toLowerCase(),
+					);
+					if (
+						modelAnnualTax > filterIndex ||
+						modelInsurance > filterIndex
+					) {
 						return false;
 					}
 					break;
 				}
 				case 'boot_size': {
 					const values = ['small', 'medium', 'large'];
-					const filterIndex = values.indexOf(filter.value.toLowerCase());
-					const modelBootSize = values.indexOf(model.boot_size.toLowerCase());
+					const filterIndex = values.indexOf(
+						filter.value.toLowerCase(),
+					);
+					const modelBootSize = values.indexOf(
+						model.boot_size.toLowerCase(),
+					);
 					if (modelBootSize > filterIndex) {
 						return false;
 					}
 					break;
 				}
 				case 'transmission': {
-					if (filter.value.toLowerCase() !== 'both' && filter.value.toLowerCase() !== model.transmission.toLowerCase()) {
+					if (
+						filter.value.toLowerCase() !== 'both' &&
+						filter.value.toLowerCase() !==
+							model.transmission.toLowerCase()
+					) {
 						return false;
 					}
 					break;
@@ -96,8 +123,12 @@ function setResultsSettings(state, options) {
 				case 'fuel_consumption': {
 					const values = ['low', 'medium', 'considerable'];
 					const filterValues = ['minimal', 'medium', 'considerable'];
-					const filterIndex = values.indexOf(filter.value.toLowerCase());
-					const modelFuelConsumption = filterValues.indexOf(model.fuel_consumption.toLowerCase());
+					const filterIndex = values.indexOf(
+						filter.value.toLowerCase(),
+					);
+					const modelFuelConsumption = filterValues.indexOf(
+						model.fuel_consumption.toLowerCase(),
+					);
 					if (modelFuelConsumption > filterIndex) {
 						return false;
 					}
@@ -105,8 +136,12 @@ function setResultsSettings(state, options) {
 				}
 				case 'acceleration': {
 					const values = ['steady', 'medium', 'fast'];
-					const filterIndex = values.indexOf(filter.value.toLowerCase());
-					const modelAcceleration = values.indexOf(model.acceleration.toLowerCase());
+					const filterIndex = values.indexOf(
+						filter.value.toLowerCase(),
+					);
+					const modelAcceleration = values.indexOf(
+						model.acceleration.toLowerCase(),
+					);
 					if (modelAcceleration > filterIndex) {
 						return false;
 					}

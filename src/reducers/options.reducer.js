@@ -20,7 +20,11 @@ export default function typeReducer(state = initialState, action) {
 }
 
 function setOptionsSettings(state, settings) {
-	const newState = { ...state, category: settings.category, value: settings.value };
+	const newState = {
+		...state,
+		category: settings.category,
+		value: settings.value,
+	};
 	if (!settings.category || !settings.value) {
 		return newState;
 	}

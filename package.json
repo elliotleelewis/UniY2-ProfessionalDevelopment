@@ -37,6 +37,7 @@
     "@types/react-dom": "^16.0.0",
     "cross-env": "^6.0.0",
     "eslint-config-airbnb": "^17.0.0",
+    "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-import": "^2.0.0",
     "eslint-plugin-jsx-a11y": "^6.0.0",
     "eslint-plugin-react": "^7.0.0",
@@ -69,7 +70,8 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "airbnb"
+      "airbnb",
+      "prettier"
     ],
     "env": {
       "jest": true
@@ -79,23 +81,7 @@
       "window": true
     },
     "rules": {
-      "arrow-parens": [
-        "error",
-        "always"
-      ],
-      "brace-style": [
-        "error",
-        "stroustrup"
-      ],
-      "indent": [
-        "error",
-        "tab",
-        {
-          "SwitchCase": 1
-        }
-      ],
       "no-plusplus": "off",
-      "no-tabs": "off",
       "no-use-before-define": [
         "error",
         {
@@ -143,6 +129,7 @@
         }
       ],
       "jsx-a11y/label-has-for": "off",
+      "react/jsx-closing-tag-location": "off",
       "react/jsx-filename-extension": "off",
       "react/jsx-indent": [
         "error",
@@ -152,6 +139,7 @@
         "error",
         "tab"
       ],
+      "react/jsx-one-expression-per-line": "off",
       "react/sort-comp": [
         "error",
         {

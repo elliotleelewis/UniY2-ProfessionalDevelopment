@@ -36,16 +36,24 @@ export default class Result extends PureComponent {
 		const { active, model, onClick } = this.props;
 		const makeUrl = `${process.env.PUBLIC_URL}/media/makes/${model.make.data_name}.png`;
 		const modelUrl = `${process.env.PUBLIC_URL}/media/models/${model.make.data_name}/${model.data_name}.jpg`;
-		const modelPrice = model.typical_price.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+		const modelPrice = model.typical_price.replace(
+			/\B(?=(\d{3})+(?!\d))/g,
+			',',
+		);
 		return (
 			<button
-				className={`${(active ? 'active ' : '')}result col-md-4 col-12 my-3 border-0 bg-transparent text-white`}
+				className={`${
+					active ? 'active ' : ''
+				}result col-md-4 col-12 my-3 border-0 bg-transparent text-white`}
 				title={`${model.make.name} ${model.model}`}
 				type="button"
 				onClick={onClick}
 			>
 				<div className="result-container h-100 bg-trans">
-					<div className="result-image h-75 bg-trans" style={{ backgroundImage: `url(${modelUrl})` }} />
+					<div
+						className="result-image h-75 bg-trans"
+						style={{ backgroundImage: `url(${modelUrl})` }}
+					/>
 					<div className="result-info h-25 d-flex p-2 align-items-center">
 						<img
 							id={`result-make-${model.make.data_name}-${model.data_name}`}
@@ -54,9 +62,18 @@ export default class Result extends PureComponent {
 							alt={model.make.name}
 							title={model.make.name}
 						/>
-						<UncontrolledTooltip target={`result-make-${model.make.data_name}-${model.data_name}`}>{model.make.name}</UncontrolledTooltip>
-						<h5 className="w-100 my-0 ml-2" title={model.model}>{model.model}</h5>
-						<h6 className="m-0" title="Price">{`~ £${modelPrice}`}</h6>
+						<UncontrolledTooltip
+							target={`result-make-${model.make.data_name}-${model.data_name}`}
+						>
+							{model.make.name}
+						</UncontrolledTooltip>
+						<h5 className="w-100 my-0 ml-2" title={model.model}>
+							{model.model}
+						</h5>
+						<h6
+							className="m-0"
+							title="Price"
+						>{`~ £${modelPrice}`}</h6>
 					</div>
 				</div>
 			</button>

@@ -64,7 +64,9 @@ export default class TextSelector extends Component {
 		return items.map((item, i) => (
 			<button
 				key={item}
-				className={`btn btn-${(value === i) ? '' : 'outline-'}secondary mx-2 mt-3`}
+				className={`btn btn-${
+					value === i ? '' : 'outline-'
+				}secondary mx-2 mt-3`}
 				type="button"
 				onClick={() => this.onChange(i)}
 			>

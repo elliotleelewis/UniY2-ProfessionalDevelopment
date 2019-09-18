@@ -14,7 +14,11 @@
 				opacity: 0;
 				transition: all $transition-length ease-in-out;
 				cursor: pointer;
-				&.before-pre-selected, &.pre-selected, &.selected, &.post-selected, &.after-post-selected {
+				&.before-pre-selected,
+				&.pre-selected,
+				&.selected,
+				&.post-selected,
+				&.after-post-selected {
 					display: flex;
 					position: absolute;
 					width: 15%;
@@ -51,7 +55,8 @@
 					left: 150%;
 				}
 				&:not(.selected) {
-					&:hover, &:focus {
+					&:hover,
+					&:focus {
 						svg {
 							fill: white;
 						}
