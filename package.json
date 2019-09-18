@@ -16,7 +16,7 @@
     "connected-react-router": "^4.0.0",
     "create-react-class": "~15.6.0",
     "history": "^4.0.0",
-    "prop-types": "~15.6.0",
+    "prop-types": "~15.7.0",
     "query-string": "^6.0.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
