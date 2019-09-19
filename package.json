@@ -1,5 +1,6 @@
 {
   "private": true,
+  "homepage": "https://elliotleelewis.github.io/UniY2-ProfessionalDevelopment",
   "scripts": {
     "start": "cross-env BROWSER=none react-scripts start",
     "build": "react-scripts build",

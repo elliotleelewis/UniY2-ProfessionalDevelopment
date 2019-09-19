@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-- 12
+- "12"
 
 cache:
   yarn: true
@@ -10,14 +10,10 @@ branches:
   only:
   - master
 
-before_install:
-- curl -o- -L https://yarnpkg.com/install.sh | bash
-- export PATH="$HOME/.yarn/bin:$PATH"
-
 script:
 - yarn run build
 - yarn run lint
-- yarn run stylelint
+#- yarn run stylelint
 - yarn run prettier
 - yarn test
 
@@ -29,3 +25,6 @@ deploy:
   local-dir: build
   on:
     branch: master
+
+notifications:
+  email: false

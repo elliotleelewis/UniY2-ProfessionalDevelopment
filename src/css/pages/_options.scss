@@ -46,8 +46,8 @@ $slider-height: 20px;
 				height: $slider-height * 2;
 				.bar {
 					position: relative;
-					height: 25%;
 					top: $slider-height;
+					height: 25%;
 					margin: ($slider-height / 4) 0;
 					background: $trans;
 					&.bar-0 {
@@ -56,25 +56,25 @@ $slider-height: 20px;
 					}
 				}
 				.handle {
+					top: $slider-height;
 					display: flex;
+					justify-content: center;
 					width: $slider-height;
 					height: $slider-height;
-					top: $slider-height;
-					justify-content: center;
-					border-radius: 50%;
 					background-color: white;
+					border-radius: 50%;
 					cursor: pointer;
 					&.active {
 						background-color: white;
 					}
 					.handle-value {
-						display: flex;
 						position: relative;
-						height: $slider-height;
 						top: -$slider-height;
+						display: flex;
 						align-items: center;
-						text-align: center;
+						height: $slider-height;
 						white-space: nowrap;
+						text-align: center;
 					}
 				}
 			}

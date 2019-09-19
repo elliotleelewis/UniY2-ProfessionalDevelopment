@@ -16,9 +16,9 @@ $result-height: 300px;
 				.featured-result-image-container {
 					padding: 0 20px 0 0;
 					.featured-result-image {
-						border-radius: $spacing / 2;
 						background: no-repeat center;
 						background-size: cover;
+						border-radius: $spacing / 2;
 					}
 				}
 				#featured-result-make {
@@ -39,8 +39,8 @@ $result-height: 300px;
 					}
 				}
 				.result-container {
-					border-radius: $spacing / 2;
 					overflow: hidden;
+					border-radius: $spacing / 2;
 					.result-image {
 						background: no-repeat center;
 						background-size: cover;
@@ -48,8 +48,8 @@ $result-height: 300px;
 					.result-info {
 						h5 {
 							overflow: hidden;
-							text-overflow: ellipsis;
 							white-space: nowrap;
+							text-overflow: ellipsis;
 						}
 						h6 {
 							white-space: nowrap;

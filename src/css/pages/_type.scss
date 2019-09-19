@@ -6,26 +6,26 @@
 	.types-container {
 		flex: 1 0 auto;
 		.types {
-			min-height: 220px;
 			flex: 0 0 auto;
 			flex-flow: row;
+			min-height: 220px;
 			.type {
 				display: none;
+				cursor: pointer;
 				opacity: 0;
 				transition: all $transition-length ease-in-out;
-				cursor: pointer;
 				&.before-pre-selected,
 				&.pre-selected,
 				&.selected,
 				&.post-selected,
 				&.after-post-selected {
-					display: flex;
 					position: absolute;
-					width: 15%;
 					top: 0;
 					bottom: 0;
+					display: flex;
 					flex-direction: column;
 					justify-content: center;
+					width: 15%;
 				}
 				&.before-pre-selected {
 					left: -50%;
@@ -36,12 +36,12 @@
 					opacity: 0.5;
 				}
 				&.selected {
-					width: 40%;
 					left: 50%;
-					transform: translateX(-50%);
-					opacity: 1;
+					width: 40%;
 					outline: none;
+					transform: translateX(-50%);
 					cursor: default;
+					opacity: 1;
 					h5 {
 						opacity: 1;
 					}
@@ -66,14 +66,14 @@
 					}
 				}
 				svg {
-					fill: white;
 					transition: fill $transition-length ease-in-out;
+					fill: white;
 				}
 				h5 {
-					opacity: 0;
 					overflow: hidden;
-					transition: opacity $transition-length ease-in-out;
 					text-overflow: ellipsis;
+					opacity: 0;
+					transition: opacity $transition-length ease-in-out;
 					@media (min-width: $desktop-breakpoint) {
 						opacity: 1;
 					}
@@ -87,8 +87,8 @@
 			border-radius: 10px 10px 0 0;
 		}
 		.presets-container {
-			height: 175px;
 			flex: 0 0 auto;
+			height: 175px;
 			overflow: hidden;
 			transition: all $transition-length ease-in-out;
 			&.hidden {
@@ -104,10 +104,10 @@
 				flex: 0 0 auto;
 				overflow: auto;
 				.preset {
-					min-width: 120px;
 					flex: 1 0 auto;
-					background: none;
+					min-width: 120px;
 					text-decoration: none;
+					background: none;
 					&:hover {
 						.preset-icon svg {
 							fill: white;
@@ -117,8 +117,8 @@
 						max-width: 150px;
 						max-height: 50px;
 						svg {
-							fill: white;
 							transition: all $transition-length ease-in-out;
+							fill: white;
 						}
 					}
 					p {
