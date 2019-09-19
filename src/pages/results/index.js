@@ -12,20 +12,6 @@ import Result from './components/result';
  * The final page of the web app. Where final car results are shown.
  */
 class ResultsPage extends Component {
-	static propTypes = {
-		dispatch: PropTypes.func.isRequired,
-		location: PropTypes.shape({
-			search: PropTypes.string.isRequired,
-		}).isRequired,
-		results: PropTypes.arrayOf(PropTypes.object).isRequired,
-		sort: PropTypes.string.isRequired,
-		selectedResult: PropTypes.number,
-	};
-
-	static defaultProps = {
-		selectedResult: null,
-	};
-
 	/**
 	 * The constructor also filters and sorts the result set ready for the rest of the module to,
 	 * run smoothly.
@@ -408,6 +394,19 @@ class ResultsPage extends Component {
 		}
 	}
 }
+ResultsPage.propTypes = {
+	dispatch: PropTypes.func.isRequired,
+	location: PropTypes.shape({
+		search: PropTypes.string.isRequired,
+	}).isRequired,
+	results: PropTypes.arrayOf(PropTypes.object).isRequired,
+	sort: PropTypes.string.isRequired,
+	selectedResult: PropTypes.number,
+};
+ResultsPage.defaultProps = {
+	selectedResult: null,
+};
+
 export default connect((store) => ({
 	results: store.results.results,
 	sort: store.results.sort,

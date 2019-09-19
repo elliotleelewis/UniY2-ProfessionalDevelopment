@@ -7,21 +7,6 @@ import ReactSlider from 'react-slider';
  * a price range.
  */
 export default class RangeSlider extends Component {
-	static propTypes = {
-		label: PropTypes.string.isRequired,
-		prefix: PropTypes.string,
-		affix: PropTypes.string,
-		min: PropTypes.number.isRequired,
-		max: PropTypes.number.isRequired,
-		value: PropTypes.arrayOf(PropTypes.number).isRequired,
-		onChange: PropTypes.func.isRequired,
-	};
-
-	static defaultProps = {
-		prefix: '',
-		affix: '',
-	};
-
 	/**
 	 * @constructor
 	 * @param {object} props - ReactJS props.
@@ -89,3 +74,16 @@ export default class RangeSlider extends Component {
 		});
 	}
 }
+RangeSlider.propTypes = {
+	label: PropTypes.string.isRequired,
+	prefix: PropTypes.string,
+	affix: PropTypes.string,
+	min: PropTypes.number.isRequired,
+	max: PropTypes.number.isRequired,
+	value: PropTypes.arrayOf(PropTypes.number).isRequired,
+	onChange: PropTypes.func.isRequired,
+};
+RangeSlider.defaultProps = {
+	prefix: '',
+	affix: '',
+};

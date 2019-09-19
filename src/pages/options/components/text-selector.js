@@ -7,13 +7,6 @@ import React, { Component } from 'react';
  * "both", "manual", and "automatic" for a transmission filter.
  */
 export default class TextSelector extends Component {
-	static propTypes = {
-		label: PropTypes.string.isRequired,
-		items: PropTypes.arrayOf(PropTypes.string).isRequired,
-		value: PropTypes.string.isRequired,
-		onChange: PropTypes.func.isRequired,
-	};
-
 	/**
 	 * @constructor
 	 * @param {object} props - ReactJS props.
@@ -75,3 +68,9 @@ export default class TextSelector extends Component {
 		));
 	}
 }
+TextSelector.propTypes = {
+	label: PropTypes.string.isRequired,
+	items: PropTypes.arrayOf(PropTypes.string).isRequired,
+	value: PropTypes.string.isRequired,
+	onChange: PropTypes.func.isRequired,
+};

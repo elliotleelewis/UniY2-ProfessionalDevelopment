@@ -15,21 +15,6 @@ import TextSlider from './components/text-slider';
  * before results are shown.
  */
 class OptionsPage extends Component {
-	static propTypes = {
-		dispatch: PropTypes.func.isRequired,
-		location: PropTypes.shape({
-			search: PropTypes.string.isRequired,
-		}).isRequired,
-		category: PropTypes.string,
-		value: PropTypes.string,
-		filters: PropTypes.arrayOf(PropTypes.object).isRequired,
-	};
-
-	static defaultProps = {
-		category: null,
-		value: null,
-	};
-
 	/**
 	 * @constructor
 	 * @param {object} props - ReactJS props.
@@ -195,6 +180,20 @@ class OptionsPage extends Component {
 		}));
 	}
 }
+OptionsPage.propTypes = {
+	dispatch: PropTypes.func.isRequired,
+	location: PropTypes.shape({
+		search: PropTypes.string.isRequired,
+	}).isRequired,
+	category: PropTypes.string,
+	value: PropTypes.string,
+	filters: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+OptionsPage.defaultProps = {
+	category: null,
+	value: null,
+};
+
 export default connect((store) => ({
 	category: store.options.category,
 	value: store.options.value,

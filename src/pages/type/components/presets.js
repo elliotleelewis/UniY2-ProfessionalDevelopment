@@ -10,12 +10,6 @@ import * as actions from '../../../reducers/actions';
  * Presets slider for bottom of {@link TypePage}.
  */
 class Presets extends Component {
-	static propTypes = {
-		dispatch: PropTypes.func.isRequired,
-		hidden: PropTypes.bool.isRequired,
-		presets: PropTypes.arrayOf(PropTypes.string).isRequired,
-	};
-
 	/**
 	 * Renders the presets slider, including the hide button.
 	 * @returns {React} JSX element.
@@ -83,6 +77,12 @@ class Presets extends Component {
 		});
 	}
 }
+Presets.propTypes = {
+	dispatch: PropTypes.func.isRequired,
+	hidden: PropTypes.bool.isRequired,
+	presets: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+
 export default connect((store) => ({
 	hidden: store.type.presetsHidden,
 	presets: store.type.presets,

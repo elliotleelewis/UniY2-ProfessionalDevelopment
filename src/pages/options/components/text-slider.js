@@ -7,13 +7,6 @@ import ReactSlider from 'react-slider';
  * an array containing the strings "low", "medium", and "high" for a fuel economy filter.
  */
 export default class TextSlider extends Component {
-	static propTypes = {
-		label: PropTypes.string.isRequired,
-		items: PropTypes.arrayOf(PropTypes.string).isRequired,
-		value: PropTypes.string.isRequired,
-		onChange: PropTypes.func.isRequired,
-	};
-
 	/**
 	 * @constructor
 	 * @param {object} props - ReactJS props.
@@ -62,3 +55,9 @@ export default class TextSlider extends Component {
 		onChange(items[index].toLowerCase());
 	}
 }
+TextSlider.propTypes = {
+	label: PropTypes.string.isRequired,
+	items: PropTypes.arrayOf(PropTypes.string).isRequired,
+	value: PropTypes.string.isRequired,
+	onChange: PropTypes.func.isRequired,
+};

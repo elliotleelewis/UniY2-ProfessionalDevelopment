@@ -14,12 +14,6 @@ import Presets from './components/presets';
  * First page of the web app. Contains the body types slider and the presets slider.
  */
 class TypePage extends Component {
-	static propTypes = {
-		dispatch: PropTypes.func.isRequired,
-		types: PropTypes.arrayOf(PropTypes.string).isRequired,
-		selectedTypeIndex: PropTypes.number.isRequired,
-	};
-
 	/**
 	 * @constructor
 	 */
@@ -126,6 +120,12 @@ class TypePage extends Component {
 		return out;
 	}
 }
+TypePage.propTypes = {
+	dispatch: PropTypes.func.isRequired,
+	types: PropTypes.arrayOf(PropTypes.string).isRequired,
+	selectedTypeIndex: PropTypes.number.isRequired,
+};
+
 export default connect((store) => ({
 	types: store.type.types,
 	selectedTypeIndex: store.type.selectedTypeIndex,

@@ -5,13 +5,6 @@ import React, { PureComponent } from 'react';
  * Individual body type option for type slider.
  */
 export default class Type extends PureComponent {
-	static propTypes = {
-		type: PropTypes.string.isRequired,
-		relativeSelectedIndex: PropTypes.number.isRequired,
-		nextType: PropTypes.func.isRequired,
-		prevType: PropTypes.func.isRequired,
-	};
-
 	/**
 	 * Renders the body type on the body types carousel.
 	 * @returns {React} - JSX element.
@@ -82,3 +75,9 @@ export default class Type extends PureComponent {
 		}/media/icons.svg#icon-${type.toLowerCase()}`;
 	}
 }
+Type.propTypes = {
+	type: PropTypes.string.isRequired,
+	relativeSelectedIndex: PropTypes.number.isRequired,
+	nextType: PropTypes.func.isRequired,
+	prevType: PropTypes.func.isRequired,
+};

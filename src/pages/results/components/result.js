@@ -6,28 +6,6 @@ import { UncontrolledTooltip } from 'reactstrap';
  * Search result element for {@link ResultsPage}.
  */
 export default class Result extends PureComponent {
-	static propTypes = {
-		active: PropTypes.bool.isRequired,
-		model: PropTypes.shape({
-			make: PropTypes.object.isRequired,
-			model: PropTypes.string.isRequired,
-			body_type: PropTypes.string.isRequired,
-			min_price: PropTypes.string.isRequired,
-			max_price: PropTypes.string.isRequired,
-			typical_price: PropTypes.string.isRequired,
-			seats: PropTypes.string.isRequired,
-			doors: PropTypes.string.isRequired,
-			boot_size: PropTypes.string.isRequired,
-			transmission: PropTypes.string.isRequired,
-			fuel_consumption: PropTypes.string.isRequired,
-			acceleration: PropTypes.string.isRequired,
-			insurance: PropTypes.string.isRequired,
-			annual_tax: PropTypes.string.isRequired,
-			data_name: PropTypes.string.isRequired,
-		}).isRequired,
-		onClick: PropTypes.func.isRequired,
-	};
-
 	/**
 	 * Renders the result element.
 	 * @returns {React} - JSX element.
@@ -80,3 +58,24 @@ export default class Result extends PureComponent {
 		);
 	}
 }
+Result.propTypes = {
+	active: PropTypes.bool.isRequired,
+	model: PropTypes.shape({
+		make: PropTypes.object.isRequired,
+		model: PropTypes.string.isRequired,
+		body_type: PropTypes.string.isRequired,
+		min_price: PropTypes.string.isRequired,
+		max_price: PropTypes.string.isRequired,
+		typical_price: PropTypes.string.isRequired,
+		seats: PropTypes.string.isRequired,
+		doors: PropTypes.string.isRequired,
+		boot_size: PropTypes.string.isRequired,
+		transmission: PropTypes.string.isRequired,
+		fuel_consumption: PropTypes.string.isRequired,
+		acceleration: PropTypes.string.isRequired,
+		insurance: PropTypes.string.isRequired,
+		annual_tax: PropTypes.string.isRequired,
+		data_name: PropTypes.string.isRequired,
+	}).isRequired,
+	onClick: PropTypes.func.isRequired,
+};
