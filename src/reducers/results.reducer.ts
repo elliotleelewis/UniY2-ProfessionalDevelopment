@@ -1,33 +1,52 @@
 import data from '../data/cars.json';
+import { Make } from '../models/make';
 
 import * as actions from './actions';
 
-let preparedData = Object.keys(data.makes).map((make) =>
-	Object.assign(data.makes[make], {
-		data_name: data.makes[make].name.replace(/\s+/g, '-').toLowerCase(),
+Object.keys(data.makes).map((make) =>
+	Object.assign((data.makes as { [key: string]: Make })[make], {
+		data_name: (data.makes as { [key: string]: Make })[make].name
+			.replace(/\s+/g, '-')
+			.toLowerCase(),
 	}),
 );
-preparedData = data.models.map((model) =>
+const preparedData = data.models.map((model) =>
 	Object.assign(model, {
-		make: data.makes[model.make],
+		make: (data.makes as { [key: string]: Make })[model.make],
 		data_name: model.model.replace(/\s+/g, '-').toLowerCase(),
 	}),
 );
 
-const initialState = {
-	category: null,
+export interface ResultsState {
+	category: string;
+	results: object[];
+	sort: string;
+	selectedResult: number;
+	value: string;
+}
+
+const initialState: ResultsState = {
+	category: '',
 	results: [],
 	sort: 'relevancy',
+	// @ts-ignore
 	selectedResult: null,
-	value: null,
+	value: '',
 };
 
-export default function typeReducer(state = initialState, action) {
+export default function typeReducer(
+	state: ResultsState = initialState,
+	action: { type: string; payload: any },
+) {
 	switch (action.type) {
 		case actions.SET_RESULTS_SETTINGS:
-			return setResultsSettings(state, action.payload);
+			return setResultsSettings(state, action.payload as {
+				category: string;
+				value: string;
+				filters: any[];
+			});
 		case actions.CHANGE_RESULT_SORT:
-			return { ...state, sort: action.payload };
+			return { ...state, sort: action.payload as string };
 		case actions.SET_SELECTED_RESULT:
 			return {
 				...state,
@@ -41,7 +60,10 @@ export default function typeReducer(state = initialState, action) {
 	}
 }
 
-function setResultsSettings(state, options) {
+function setResultsSettings(
+	state: ResultsState,
+	options: { category: string; value: string; filters: any[] },
+) {
 	const newState = {
 		...state,
 		category: options.category,
@@ -54,7 +76,7 @@ function setResultsSettings(state, options) {
 		) {
 			return false;
 		}
-		return options.filters.every((filter) => {
+		return options.filters.every((filter: any) => {
 			switch (filter.type) {
 				case 'doors': {
 					const value = filter.value.charAt(0);

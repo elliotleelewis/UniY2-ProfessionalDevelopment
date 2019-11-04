@@ -24,8 +24,9 @@ export default class RangeSlider extends Component {
 	 * @returns {React} - JSX element.
 	 */
 	render() {
-		const { label, min, max } = this.props;
+		const { label, min, max, prefix, affix } = this.props;
 		const { value } = this.state;
+		const renderThumb = (val) => (prefix || '') + val + (affix || '');
 		return (
 			<div className="range-slider w-100 py-3 text-center">
 				<h4 className="m-0 text-white">{label}</h4>
@@ -35,12 +36,16 @@ export default class RangeSlider extends Component {
 					step={1000}
 					value={value}
 					onChange={this.onChange}
-					withBars
 					pearling
 					minDistance={(max - min) / 10}
-				>
-					{this.getHandleValues()}
-				</ReactSlider>
+					renderThumb={(props, state) => (
+						<div {...props}>
+							<div className="thumb-value">
+								{renderThumb(state.valueNow)}
+							</div>
+						</div>
+					)}
+				/>
 			</div>
 		);
 	}
@@ -55,23 +60,6 @@ export default class RangeSlider extends Component {
 		});
 		const { onChange } = this.props;
 		onChange(value);
-	}
-
-	/**
-	 * Returns an array of elements corresponding to the current values of the range slider.
-	 * @returns {React[]} - Array of JSX elements.
-	 */
-	getHandleValues() {
-		const { prefix, affix } = this.props;
-		const { value } = this.state;
-		return value.map((val) => {
-			const v = (prefix || '') + val + (affix || '');
-			return (
-				<div key={v} className="handle-value">
-					{v}
-				</div>
-			);
-		});
 	}
 }
 RangeSlider.propTypes = {

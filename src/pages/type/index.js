@@ -52,7 +52,7 @@ class TypePage extends Component {
 							}),
 						}}
 					>
-						{'Select'}
+						Select
 					</Link>
 				</div>
 				<Presets />

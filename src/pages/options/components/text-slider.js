@@ -34,11 +34,13 @@ export default class TextSlider extends Component {
 					max={items.length - 1}
 					value={value}
 					onChange={this.onChange}
-					withBars
 					pearling
-				>
-					<div className="handle-value">{items[value]}</div>
-				</ReactSlider>
+					renderThumb={(props) => (
+						<div {...props}>
+							<div className="thumb-value">{items[value]}</div>
+						</div>
+					)}
+				/>
 			</div>
 		);
 	}

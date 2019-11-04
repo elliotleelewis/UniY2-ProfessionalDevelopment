@@ -47,7 +47,7 @@ class ResultsPage extends Component {
 							className="d-flex my-0 ml-auto align-items-center"
 							htmlFor="sort"
 						>
-							{'Sort By:'}
+							Sort By:
 							<select
 								id="sort"
 								className="form-control ml-2"

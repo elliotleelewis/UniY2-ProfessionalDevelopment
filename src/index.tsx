@@ -13,7 +13,7 @@ import { applyMiddleware, createStore } from 'redux';
 import TypePage from './pages/type/index';
 import OptionsPage from './pages/options/index';
 import ResultsPage from './pages/results/index';
-import createRootReducer from './reducers/index';
+import createRootReducer from './reducers';
 
 import './css/index.scss';
 
@@ -21,13 +21,14 @@ const history = createHashHistory({
 	basename: process.env.PUBLIC_URL,
 });
 
-let middleware = [routerMiddleware(history)];
+let middleware;
+const middlewareDefaults = [routerMiddleware(history)];
 if (process.env.NODE_ENV !== 'production') {
 	const { composeWithDevTools } = require('redux-devtools-extension');
 	const { logger } = require('redux-logger');
-	middleware = composeWithDevTools(applyMiddleware(...middleware, logger));
+	middleware = composeWithDevTools(applyMiddleware(...middlewareDefaults, logger));
 } else {
-	middleware = applyMiddleware(...middleware);
+	middleware = applyMiddleware(...middlewareDefaults);
 }
 
 render(

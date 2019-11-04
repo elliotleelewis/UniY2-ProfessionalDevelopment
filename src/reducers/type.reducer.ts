@@ -1,6 +1,13 @@
 import * as actions from './actions';
 
-const initialState = {
+export interface TypeState {
+	types: string[];
+	presets: string[];
+	selectedTypeIndex: number;
+	presetsHidden: boolean;
+}
+
+const initialState: TypeState = {
 	types: [
 		'Saloon',
 		'Hatchback',
@@ -23,7 +30,10 @@ const initialState = {
 	presetsHidden: window.screen.height < 600,
 };
 
-export default function typeReducer(state = initialState, action) {
+export default function typeReducer(
+	state: TypeState = initialState,
+	action: { type: string; payload: any },
+) {
 	switch (action.type) {
 		case actions.TYPE_INDEX_INC: {
 			let index = state.selectedTypeIndex;

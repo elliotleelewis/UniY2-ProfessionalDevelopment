@@ -11,21 +11,21 @@ $slider-height: 20px;
 			}
 			&.range-slider {
 				.slider {
-					.bar {
-						&.bar-1 {
+					.track {
+						&.track-1 {
 							z-index: 1;
 							background: transparentize(white, 0.25);
 						}
-						&.bar-2 {
+						&.track-2 {
 							border-top-right-radius: $slider-height / 2;
 							border-bottom-right-radius: $slider-height / 2;
 						}
 					}
-					.handle {
-						&.handle-0 {
+					.thumb {
+						&.thumb-0 {
 							transform: translateX(-50%);
 						}
-						&.handle-1 {
+						&.thumb-1 {
 							transform: translateX(50%);
 						}
 					}
@@ -33,8 +33,8 @@ $slider-height: 20px;
 			}
 			&.text-slider {
 				.slider {
-					.bar {
-						&.bar-1 {
+					.track {
+						&.track-1 {
 							border-top-right-radius: $slider-height / 2;
 							border-bottom-right-radius: $slider-height / 2;
 						}
@@ -44,18 +44,18 @@ $slider-height: 20px;
 			.slider {
 				width: 100%;
 				height: $slider-height * 2;
-				.bar {
+				.track {
 					position: relative;
 					top: $slider-height;
 					height: 25%;
 					margin: ($slider-height / 4) 0;
 					background: $trans;
-					&.bar-0 {
+					&.track-0 {
 						border-top-left-radius: $slider-height / 2;
 						border-bottom-left-radius: $slider-height / 2;
 					}
 				}
-				.handle {
+				.thumb {
 					top: $slider-height;
 					display: flex;
 					justify-content: center;
@@ -67,7 +67,7 @@ $slider-height: 20px;
 					&.active {
 						background-color: white;
 					}
-					.handle-value {
+					.thumb-value {
 						position: relative;
 						top: -$slider-height;
 						display: flex;

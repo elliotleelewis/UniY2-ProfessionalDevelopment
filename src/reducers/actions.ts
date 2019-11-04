@@ -29,7 +29,7 @@ export function togglePresets() {
 	};
 }
 // Options
-export function setOptionsSettings(category, value) {
+export function setOptionsSettings(category: string, value: string) {
 	return {
 		type: SET_OPTIONS_SETTINGS,
 		payload: {
@@ -38,7 +38,7 @@ export function setOptionsSettings(category, value) {
 		},
 	};
 }
-export function setFilterValue(index, value) {
+export function setFilterValue(index: number, value: any) {
 	return {
 		type: SET_FILTER_VALUE,
 		payload: {
@@ -48,19 +48,23 @@ export function setFilterValue(index, value) {
 	};
 }
 // Results
-export function setResultsSettings(settings) {
+export function setResultsSettings(settings: {
+	category: string;
+	value: string;
+	filters: any[];
+}) {
 	return {
 		type: SET_RESULTS_SETTINGS,
 		payload: settings,
 	};
 }
-export function changeResultSort(sort) {
+export function changeResultSort(sort: string) {
 	return {
 		type: CHANGE_RESULT_SORT,
 		payload: sort,
 	};
 }
-export function setSelectedResult(index) {
+export function setSelectedResult(index: number) {
 	return {
 		type: SET_SELECTED_RESULT,
 		payload: index,
