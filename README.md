@@ -1,6 +1,6 @@
 # UniY2-ProfessionalDevelopment
 
-[![Build Status](https://travis-ci.org/elliotleelewis/UniY2-ProfessionalDevelopment.svg?branch=master)](https://travis-ci.org/elliotleelewis/UniY2-ProfessionalDevelopment)
+[![Build Status](https://travis-ci.com/elliotleelewis/UniY2-ProfessionalDevelopment.svg?branch=master)](https://travis-ci.com/elliotleelewis/UniY2-ProfessionalDevelopment)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/d30ced5a0c734a9dae9adb89c77789fd)](https://www.codacy.com/app/elliotleelewis/UniY2-ProfessionalDevelopment?utm_source=github.com&utm_medium=referral&utm_content=elliotleelewis/UniY2-ProfessionalDevelopment&utm_campaign=Badge_Grade)
 
 This repository will be used to store the prototype of the new "Discovery Search" on the AutoTrader website.
