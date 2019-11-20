@@ -40,11 +40,14 @@ export default function typeReducer(
 ) {
 	switch (action.type) {
 		case actions.SET_RESULTS_SETTINGS:
-			return setResultsSettings(state, action.payload as {
-				category: string;
-				value: string;
-				filters: any[];
-			});
+			return setResultsSettings(
+				state,
+				action.payload as {
+					category: string;
+					value: string;
+					filters: any[];
+				},
+			);
 		case actions.CHANGE_RESULT_SORT:
 			return { ...state, sort: action.payload as string };
 		case actions.SET_SELECTED_RESULT:

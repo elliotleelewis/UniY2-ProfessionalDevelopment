@@ -20,15 +20,21 @@ export default function typeReducer(
 ) {
 	switch (action.type) {
 		case actions.SET_OPTIONS_SETTINGS:
-			return setOptionsSettings(state, action.payload as {
-				category: string;
-				value: string;
-			});
+			return setOptionsSettings(
+				state,
+				action.payload as {
+					category: string;
+					value: string;
+				},
+			);
 		case actions.SET_FILTER_VALUE:
-			return setFilterValue(state, action.payload as {
-				index: number;
-				value: string;
-			});
+			return setFilterValue(
+				state,
+				action.payload as {
+					index: number;
+					value: string;
+				},
+			);
 		default:
 			return state;
 	}
