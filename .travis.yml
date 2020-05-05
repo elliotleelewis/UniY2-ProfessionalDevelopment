@@ -1,21 +1,21 @@
 language: node_js
 node_js:
-- "12"
+  - '12'
 
 cache:
   yarn: true
   directories:
-  - node_modules
+    - node_modules
 branches:
   only:
-  - master
+    - master
 
 script:
-- yarn run build
-- yarn run lint
-#- yarn run stylelint
-- yarn run prettier
-- yarn test
+  - yarn run build
+  - yarn run lint
+  #- yarn run stylelint
+  - yarn run prettier
+  - yarn test
 
 before_deploy: yarn run build
 deploy:
