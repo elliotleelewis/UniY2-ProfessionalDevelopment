@@ -7,10 +7,7 @@
       },
       {
         "type": "price",
-        "value": [
-          0,
-          30000
-        ],
+        "value": [0, 30000],
         "settings": {
           "min": 0,
           "max": 55000
@@ -24,10 +21,7 @@
     "suv": [
       {
         "type": "price",
-        "value": [
-          0,
-          32000
-        ],
+        "value": [0, 32000],
         "settings": {
           "min": 0,
           "max": 50000
@@ -49,10 +43,7 @@
       },
       {
         "type": "price",
-        "value": [
-          0,
-          40000
-        ],
+        "value": [0, 40000],
         "settings": {
           "min": 0,
           "max": 60000
@@ -74,10 +65,7 @@
       },
       {
         "type": "price",
-        "value": [
-          0,
-          35000
-        ],
+        "value": [0, 35000],
         "settings": {
           "min": 0,
           "max": 50000
@@ -95,10 +83,7 @@
       },
       {
         "type": "price",
-        "value": [
-          0,
-          35000
-        ],
+        "value": [0, 35000],
         "settings": {
           "min": 0,
           "max": 150000
@@ -120,10 +105,7 @@
       },
       {
         "type": "price",
-        "value": [
-          0,
-          80000
-        ],
+        "value": [0, 80000],
         "settings": {
           "min": 0,
           "max": 200000
@@ -137,10 +119,7 @@
     "saloon": [
       {
         "type": "price",
-        "value": [
-          0,
-          50000
-        ],
+        "value": [0, 50000],
         "settings": {
           "min": 0,
           "max": 70000
@@ -160,10 +139,7 @@
     "first-car": [
       {
         "type": "price",
-        "value": [
-          0,
-          25000
-        ],
+        "value": [0, 25000],
         "settings": {
           "min": 0,
           "max": 50000
@@ -181,10 +157,7 @@
     "city-car": [
       {
         "type": "price",
-        "value": [
-          1000,
-          30000
-        ],
+        "value": [1000, 30000],
         "settings": {
           "min": 0,
           "max": 90000
@@ -202,10 +175,7 @@
     "family-car": [
       {
         "type": "price",
-        "value": [
-          0,
-          30000
-        ],
+        "value": [0, 30000],
         "settings": {
           "min": 0,
           "max": 30000
@@ -223,10 +193,7 @@
     "towing": [
       {
         "type": "price",
-        "value": [
-          0,
-          30000
-        ],
+        "value": [0, 30000],
         "settings": {
           "min": 0,
           "max": 30000
@@ -248,10 +215,7 @@
     "long-distance": [
       {
         "type": "price",
-        "value": [
-          0,
-          30000
-        ],
+        "value": [0, 30000],
         "settings": {
           "min": 0,
           "max": 30000
@@ -269,10 +233,7 @@
     "performance": [
       {
         "type": "price",
-        "value": [
-          0,
-          30000
-        ],
+        "value": [0, 30000],
         "settings": {
           "min": 0,
           "max": 30000
@@ -290,10 +251,7 @@
     "off-road": [
       {
         "type": "price",
-        "value": [
-          0,
-          30000
-        ],
+        "value": [0, 30000],
         "settings": {
           "min": 0,
           "max": 30000

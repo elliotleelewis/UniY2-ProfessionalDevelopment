@@ -7,8 +7,8 @@ This repository will be used to store the prototype of the new "Discovery Search
 
 ## Requirements
 
--   NodeJS
--   Yarn
+- NodeJS
+- Yarn
 
 ## Installation
 

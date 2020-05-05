@@ -5,12 +5,12 @@
     "start": "cross-env BROWSER=none react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "lint": "eslint --ext js,ts,tsx src",
-    "lint:fix": "eslint --fix --ext js,ts,tsx src",
+    "lint": "eslint --ext js,jsx,ts,tsx src",
+    "lint:fix": "eslint --fix --ext js,jsx,ts,tsx src",
     "stylelint": "stylelint src/**/*.{html,scss}",
     "stylelint:fix": "stylelint src/**/*.{html,scss} --fix",
-    "prettier": "prettier --check \"**/*.{md,ts,js,scss,html}\" --ignore-path .gitignore",
-    "prettier:fix": "prettier --write \"**/*.{md,ts,js,scss,html}\" --ignore-path .gitignore"
+    "prettier": "prettier --check \"**/*.{md,ts,js,scss,html,json,yml}\" --ignore-path .gitignore",
+    "prettier:fix": "prettier --write \"**/*.{md,ts,js,scss,html,json,yml}\" --ignore-path .gitignore"
   },
   "dependencies": {
     "bootstrap": "^4.0.0",
@@ -46,10 +46,10 @@
     "eslint-plugin-react": "^7.0.0",
     "eslint-plugin-react-hooks": "^4.0.0",
     "husky": "^4.0.0",
-    "node-sass": "^4.0.0",
     "prettier": "^2.0.0",
     "pretty-quick": "^2.0.0",
     "react-scripts": "^3.0.0",
+    "sass": "^1.0.0",
     "stylelint": "^13.0.0",
     "stylelint-config-prettier": "^8.0.0",
     "stylelint-config-rational-order": "^0.1.0",
@@ -70,12 +70,25 @@
   "prettier": {
     "arrowParens": "always",
     "bracketSpacing": true,
+    "endOfLine": "lf",
+    "overrides": [
+      {
+        "files": [
+          "*.json",
+          "*.md",
+          "*.yml"
+        ],
+        "options": {
+          "tabWidth": 2,
+          "useTabs": false
+        }
+      }
+    ],
     "semi": true,
     "singleQuote": true,
     "tabWidth": 4,
     "trailingComma": "all",
-    "useTabs": true,
-    "endOfLine": "lf"
+    "useTabs": true
   },
   "eslintConfig": {
     "extends": [
@@ -91,12 +104,6 @@
       "window": true
     },
     "settings": {
-      "import/extensions": [
-        ".js",
-        ".jsx",
-        ".ts",
-        ".tsx"
-      ],
       "import/resolver": {
         "node": {
           "extensions": [
@@ -125,6 +132,17 @@
               "/"
             ]
           }
+        }
+      ],
+      "import/extensions": [
+        "error",
+        "ignorePackages",
+        {
+          "mjs": "never",
+          "js": "never",
+          "jsx": "never",
+          "ts": "never",
+          "tsx": "never"
         }
       ],
       "import/order": [
