@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/UniY2-ProfessionalDevelopment/static/css/main.d05537d8.chunk.css",
+    "main.js": "/UniY2-ProfessionalDevelopment/static/js/main.97bc4b25.chunk.js",
+    "main.js.map": "/UniY2-ProfessionalDevelopment/static/js/main.97bc4b25.chunk.js.map",
+    "runtime-main.js": "/UniY2-ProfessionalDevelopment/static/js/runtime-main.a77fa645.js",
+    "runtime-main.js.map": "/UniY2-ProfessionalDevelopment/static/js/runtime-main.a77fa645.js.map",
+    "static/js/2.f90ddf85.chunk.js": "/UniY2-ProfessionalDevelopment/static/js/2.f90ddf85.chunk.js",
+    "static/js/2.f90ddf85.chunk.js.map": "/UniY2-ProfessionalDevelopment/static/js/2.f90ddf85.chunk.js.map",
+    "index.html": "/UniY2-ProfessionalDevelopment/index.html",
+    "precache-manifest.0e837cab4291369375c2db0ca189fd84.js": "/UniY2-ProfessionalDevelopment/precache-manifest.0e837cab4291369375c2db0ca189fd84.js",
+    "service-worker.js": "/UniY2-ProfessionalDevelopment/service-worker.js",
+    "static/css/main.d05537d8.chunk.css.map": "/UniY2-ProfessionalDevelopment/static/css/main.d05537d8.chunk.css.map",
+    "static/js/2.f90ddf85.chunk.js.LICENSE.txt": "/UniY2-ProfessionalDevelopment/static/js/2.f90ddf85.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a77fa645.js",
+    "static/js/2.f90ddf85.chunk.js",
+    "static/css/main.d05537d8.chunk.css",
+    "static/js/main.97bc4b25.chunk.js"
+  ]
+}
